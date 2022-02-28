@@ -22,6 +22,11 @@ public class UserController {
 		return "USER/Findpwd";
 	}
 	
+	@RequestMapping(value = "/User/findid")
+	public String User_findid() {
+		return "USER/Findid";
+	}
+	
 	@RequestMapping(value = "/User/mypage")
 	public String User_mypage() {
 		return "USER/Mypage";
