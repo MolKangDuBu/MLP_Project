@@ -1,6 +1,9 @@
 package mlp.project.lollipop.REVIEW;
 
-public class ReviewDto {
+import mlp.project.lollipop.common.BaseDto;
+import mlp.project.lollipop.STORE.StoreDto;
+
+public class ReviewDto extends BaseDto{
 
 	private int store_key; //외래키로 사용
 	private int review_key;

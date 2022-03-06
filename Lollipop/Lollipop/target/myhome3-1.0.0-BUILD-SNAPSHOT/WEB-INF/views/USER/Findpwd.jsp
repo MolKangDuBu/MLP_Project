@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 찾기</title>
-    <link href="css/login.css" rel="stylesheet" />
+    <link href="../resources/css/login.css" rel="stylesheet" />
     <body>
         <div class="main-container">
             <div class="main-wrap">
             <header>
                 <div class="logo-wrap">
-                    <img src="assets/img/lollipop.png" >
+                    <img src="../resources/Image/lollipop.png" >
                 </div>
             </header>
             <section class="login-input-section-wrap">
