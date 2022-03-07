@@ -7,11 +7,11 @@
 너무 길어서 짧은 별명을 만들어서 접근하기 위해
 기술한다  -->
 	<typeAliases>
-    	<typeAlias alias="FreeBoardDto" type="mlp.project.lollipop.MARK.MarkDto"/>
-
+     	<typeAlias alias="MarkDto" type="mlp.project.lollipop.MARK.MarkDto"/>	
 	</typeAliases>
+	
 	<mappers>
-		 <mapper resource=	"/mlp/project/lollipop/mapper/Mark.xml"/>
+		 <mapper resource="/mlp/project/lollipop/mapper/Mark.xml"/>
 		
 	</mappers>
 	

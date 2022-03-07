@@ -1,8 +1,10 @@
 package mlp.project.lollipop.MARK;
 
-public class MarkDto {
-	private int store_key;//가게 식별키, 외래키
-	private int mark_key;//즐겨찾기 식별키
+import mlp.project.lollipop.common.BaseDto;
+
+public class MarkDto extends BaseDto{
+	private int store_key;
+	private int mark_key;
 	private String mark_id;
 	private String mark_wdate;
 	

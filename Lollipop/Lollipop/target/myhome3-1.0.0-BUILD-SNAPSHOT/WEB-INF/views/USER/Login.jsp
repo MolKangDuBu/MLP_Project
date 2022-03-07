@@ -1,68 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>롤리팝 로그인</title>
-    <link href="css/login.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
-        type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-        type="text/css" />
-</head>
-<body>
-
-    <nav style="background-color: bisque;">
-        <div class="container">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">공지사항</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">고객센터</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">로그인</a>
-                </li>
-            </ul>
+    <body>
+        <div class="w3-content w3-container w3-margin-top">
+            <div class="w3-container w3-card-4">
+                <header>
+                    <div class="logo-wrap">
+                        <img src="assets/img/lollipop.png" width="50%" style="display: block; margin: 0px auto;">
+                    </div>
+                </header>
+				<section id="logininForm" action="./member/login_member.do" method="post">
+					<p>
+						<label>아이디</label> 
+						<input class="w3-input" type="text" id="id" name="id" required placeholder="8자 이내의 아이디"> 
+						<span id="id_check" class="w3-text-red"></span>
+					</p>
+					<p>
+						<label>비밀번호</label> 
+						<input class="w3-input" id="pw" name="pw" type="password" required placeholder="8자 이내의 비밀번호">
+                    </p>
+                    <p class="w3-center">
+                        <button type="submit" id="loginBtn" class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">로그인</button>
+                        <button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
+                    </p>
+                </section>
+                <section class="join-and-find">
+                    <div class="join-wrap" style="color: rgba(241, 19, 123, 0.863); width: 915px; display: flex; flex-direction: row; 
+                    align-items: flex-end; justify-content: flex-end; padding-bottom: 15px; font-size: 13px;">
+                        <a href="">회원가입</a>&nbsp;&nbsp;&nbsp;
+                        <a href="">비밀번호 찾기</a>
+                    </div>
+                </section>
+                <footer>
+                    <div class="copyright-wrap" style="display: flex; flex-direction: column; align-items: center; height: 30px;">
+                        <span>Copyright © Lollipop Corp. All Rights Reserved.</span>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </nav>
-    <div class="main-container">
-        <div class="main-wrap">
-            <header>
-                <div class="logo-wrap">
-                    <img src="assets/img/lollipop.png">
-                </div>
-            </header>
-            <section class="login-input-section-wrap">
-                <div class="login-input-wrap">
-                    <input placeholder="아이디" type="text"></input>
-                </div>
-                <div class="login-input-wrap password-wrap">
-                    <input placeholder="비밀번호" type="password"></input>
-                </div>
-                <div class="login-button-wrap">
-                    <button>로그인</button>
-                </div>
-            </section>
-            <section class="join-and-find">
-                <div class="join-wrap">
-                    <a href="">회원가입</a>
-                </div>
-                <div class="find-wrap">
-                    <a href>비밀번호 찾기</a>
-                </div>
-            </section>
-            <footer>
-                <div class="copyright-wrap">
-                    <span>Copyright © Lollipop Corp. All Rights Reserved.</span>
-                </div>
-            </footer>
-        </div>
-    </div>
-</body>
+    </body>
 </html>

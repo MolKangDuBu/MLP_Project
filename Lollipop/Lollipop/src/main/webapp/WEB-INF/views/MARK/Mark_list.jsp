@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.common.*" %>
+<%@page import="mlp.project.lollipop.MARK.*" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>역삼동 | 당근마켓 동네가게</title>
+    <title>Lollipop</title>
     <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="og:locale" content="ko_KR">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;display=swap">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script
         src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3147f31e8bf2124276d5308be9acdcbb&amp;autoload=false"></script>
     <link rel="stylesheet" href="styles.bda21ab4755c6260b522.css">
@@ -732,22 +739,26 @@
 </head>
 
 <body>
-    <div style="width: 80%; margin: auto;">
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#"><strong>오늘의 팝딜</strong></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">내주변</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">고객센터</a>
-        </li>
-      </ul>
-    </div>
+        <nav style ="background-color: rgba(252, 249, 249, 0.966);"> 
+            <div class="container">
+                <ol class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a href="#">
+                            <img src="assets/img/lollipop.png" width="15%" style="margin: 0px;">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color: #000000;">로그인</a>
+                    </li>              
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #000000;">회원가입</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #000000;">고객센터</a>
+                    </li>
+                </ol>
+            </div>
+        </nav>
     
     <app-root _nghost-sc29="" ng-version="9.1.0">
         <!---->
@@ -759,7 +770,7 @@
                         <nav _ngcontent-sc86="">
                             <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
                                     class="no-decoration" href="/"><img _ngcontent-sc86="" src="assets/town-logo.svg"
-                                        alt="당근마켓 로고" class="daangn-logo"></a>
+                                        alt="Lollipop" class="daangn-logo"></a>
                                 <div _ngcontent-sc86="" class="divider"></div>
                             
                             </app-row>
@@ -822,26 +833,14 @@
                     </app-poi-list>
 
                 </main>
-                <app-footer _ngcontent-sc105="" _nghost-sc92="">
-                    <div _ngcontent-sc92="" class="footer-container">
-                        <div _ngcontent-sc92="" class="policy-links">
-                            <a _ngcontent-sc92="" href="https://www.daangn.com"
-                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/terms" target="_blank"> 이용약관 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/privacy" target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/location" target="_blank"> 위치기반 서비스 이용약관 </a>
-                        </div>
-                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92=""> 고객문의 cs@lollipopservice.com
-                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com </span><span _ngcontent-sc92="">
-                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92=""> PR문의 pr@lollipop.com </span>
-                        </div>
-                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
-                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
-                        </div>
-                        <div _ngcontent-sc92="" class="copyright"> Copyright © Lollipop Market Inc. All rights reserved.
-                        </div>
-                    </div>
-                </app-footer>
+        <footer >
+            <div class="copyright-wrap" style="display: flex; flex-direction: column; align-items: center; height: 85px; background-color: rgba(252, 249, 249, 0.966);">
+                <p style="margin-top: 10px;"><a href="#" style="color: #000000; text-decoration-line: none">회사소개</a>
+                    <a href="#" style="color: #000000; text-decoration-line: none">이용약관</a>
+                    <a href="#" style="color: #000000; text-decoration-line: none">고객센터</a></p>
+                <span>Copyright © <strong>Lollipop</strong> Corp. All Rights Reserved. </span>
+            </div>
+        </footer>
             </app-responsive-container>
         </app-main-layout>
         <!---->

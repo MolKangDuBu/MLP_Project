@@ -23,19 +23,19 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.woori.yourhome" />
+	<context:component-scan base-package="mlp.project.lollipop" />
 
 		 <!-- 파일 업로드 객체 파일을 20M까지만 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <beans:property name="maxUploadSize" value="20971520"></beans:property>
       <beans:property name="maxInMemorySize" value="10485760"></beans:property>
    </beans:bean>
-	<!-- 
+
 	<interceptors>
 		<interceptor>
 			<mapping path = "/**/w*"></mapping>
-			<beans:bean id = "loginInterceptor" class = "com.woori.yourhome.common.LoginInterceptor"/>
+			<beans:bean id = "loginInterceptor" class = "mlp.project.lollipop.common.LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
-	 -->
+
 </beans:beans>
