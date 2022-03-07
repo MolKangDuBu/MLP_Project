@@ -3,15 +3,11 @@ package mlp.project.lollipop.common;
 public class BaseDto {
 	protected String key="";
 	protected String keyword = "";
-	protected int pg= 0;//현재 페이지
-	protected int pageSize = 10;
+	protected int pg= 0;//�쁽�옱 �럹�씠吏�
+	protected int pageSize = 5;
 	protected int pgGroup =5;
 	protected int start = 0;
 	protected int rnum =0;
-	
-	
-	
-	
 	
 	public int getRnum() {
 		return rnum;

@@ -3,6 +3,54 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
+	
 <mapper namespace="QNA">
-
+<select id="Qna_getList"  parameterType="QnaDto"  resultType="QnaDto">
+ 		
+ 		select 
+ 			qna_key
+ 			,qna_id
+ 			,qna_title
+ 			,qna_contents
+ 			,qna_wdate
+ 			,rnum
+ 		from 
+ 		(
+	 		select
+				A.qna_key
+				,A.qna_id
+				,A.qna_title
+				,A.qna_contents 
+				,A.qna_wdate
+			    ,@rownum := @rownum+1 AS rnum
+				from qna_board A, (select @rownum:=0) B
+				
+				
+			<if test='key!=null and keyword!=null'>
+	
+				<if test='key=="1"'>
+				where qna_title like concat('%', #{keyword} , '%') or
+				      qna_contents like concat('%', #{keyword} , '%')
+				</if>
+							
+			</if> 
+			
+			order by qna_key desc
+		) A
+		limit #{start}, #{pageSize}    
+	</select>
+	
+	<select id="Qna_getTotal" parameterType="NoticeDto" resultType="Integer">
+		select count(*) from qna_board 
+		<if test='key!=null and keyword!=null'>
+	
+				<if test='key=="1"'>
+				where qna_title like concat('%', #{keyword} , '%') or
+				      qna_contents like concat('%', #{keyword} , '%')
+				</if>
+							
+			</if> 
+	</select>
+	
+	
 </mapper>

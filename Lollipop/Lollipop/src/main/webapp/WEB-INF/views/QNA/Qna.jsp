@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.QNA.*" %>
+<%@page import="mlp.project.lollipop.common.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +17,18 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<%
+	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
+	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
+	String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
+	int totalCnt = (Integer)request.getAttribute("totalCnt");
+%> 
+
+<form name="myform">
+	<input type="hidden" name="key" id="key" value="<%=key%>"/>
+	<input type="hidden" name="pg"  id="pg" value="<%=pg%>"/>
+	<input type="hidden" name="notice_key" id="notice_key" value="0"/>
+	
     <div style="width: 50%; margin: auto;">
         <nav style ="background-color: rgba(252, 249, 249, 0.966);"> 
             <div class="container">
@@ -42,75 +58,88 @@
                         <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <h2 style="font-weight: bold;">자주묻는 질문</h2>
                             <div class="search">
-                                <input type="text" style="width: 204%; border: 1px solid #bbb; border-radius: 8px; padding: 10px 12px; font-size: 14px;" placeholder="질문을 입력하세요">
-                                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position : absolute; width: 17px; top: 12px; right: -300px; margin: 0;">
+                                <input type="text" id="keyword" name="keyword" style="width: 100%; border: 1px solid #bbb; border-radius: 8px; padding: 10px 12px; font-size: 14px;" placeholder="질문을 입력하세요">
+                                <a href="#" onclick="goSearch()"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position : absolute; width: 17px; top: 12px; right:10px; margin: 0;"></a>
                             </div>
                                 <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                                     <p class="mb-0 px-2">찾으시는 답변이 없으신가요 ?</p>
-                                    <a href="#"> 1:1 문의하기</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/notice/list" > 1:1 문의하기</a>
                                 </div>
                         </div>
                         <div class="accordion faq-accordian" id="faqAccordion">
+                        
+                        <% 
+	                        List<QnaDto> list = (List<QnaDto>)request.getAttribute("qnaList");
+	                    	for(int i = 0; i <list.size(); i=i+5) { 
+                       
+	                    	if(i >= 0 && i < list.size()) {%>
                             <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                                 <div class="card-header" id="headingOne">
-                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">질문 1<span class="lni-chevron-up"></span></h6>
+                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><%=list.get(i).getQna_title() %><span class="lni-chevron-up"></span></h6>
                                 </div>
                                 <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#faqAccordion">
                                     <div class="card-body">
-                                        <p>답변 1</p>
+                                        <p><%=list.get(i).getQna_contents() %></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                            <%} if(i+1 >= 0 && i+1 < list.size()) {%>
+                             <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
                                 <div class="card-header" id="headingTwo">
-                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">질문 2<span class="lni-chevron-up"></span></h6>
+                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><%=list.get(i+1).getQna_title() %><span class="lni-chevron-up"></span></h6>
                                 </div>
                                 <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#faqAccordion">
                                     <div class="card-body">
-                                        <p>답변 2</p>
+                                        <p><%=list.get(i+1).getQna_contents() %></p>
                                     </div>
                                 </div>
                             </div>
+                            <%} if(i+2 >= 0 && i+2 < list.size()) {%>
                             <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                                 <div class="card-header" id="headingThree">
-                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">질문 3<span class="lni-chevron-up"></span></h6>
+                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"><%=list.get(i+2).getQna_title() %><span class="lni-chevron-up"></span></h6>
                                 </div>
                                 <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#faqAccordion">
                                     <div class="card-body">
-                                        <p>답변 3</p>
+                                        <p><%=list.get(i+2).getQna_contents() %></p>
                                     </div>
                                 </div>
                             </div>
+                            <%} if(i+3 >= 0 && i+3 < list.size()) {%>
                             <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                                 <div class="card-header" id="headingThree">
-                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">질문 4<span class="lni-chevron-up"></span></h6>
+                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><%=list.get(i+3).getQna_title()%><span class="lni-chevron-up"></span></h6>
                                 </div>
                                 <div class="collapse" id="collapseFour" aria-labelledby="headingFour" data-parent="#faqAccordion">
                                     <div class="card-body">
-                                        <p>답변 4</p>
+                                        <p><%=list.get(i+3).getQna_contents()%></p>
                                     </div>
                                 </div>
                             </div>
+                            <%} if(i+4 >= 0 && i+4 < list.size()) {%>
                             <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                                 <div class="card-header" id="headingThree">
-                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">질문 5<span class="lni-chevron-up"></span></h6>
+                                    <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive"><%=list.get(i+4).getQna_title() %><span class="lni-chevron-up"></span></h6>
                                 </div>
                                 <div class="collapse" id="collapseFive" aria-labelledby="headingFive" data-parent="#faqAccordion">
                                     <div class="card-body">
-                                        <p>답변 5</p>
+                                        <p><%=list.get(i+4).getQna_contents() %></p>
                                     </div>
                                 </div>
                             </div>
+                            <%} %>
+                            
+                           <%
+                        	}
+                           %>
+                           
+                            
+                            
+                         
                             <div style="margin: auto; align-items: center; display: flex; flex-direction: column; ">
                                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group width:auto" role="group" aria-label="Third group">
-                                        <button type="button" class="btn btn-secondary">이전</button>
-                                        <button type="button" class="btn btn-info">1</button>
-                                        <button type="button" class="btn btn-info">2</button>
-                                        <button type="button" class="btn btn-info">3</button>
-                                        <button type="button" class="btn btn-info">4</button>
-                                        <button type="button" class="btn btn-info">5</button>                           
-                                        <button type="button" class="btn btn-secondary">다음</button>
+                                       <%=Pager.makeTag(request, 10, totalCnt)%>
                                     </div>
                                 </div>
                             </div>
@@ -120,6 +149,7 @@
             </div>
         </div>
     </div>
+    </form>
 </body>
 
 <style type="text/css">
@@ -235,6 +265,13 @@ body{margin-top:20px;}
 </style>
 
 <script type="text/javascript">
+function goSearch(){
+	let frm = document.myform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Qna/list";
+	frm.method="get";
+	frm.submit();
+}
 
 </script>
 </html>

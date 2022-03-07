@@ -4,5 +4,114 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="NOTICE">
+<select id="Notice_getList"  parameterType="NoticeDto"  resultType="NoticeDto">
+ 		
+ 		select 
+ 			notice_key
+ 			,notice_id
+ 			,notice_title
+ 			,notice_contents
+ 			,notice_wdate
+ 			,rnum
+ 		from 
+ 		(
+	 		select
+				A.notice_key
+				,A.notice_id
+				,A.notice_title
+				,A.notice_contents 
+				,A.notice_wdate
+			    ,@rownum := @rownum+1 AS rnum
+				from notice_board A, (select @rownum:=0) B
+				
+				
+			<if test='key!=null and keyword!=null'>
+	
+				<if test='key=="1"'>
+				where notice_title like concat('%', #{keyword} , '%') or
+				      notice_contents like concat('%', #{keyword} , '%') or 
+				      notice_id like concat('%', #{keyword} , '%') 
+				</if>
+				
+				<if test='key=="2"'>
+				where notice_title like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="3"'>
+				where notice_contents like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="4"'>
+				where notice_title like concat('%', #{keyword} , '%') or
+				      notice_contents like concat('%', #{keyword} , '%') 
+				</if>
+				
+			</if> 
+			
+			order by notice_key desc
+		) A
+		limit #{start}, #{pageSize}    
+	</select>
+	
+	<select id="Notice_getTotal" parameterType="NoticeDto" resultType="Integer">
+		select count(*) from notice_board 
+		<if test='key!=null and keyword!=null'>
+	
+				<if test='key=="1"'>
+				where notice_title like concat('%', #{keyword} , '%') or
+				      notice_contents like concat('%', #{keyword} , '%') or 
+				      notice_id like concat('%', #{keyword} , '%') 
+				</if>
+				
+				<if test='key=="2"'>
+				where notice_title like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="3"'>
+				where notice_contents like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="4"'>
+				where notice_title like concat('%', #{keyword} , '%') or
+				      notice_contents like concat('%', #{keyword} , '%') 
+				</if>
+				
+			</if> 
+		
+	</select>
 
+	
+	<insert id="Notice_insert" parameterType="NoticeDto">
+		insert into notice_board
+		( notice_title, notice_id, notice_contents, notice_wdate)
+		values
+		(#{notice_title}, #{notice_id}, #{notice_contents}, now())
+	</insert>
+	
+	<select id="Notice_getView"  parameterType="NoticeDto"  resultType="NoticeDto">
+ 		select 
+ 			notice_key
+ 			,notice_id
+ 			,notice_title
+ 			,notice_contents
+ 			,notice_wdate
+		from notice_board A where notice_key=#{notice_key}
+
+	</select>
+	
+	<delete id="Notice_delete" parameterType="String" >
+	delete from notice_board where notice_key=#{notice_key}
+	</delete>
+	
+	
+	<update id="Notice_update" parameterType="NoticeDto" >
+	update notice_board 
+		set notice_title = #{notice_title}
+			,notice_id = #{notice_id}
+			,notice_contents = #{notice_contents}
+	where  notice_key=#{notice_key}
+	</update>
+	
+	
+	
 </mapper>
