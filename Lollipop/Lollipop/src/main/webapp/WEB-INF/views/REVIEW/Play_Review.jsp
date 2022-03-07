@@ -772,7 +772,7 @@
                                             </app-row>
                                         </app-current-location>
             <!-- 검색창? -->   				<div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85=""
-                                              type="search" placeholder="메뉴명 검색" value=""
+                                              type="search" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
                                                 class="ng-untouched ng-pristine ng-valid"> 
                                             <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
                                                     src="assets/icons/search.svg" alt="">
@@ -836,26 +836,26 @@
                         </div>
                         <div _ngcontent-sc102="" class="categories-container">
                             <app-category-chips _ngcontent-sc102="" _nghost-sc97="">
-                                <a _ngcontent-sc97="" routerlink="."
-                                    queryparamshandling="merge" class="no-decoration" href="/regions/6035/stores">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" class="active"> 전체 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=1160">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""> 오늘의 팝딜 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=18">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""> 음식점 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=267">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""> 카페 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=224">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""> 놀거리 </app-chip>
-                                </a>
+                                <p _ngcontent-sc97="" 
+                                     class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""  id = "searchItem1" class="active" onclick = "changeSearch('1')"> 전체 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem2" class="" onclick = "changeSearch('2')"> 오늘의 팝딜 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem3"class="" onclick = "changeSearch('3')"> 음식점 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem4"class="" onclick = "changeSearch('4')"> 카페 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97=""
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem5"class="" onclick = "changeSearch('5')"> 놀거리 </app-chip>
+                                </p>
                             </app-category-chips>
                         </div>
 
@@ -943,10 +943,14 @@ window.onload = function(){
 }
 			
 function changeSearch(id){
-	var texts =['','선택하세요','제목', '내용', '제목+내용'];
-	document.getElementById("searchItem").innerHTML = texts[id];
+	
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+id).classList.add("active");
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";
+
 	
 }
 
