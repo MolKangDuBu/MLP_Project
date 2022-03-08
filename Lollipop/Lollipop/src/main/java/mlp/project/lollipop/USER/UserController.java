@@ -59,10 +59,33 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping(value = "/User/findid")
+
+	public String User_findid() {
+		return "USER/Findid";
+	}
+	
+	@RequestMapping(value ="/User/findid_proc")
+	@ResponseBody
+	public HashMap<String, String> findid_proc() {
+		HashMap<String, String >map = new HashMap<String, String>();
+		map.put("result", "1");
+		return map;
+	}
+	
 	@RequestMapping(value = "/User/findpwd")
 	public String User_findpwd() {
 		return "USER/Findpwd";
 	}
+	
+	@RequestMapping(value ="/User/findpwd_proc")
+	@ResponseBody
+	public HashMap<String, String> findpwd_proc() {
+		HashMap<String, String >map = new HashMap<String, String>();
+		map.put("result", "1");
+		return map;
+	}
+	
 	
 	@RequestMapping(value = "/User/mypage")
 	public String User_mypage(Model model,HttpServletRequest request, HttpServletResponse response) {

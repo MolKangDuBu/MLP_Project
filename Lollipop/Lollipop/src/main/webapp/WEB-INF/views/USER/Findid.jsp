@@ -11,7 +11,7 @@
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <body>
       <%@include file="../include/nav.jsp" %>
-    <form name ="findpwdform">
+    <form name ="findidform">
         <div class="main-container">
             <div class="main-wrap">
             <header>
@@ -20,9 +20,7 @@
                 </div>
             </header>
             <section class="login-input-section-wrap">
-                <div class="login-input-wrap">	
-                    <input id = "user_id" name = "user_id" placeholder="아이디" type="text"></input>      
-                </div><br/>
+             
                  <div class="login-input-wrap">	
                    <input id = "user_mail" name = "user_mail" placeholder="이메일" type="text"></input>    
                 </div><br/>
@@ -31,7 +29,7 @@
                 </div>
                 
                 <div class="login-button-wrap">
-                    <button type= "button" onclick ="Findpwd()">비밀번호 찾기</button>
+                    <button type= "button" onclick ="Findid()">비밀번호 찾기</button>
                 </div>
             </section>
             <section class="join-and-find">
@@ -55,17 +53,17 @@
 
 
 <script>
-	function Findpwd(){
-		var frmData = $("form[name=findpwdform]").serialize();
+	function Findid(){
+		var frmData = $("form[name=findidform]").serialize();
 		      
 		   $.ajax({
-		      url:"${commonURL}/User/findpwd_proc",
+		      url:"${commonURL}/User/findid_proc",
 		      data:frmData,
 		      type:"POST",
 		   })
 		   .done( (result)=>{
 		      if(result.result==1){
-		    	  alert("이메일로 비밀번호가 전송되었습니다.");
+		    	  alert("이메일로 아이디가 전송되었습니다.");
 		          location.href="${commonURL}/"; //시작화면으로 이동하기  
 		      }else{
 		    	  alert("정보에 맞는 아이디를 찾을 수 없습니다.");

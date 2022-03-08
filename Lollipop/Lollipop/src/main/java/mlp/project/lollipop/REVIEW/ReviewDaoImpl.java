@@ -22,30 +22,31 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int getTotal(ReviewDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
+		//return sm.selectOne("Review_gettotal", dto);
 	}
 
 	@Override
 	public void insert(ReviewDto dto) {
 		// TODO Auto-generated method stub
-		
+		sm.insert("Review_insert", dto);
 	}
 
 	@Override
 	public ReviewDto getView(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return sm.selectOne("Review_getview", id);
 	}
 
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		
+		sm.delete("Review_delete", id);
 	}
 
 	@Override
 	public void update(ReviewDto dto) {
 		// TODO Auto-generated method stub
-		
+		sm.update("Review_modify", dto);
 	}
 
 }
