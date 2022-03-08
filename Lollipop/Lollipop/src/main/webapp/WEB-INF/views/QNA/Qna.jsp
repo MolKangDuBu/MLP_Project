@@ -134,8 +134,7 @@
                            %>
                            
                             
-                            
-                         
+                                                
                             <div style="margin: auto; align-items: center; display: flex; flex-direction: column; ">
                                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group width:auto" role="group" aria-label="Third group">
