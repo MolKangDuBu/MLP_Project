@@ -27,14 +27,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		//로그인이 안되어 있으면 false를 반환하고 작업을 중단, 로그인 페이지로 이동
 		//만들어만 놓고 selvlet-context.xml에서 이 파일을 적용하도록 설정해야함
 		Object userid = session.getAttribute("userid");
-		if(userid !=null) {
-			return  true;
-		}
-		
-		response.sendRedirect(request.getContextPath()+"/member/login");
-		return false;
+//		if(userid !=null) {
+//			
+//		}
+//		
+//		response.sendRedirect(request.getContextPath()+"/User/login");
+//		return false;
 	
-		
+		return  true;
 	}
 
 	@Override

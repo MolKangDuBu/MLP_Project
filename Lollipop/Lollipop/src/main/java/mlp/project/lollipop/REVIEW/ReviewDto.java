@@ -1,6 +1,9 @@
 package mlp.project.lollipop.REVIEW;
 
-public class ReviewDto {
+import mlp.project.lollipop.common.BaseDto;
+import mlp.project.lollipop.STORE.StoreDto;
+
+public class ReviewDto extends BaseDto{
 
 	private int store_key; //외래키로 사용
 	private int review_key;
@@ -11,11 +14,19 @@ public class ReviewDto {
 	private String review_image3;
 	private String review_contents;
 	private String review_wdate;
+	private String review_address;
 	private char review_category;
 	private int review_like;//좋아요
 	private int review_hit;//조회수
 	
 	
+	
+	public String getReview_address() {
+		return review_address;
+	}
+	public void setReview_address(String review_address) {
+		this.review_address = review_address;
+	}
 	public int getStore_key() {
 		return store_key;
 	}
