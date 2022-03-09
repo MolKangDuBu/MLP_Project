@@ -36,21 +36,26 @@
    
             <if test='key=="1"'>
             where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') or 
-                  writer like concat('%', #{keyword} , '%') 
-            </if>
-            
-            <if test='key=="2"'>
-            where REVIEW_TITLE like like concat('%', #{keyword} , '%')
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                 
             </if>
             
             <if test='key=="3"'>
-            where REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '1'
             </if>
             
             <if test='key=="4"'>
-            where title like concat('%', #{keyword} , '%') or
-                  contents like concat('%', #{keyword} , '%') 
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '3'
             </if>
             
          </if> 
@@ -63,6 +68,7 @@
 	
 	<select id="Review_getTotal" parameterType="ReviewDto" resultType="Integer">
       select count(*) from REVIEW_BOARD
+     
       <if test='key!=null and keyword!=null'>
 
          <if test='key=="1"'>
@@ -91,6 +97,7 @@
          
       </if> 
       
+      
    </select>
    
    
@@ -107,7 +114,8 @@
          ,A.REVIEW_CATEGORY
          ,A.REVIEW_LIKE
          ,A.REVIEW_HIT
-      from REVIEW_BOARD A where USER_ID=#{user_id}
+      from REVIEW_BOARD A
+      where REVIEW_KEY=#{review_key}
 
    </select>
 </mapper>

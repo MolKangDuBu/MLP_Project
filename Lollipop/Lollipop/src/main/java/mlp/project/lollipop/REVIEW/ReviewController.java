@@ -33,7 +33,7 @@ public class ReviewController {
 		dto.setStart(dto.getPg()*10);
 		
 		List<ReviewDto>list = reviewservice.getlist(dto);
-
+		
 		model.addAttribute("ReviewList", list);
 		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
 		
@@ -88,8 +88,8 @@ public class ReviewController {
 //				reviewservice.update(dto);
 //			}
 	      System.out.println("test 1: "+dto.getReview_image1());
-			System.out.println("test 2: "+dto.getReview_image2());
-			System.out.println("test 3: "+dto.getReview_image3());
+		  System.out.println("test 2: "+dto.getReview_image2());
+		  System.out.println("test 3: "+dto.getReview_image3());
 		  
 	      return "REVIEW/Play_view";
 

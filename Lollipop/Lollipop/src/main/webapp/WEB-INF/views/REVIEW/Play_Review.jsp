@@ -12,6 +12,7 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="og:locale" content="ko_KR">
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,8 +21,8 @@
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3147f31e8bf2124276d5308be9acdcbb&amp;autoload=false"></script>
     <link rel="stylesheet" href="styles.bda21ab4755c6260b522.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-    <style ng-transition="poi-seo">
+   
+     <style ng-transition="poi-seo">
         mat-progress-bar[_ngcontent-sc29] {
             position: fixed;
             top: 0;
@@ -732,6 +733,10 @@
             justify-content: center
         }
     </style>
+  
+  	
+  
+
 </head>
 
 <body>
@@ -772,11 +777,13 @@
                                             </app-row>
                                         </app-current-location>
             <!-- 검색창? -->   				<div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85=""
-                                              type="search" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
+                                              type="text" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
                                                 class="ng-untouched ng-pristine ng-valid"> 
                                             <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
                                                     src="assets/icons/search.svg" alt="">
+                                                    <button class="btn btn-secondary" type = "button" onclick = "gosearch()">Go</button>
                                             </div>
+                                            
                                         </div>
                                     </app-row>
                                     <!---->
@@ -863,13 +870,11 @@
                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
 <!-- 여기부터 리스트 추가 -->
 
-
-
    			<%
             	List<ReviewDto> list = (List<ReviewDto>)request.getAttribute("ReviewList");
            		for(ReviewDto tempDto : list){
             %>
-                                <a _ngcontent-sc99="" class="no-decoration container"  onclick= "goView('<%=tempDto.getReview_id()%>')">
+                                <a _ngcontent-sc99="" class="no-decoration container"  onclick= "goView('<%=tempDto.getReview_key()%>')">
                                     <app-row _ngcontent-sc99="" _nghost-sc82="">
                                         <div _ngcontent-sc99="" class="img-container"><img _ngcontent-sc99=""
                                                 src="https://dnvefa72aowie.cloudfront.net/capri/bizPlatform/profile/19692845/1614771728198/c72db320900c5a60cac437797e634f7f5b43f89850f01d59dbb87a18231cb77a.jpeg?q=82&amp;s=300x300&amp;t=crop"
@@ -943,8 +948,10 @@
 window.onload = function(){
 	
 	let key = '<%=key%>';
-	var texts =['','선택하세요','제목', '내용', '제목+내용'];
-	document.getElementById("searchItem").innerHTML = texts[key];
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+key).classList.add("active");
 }
 			
 function changeSearch(id){
@@ -955,7 +962,11 @@ function changeSearch(id){
 	document.getElementById("searchItem"+id).classList.add("active");
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";
-
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Review/list";
+	frm.method ="GET";
+	frm.submit();
 	
 }
 
@@ -968,6 +979,7 @@ function gosearch(){
 }
 
 function goPage(pg){
+	
 	frm = document.listform;
 	frm.pg.value = pg;
 	frm.method = "get";

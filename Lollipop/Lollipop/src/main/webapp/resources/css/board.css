@@ -1,4 +1,4 @@
-
+  <style ng-transition="poi-seo">
         mat-progress-bar[_ngcontent-sc29] {
             position: fixed;
             top: 0;
@@ -7,8 +7,8 @@
             z-index: 9;
             height: 3px
         }
-
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc105] {
             display: flex;
             flex-direction: column;
@@ -51,18 +51,16 @@
         app-footer[_ngcontent-sc105] {
             margin-top: auto
         }
-
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc79] {
             display: block;
             width: 100%;
             max-width: 784px;
             margin: 0 auto
         }
-
-
-
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc92] {
             width: 100%;
             display: block
@@ -152,8 +150,8 @@
         .copyright[_ngcontent-sc92] {
             margin-top: 24px
         }
-
-
+    </style>
+    <style ng-transition="poi-seo">
         .welcome-banner-container[_ngcontent-sc102] {
             margin-left: 230px;
             padding: 16px;
@@ -235,7 +233,8 @@
         app-no-poi[_ngcontent-sc102] {
             margin-top: 56px
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc88] {
             display: block
         }
@@ -259,7 +258,8 @@
                 display: block
             }
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc86] {
             display: flex;
             justify-content: center;
@@ -290,7 +290,8 @@
         app-row[_ngcontent-sc86] app-searchbar[_ngcontent-sc86] {
             flex: 1
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc87] {
             display: block;
             box-shadow: 0 1px 3px rgba(0, 0, 0, .07)
@@ -307,7 +308,8 @@
         app-searchbar[_ngcontent-sc87] {
             flex: 1
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc82] {
             display: flex;
             flex-direction: row;
@@ -316,7 +318,8 @@
         * {
             flex: none;
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc85] {
             display: block
         }
@@ -423,7 +426,8 @@
             line-height: 150%;
             letter-spacing: -.02em
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc84] {
             display: block
         }
@@ -449,9 +453,13 @@
             width: 18px;
             height: 18px
         }
-   
-
-
+    </style>
+    <meta name="og:title" content="역삼동 | 당근마켓 동네가게">
+    <meta name="description"
+        content="역삼동 근처 &quot;카페&quot;, &quot;휴대폰판매&quot;, &quot;이사&quot;, &quot;네일샵&quot;, &quot;미용실&quot;, &quot;피부관리&quot;, &quot;기타학원&quot;, &quot;공인중개사&quot;, &quot;주택수리종합&quot; 가게를 확인해 보세요!">
+    <meta name="og:description"
+        content="역삼동 근처 &quot;카페&quot;, &quot;휴대폰판매&quot;, &quot;이사&quot;, &quot;네일샵&quot;, &quot;미용실&quot;, &quot;피부관리&quot;, &quot;기타학원&quot;, &quot;공인중개사&quot;, &quot;주택수리종합&quot; 가게를 확인해 보세요!">
+    <style ng-transition="poi-seo">
         [_nghost-sc97] {
             display: flex;
             flex-direction: row;
@@ -473,7 +481,8 @@
             width: 0;
             height: 0
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc96] {
             display: flex;
             flex-direction: row;
@@ -502,7 +511,8 @@
             color: #fff;
             font-weight: 700
         }
-
+    </style>
+    <style ng-transition="poi-seo">
 
 
         [_nghost-sc99] {
@@ -681,14 +691,16 @@
             padding: 0 16px;
             width: 100%
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         [_nghost-sc98] {
             display: block;
             height: 1px;
             background: rgba(0, 0, 0, .08);
             width: 100%
         }
-
+    </style>
+    <style ng-transition="poi-seo">
         .link-container[_ngcontent-sc100] {
             display: flex;
             padding: 16px;
@@ -696,3 +708,4 @@
             align-items: center;
             justify-content: center
         }
+    </style>
