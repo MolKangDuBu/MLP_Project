@@ -38,31 +38,37 @@
          <if test='key!=null and keyword!=null'>
    
             <if test='key=="1"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%')
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_ACTIVE = 'Y'
                  
             </if>
             
             <if test='key=="3"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%') and
-                  STORE_CATEGORY = '1'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '1' and
+                  STORE_ACTIVE = 'Y'
             </if>
             
             <if test='key=="4"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or 
-            	  STORE_INFO like concat('%', #{keyword} , '%')and
-                  STORE_CATEGORY = '2'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%'))and
+                  STORE_CATEGORY = '2' and
+                  STORE_ACTIVE = 'Y'
             </if>
             
             <if test='key=="5"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%') and
-                  STORE_CATEGORY = '3'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '3' and
+                  STORE_ACTIVE = 'Y'
             </if>
-            
          </if> 
-         where STORE_ACTIVE = 'Y'
+         <if test = 'keyword ==null'>
+            	where STORE_ACTIVE = 'Y'
+            </if>
+
          order by STORE_KEY desc
       ) A
       limit #{start}, #{pageSize} 
@@ -75,32 +81,38 @@
       <if test='key!=null and keyword!=null'>
 
             <if test='key=="1"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%')
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_ACTIVE = 'Y'
                  
             </if>
             
             <if test='key=="3"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%') and
-                  STORE_CATEGORY = '1'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '1' and
+                  STORE_ACTIVE = 'Y'
             </if>
             
             <if test='key=="4"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or 
-            	  STORE_INFO like concat('%', #{keyword} , '%')and
-                  STORE_CATEGORY = '2'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%'))and
+                  STORE_CATEGORY = '2' and
+                  STORE_ACTIVE = 'Y'
             </if>
             
             <if test='key=="5"'>
-            where STORE_NAME like concat('%', #{keyword} , '%') or
-                  STORE_INFO like concat('%', #{keyword} , '%') and
-                  STORE_CATEGORY = '3'
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '3' and
+                  STORE_ACTIVE = 'Y'
             </if>
-         where STORE_ACTIVE = 'Y'
+        
       </if> 
       
-      
+        <if test = 'keyword ==null'>
+            	where STORE_ACTIVE = 'Y'
+        </if>
    </select>
    
    

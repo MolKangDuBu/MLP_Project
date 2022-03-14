@@ -37,7 +37,7 @@
 <form name = "listform" id = "listform">
 	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
 	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
-	<input type = "hidden" name = "store_key" id = "store_key" value =""/>
+	<input type = "hidden" name = "store_key" id = "store_key" value ="0"/>
     <div style="width: 50%; margin: auto;">
         <!-- Navigation-->
    
@@ -67,8 +67,8 @@
                                               type="text" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
                                                 class="ng-untouched ng-pristine ng-valid"> 
                                             <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
-                                                    src="assets/icons/search.svg" alt="">
-                                                    <button class="btn btn-secondary" type = "button" onclick = "gosearch()">Go</button>
+                                                    src="assets/icons/search.svg" alt="" onclick = "gosearch()">
+                                                    
                                             </div>
                                             
                                         </div>
@@ -79,28 +79,7 @@
                         </nav>
                     </app-responsive-container>
                 </app-navbar-desktop>
-                <app-navbar-mobile _ngcontent-sc88="" _nghost-sc87="">
-                    <nav _ngcontent-sc87="">
-                        <app-row _ngcontent-sc87="" class="logo-container" _nghost-sc82=""><a _ngcontent-sc87=""
-                                routerlink="/" class="no-decoration" href="/"><img _ngcontent-sc87=""
-                                    src="assets/town-logo.svg" alt="당근마켓 로고" class="daangn-logo"></a></app-row>
-                        <app-searchbar _ngcontent-sc87="" placeholder="우리동네 업체를 찾아보세요" _nghost-sc85="">
-                            <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
-                                <app-current-location _ngcontent-sc85="" _nghost-sc84="">
-                                    <app-row _ngcontent-sc84="" class="container" _nghost-sc82=""
-                                        style="cursor:pointer;"><span _ngcontent-sc84=""> 역삼동 </span><img
-                                            _ngcontent-sc84="" src="assets/icons/caret-bottom.svg" alt=""></app-row>
-                                </app-current-location>
-                                <div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85="" type="search"
-                                        placeholder="우리동네 업체를 찾아보세요" value="" class="ng-untouched ng-pristine ng-valid">
-                                    <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
-                                            src="assets/icons/search.svg" alt="검색"></div>
-                                </div>
-                            </app-row>
-                            <!---->
-                        </app-searchbar>
-                    </nav>
-                </app-navbar-mobile>
+
             </app-navbar>
             <!---->
             <app-responsive-container _ngcontent-sc105="" _nghost-sc79="">
@@ -108,18 +87,7 @@
                     <router-outlet _ngcontent-sc105=""></router-outlet>
                     <app-poi-list _nghost-sc102="">
                         <ngx-json-ld _ngcontent-sc102="">
-                            <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "서울특별시 강남구 역삼동",
-      "item": "https://town.daangn.com/regions/6035"
-    }
-  ]
-}</script>
+ 
                         </ngx-json-ld>
                         <!---->
                         <!---->
