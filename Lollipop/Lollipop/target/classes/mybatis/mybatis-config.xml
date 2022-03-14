@@ -9,10 +9,12 @@
 	<typeAliases>
     	<typeAlias alias="UserDto" type="mlp.project.lollipop.USER.UserDto"/>
 		<typeAlias alias="ReviewDto" type="mlp.project.lollipop.REVIEW.ReviewDto"/>
+		<typeAlias alias="StoreDto" type="mlp.project.lollipop.STORE.StoreDto"/>
 	</typeAliases>
 	<mappers>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/User.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Review.xml"/>
+		  <mapper resource=	"/mlp/project/lollipop/mapper/Store.xml"/>
 		
 	</mappers>
 	

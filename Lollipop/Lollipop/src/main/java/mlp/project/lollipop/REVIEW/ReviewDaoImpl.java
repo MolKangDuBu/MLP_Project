@@ -21,8 +21,8 @@ public class ReviewDaoImpl implements ReviewDao{
 	@Override
 	public int getTotal(ReviewDto dto) {
 		// TODO Auto-generated method stub
-		return 0;
-		//return sm.selectOne("Review_gettotal", dto);
+		
+		return sm.selectOne("Review_getTotal", dto);
 	}
 
 	@Override

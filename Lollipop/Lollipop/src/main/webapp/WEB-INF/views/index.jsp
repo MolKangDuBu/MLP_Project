@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import = "mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +126,7 @@
             <div class="card-body">
               <h5 class="card-title">놀거리</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/lollipop/Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
         </div>

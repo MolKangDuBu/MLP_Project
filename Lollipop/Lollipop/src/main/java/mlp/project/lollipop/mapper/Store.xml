@@ -4,10 +4,138 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="STORE">
-	<select id = "Store_getinfo" parameterType ="String" resultType = "StoreDto">
-		select *
-		from store
-		where STORE_ID = #{store_id}
-	
+	<select id ="Store_list" parameterType = "StoreDto" resultType ="StoreDto">
+		
+	 select 
+	 	STORE_KEY
+       	,STORE_NAME
+		,STORE_INFO
+		,STORE_BNUMBER
+		,STORE_NUMBER
+		,STORE_ADDRESS
+		,STORE_IMAGE1
+		,STORE_IMAGE2
+		,STORE_IMAGE3
+		,STORE_WDATE
+		,rnum
+       from 
+       (
+          select
+         	A.STORE_KEY
+	       	,A.STORE_NAME
+			,A.STORE_INFO
+			,A.STORE_BNUMBER
+			,A.STORE_NUMBER
+			,A.STORE_ADDRESS
+			,A.STORE_IMAGE1
+			,A.STORE_IMAGE2
+			,A.STORE_IMAGE3
+			,A.STORE_WDATE
+             ,@rownum := @rownum+1 AS rnum
+            from STORE A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%') and
+                  STORE_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%')and
+                  STORE_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%') and
+                  STORE_CATEGORY = '3'
+            </if>
+            
+         </if> 
+         
+         order by STORE_KEY desc
+      ) A
+      limit #{start}, #{pageSize} 
 	</select>
+	
+	
+	<select id="Store_getTotal" parameterType="StoreDto" resultType="Integer">
+      select count(*) from STORE
+     
+      <if test='key!=null and keyword!=null'>
+
+            <if test='key=="1"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%') and
+                  STORE_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%')and
+                  STORE_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%') and
+                  STORE_CATEGORY = '3'
+            </if>
+         
+      </if> 
+      
+      
+   </select>
+   
+   
+      <select id="Store_getview"  parameterType="String"  resultType="StoreDto">
+       select *
+      from STORE A
+      where STORE_KEY=#{id}
+
+   </select>
+   
+   
+   <insert id ="Store_insert" parameterType ="StoreDto">
+  	insert into STORE(
+          STORE_NAME
+         ,STORE_BNUMBER
+         ,STORE_NUMBER
+         ,STORE_ADDRESS
+         ,STORE_INFO
+         ,STORE_IMAGE1
+         ,STORE_IMAGE2
+         ,STORE_IMAGE3 
+         ,STORE_WDATE
+         ,STORE_CATEGORY
+  	)values(
+  		#{store_name}
+  		,#{store_bnumber}
+  		,#{store_number}
+  		,#{store_address}
+  		,#{store_info}
+  		,#{store_image1}
+  		,#{store_image2}
+  		,#{store_image3}
+  		,now()
+  		,#{store_category}
+  	)
+  	 
+   </insert>
 </mapper>

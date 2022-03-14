@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.REVIEW.*" %>
+<%@page import ="mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
     <meta charset="utf-8">
-    <title>역삼동 | 당근마켓 동네가게</title>
+    <title>롤리팝 맛집</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="og:locale" content="ko_KR">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;display=swap">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-    <script
-        src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3147f31e8bf2124276d5308be9acdcbb&amp;autoload=false"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3147f31e8bf2124276d5308be9acdcbb&amp;autoload=false"></script>
     <link rel="stylesheet" href="styles.bda21ab4755c6260b522.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <style ng-transition="poi-seo">
         mat-progress-bar[_ngcontent-sc29] {
             position: fixed;
@@ -732,23 +735,22 @@
 </head>
 
 <body>
-    <div style="width: 80%; margin: auto;">
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#"><strong>오늘의 팝딜</strong></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">내주변</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">고객센터</a>
-        </li>
-      </ul>
-    </div>
-    
+
+ <%
+	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
+	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
+	String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
+	int totalCnt = (Integer)request.getAttribute("totalCnt");
+%>
+<form name = "listform" id = "listform">
+	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
+	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
+	<input type = "hidden" name = "id" id = "id" value =""/>
+    <div style="width: 50%; margin: auto;">
+        <!-- Navigation-->
+   
+     <%@include file="../include/nav.jsp" %>
+     
     <app-root _nghost-sc29="" ng-version="9.1.0">
         <!---->
         <router-outlet _ngcontent-sc29=""></router-outlet>
@@ -759,13 +761,52 @@
                         <nav _ngcontent-sc86="">
                             <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
                                     class="no-decoration" href="/"><img _ngcontent-sc86="" src="assets/town-logo.svg"
-                                        alt="당근마켓 로고" class="daangn-logo"></a>
+                                        alt="롤리팝 로고" class="daangn-logo"></a>
                                 <div _ngcontent-sc86="" class="divider"></div>
-                            
+                                <app-searchbar _ngcontent-sc86="" placeholder="메뉴명 검색" _nghost-sc85="">
+                                    <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
+                                        <app-current-location _ngcontent-sc85="" _nghost-sc84="">
+                                            <app-row _ngcontent-sc84="" class="container" _nghost-sc82=""
+                                                style="cursor:pointer;"><span _ngcontent-sc84=""> 역삼동 </span><img
+                                                    _ngcontent-sc84="" src="assets/icons/caret-bottom.svg" alt="">
+                                            </app-row>
+                                        </app-current-location>
+            <!-- 검색창? -->   				<div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85=""
+                                              type="search" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
+                                                class="ng-untouched ng-pristine ng-valid"> 
+                                            <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
+                                                    src="assets/icons/search.svg" alt="">
+                                            </div>
+                                        </div>
+                                    </app-row>
+                                    <!---->
+                                </app-searchbar>
                             </app-row>
                         </nav>
                     </app-responsive-container>
-                </app-navbar-desktop> 
+                </app-navbar-desktop>
+                <app-navbar-mobile _ngcontent-sc88="" _nghost-sc87="">
+                    <nav _ngcontent-sc87="">
+                        <app-row _ngcontent-sc87="" class="logo-container" _nghost-sc82=""><a _ngcontent-sc87=""
+                                routerlink="/" class="no-decoration" href="/"><img _ngcontent-sc87=""
+                                    src="assets/town-logo.svg" alt="당근마켓 로고" class="daangn-logo"></a></app-row>
+                        <app-searchbar _ngcontent-sc87="" placeholder="우리동네 업체를 찾아보세요" _nghost-sc85="">
+                            <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
+                                <app-current-location _ngcontent-sc85="" _nghost-sc84="">
+                                    <app-row _ngcontent-sc84="" class="container" _nghost-sc82=""
+                                        style="cursor:pointer;"><span _ngcontent-sc84=""> 역삼동 </span><img
+                                            _ngcontent-sc84="" src="assets/icons/caret-bottom.svg" alt=""></app-row>
+                                </app-current-location>
+                                <div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85="" type="search"
+                                        placeholder="우리동네 업체를 찾아보세요" value="" class="ng-untouched ng-pristine ng-valid">
+                                    <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
+                                            src="assets/icons/search.svg" alt="검색"></div>
+                                </div>
+                            </app-row>
+                            <!---->
+                        </app-searchbar>
+                    </nav>
+                </app-navbar-mobile>
             </app-navbar>
             <!---->
             <app-responsive-container _ngcontent-sc105="" _nghost-sc79="">
@@ -786,33 +827,79 @@
   ]
 }</script>
                         </ngx-json-ld>
+                        <!---->
+                        <!---->
+                        <div _ngcontent-sc102="" class="title-container">
+                            <div _ngcontent-sc102="" class="short-region-mobile">서울 강남구</div>
+                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">서울 강남구</span>
+                                역삼동 근처 동네 가게 </h1>
+                        </div>
                         <div _ngcontent-sc102="" class="categories-container">
                             <app-category-chips _ngcontent-sc102="" _nghost-sc97="">
-                                <a _ngcontent-sc97="" routerlink="."
-                                    queryparamshandling="merge" class="no-decoration" href="/regions/6035/stores">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" class="active"> 전체 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=1160">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="">  </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=18">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="">  </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=267">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="">  </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" routerlink="." queryparamshandling="merge"
-                                    class="no-decoration" href="/regions/6035/stores?categoryId=224">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="">  </app-chip>
-                                </a>
+                                <p _ngcontent-sc97="" 
+                                     class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""  id = "searchItem1" class="active" onclick = "changeSearch('1')"> 전체 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem2" class="" onclick = "changeSearch('2')"> 오늘의 팝딜 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem3"class="" onclick = "changeSearch('3')"> 음식점 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97="" 
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem4"class="" onclick = "changeSearch('4')"> 카페 </app-chip>
+                                </p>
+                                <p _ngcontent-sc97=""
+                                    class="no-decoration" href="#">
+                                    <app-chip _ngcontent-sc97="" _nghost-sc96=""   id = "searchItem5"class="" onclick = "changeSearch('5')"> 놀거리 </app-chip>
+                                </p>
                             </app-category-chips>
                         </div>
 
                         <div _ngcontent-sc102="" class="content-container">
                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
+<!-- 여기부터 리스트 추가 -->
+
+
+
+   			<%
+            	List<ReviewDto> list = (List<ReviewDto>)request.getAttribute("ReviewList");
+           		for(ReviewDto tempDto : list){
+            %>
+                                <a _ngcontent-sc99="" class="no-decoration container" href="/stores/4972789">
+                                    <app-row _ngcontent-sc99="" _nghost-sc82="">
+                                        <div _ngcontent-sc99="" class="img-container"><img _ngcontent-sc99=""
+                                                src="https://dnvefa72aowie.cloudfront.net/capri/bizPlatform/profile/19692845/1614771728198/c72db320900c5a60cac437797e634f7f5b43f89850f01d59dbb87a18231cb77a.jpeg?q=82&amp;s=300x300&amp;t=crop"
+                                                alt="돼지게티"></div>
+                                        <div _ngcontent-sc99="" class="text-container">
+                                            <app-row _ngcontent-sc99="" class="title" _nghost-sc82="">
+                                                <p _ngcontent-sc99="" class="poi-name" ><%=tempDto.getReview_title()%></p>
+                                              
+                                                <p>
+                                                    <img src="D:\OneDrive\바탕화~1-DESKTOP-OS4S3HI-7407125\풀스택 프로젝트\게시판디자인\images\별.PNG">
+                                                    <h6><%=tempDto.getReview_like()%></h6>
+                                                </p>
+                                            </app-row>
+                                            <div _ngcontent-sc99="" class="poi-info">
+                                                <p _ngcontent-sc99="" class="address"> 서울특별시 강남구 봉은사로30길 64 (역삼동, 해석빌딩) </p>
+                                                <p _ngcontent-sc99="" class="branch"> </p>
+                                            </div>
+                                        </div>
+                                    </app-row>
+                                </a>
+      <%}%>
+<!-- 여기까지 리스트 추가 -->
+
+                                <div style="margin: auto;">
+                               	 <%=Pager.makeTag(request, 10, totalCnt) %>
+                                </div>
+                                <div class="container mt-3" style="text-align:right;">
+           						 <a href="<%=request.getContextPath()%>/board/write" 
+               						class="btn btn-secondary">글쓰기</a>
+       							</div>
                                 <div _ngcontent-sc99="" class="divider-container">
                                     <app-divider _ngcontent-sc99="" _nghost-sc98=""></app-divider>
                                 </div>
@@ -846,5 +933,53 @@
         </app-main-layout>
         <!---->
     </app-root>
-
+</form>
 </body>
+
+</html>
+
+
+<script>
+window.onload = function(){
+	let key = '<%=key%>';
+	var texts =['','선택하세요','제목', '내용', '제목+내용'];
+	document.getElementById("searchItem").innerHTML = texts[key];
+}
+			
+function changeSearch(id){
+	
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+id).classList.add("active");
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+
+	
+}
+
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Review/list";
+	frm.method ="GET";
+	frm.submit();
+}
+
+function goPage(pg){
+	frm = document.listform;
+	frm.pg.value = pg;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Store/list";
+	frm.submit();
+}
+
+function goView(id){
+	frm = document.listform;
+	frm.id.value = id;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Review/view";
+	frm.submit();
+}
+</script>
+

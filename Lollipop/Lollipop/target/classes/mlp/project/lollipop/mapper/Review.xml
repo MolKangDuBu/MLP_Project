@@ -69,33 +69,33 @@
 	<select id="Review_getTotal" parameterType="ReviewDto" resultType="Integer">
       select count(*) from REVIEW_BOARD
      
-      <if test='key!=null and keyword!=null'>
-
-         <if test='key=="1"'>
-         where review_title like concat('%', #{keyword} , '%') or
-               review_contents like concat('%', #{keyword} , '%') 
-               
-         </if>
-         
-         <if test='key=="2"'>
-           where review_title like concat('%', #{keyword} , '%') or
-               review_contents like concat('%', #{keyword} , '%') and
-               review_category = #{review_category}
-         </if>
-         
-         <if test='key=="3"'>
-           where review_title like concat('%', #{keyword} , '%') or
-               review_contents like concat('%', #{keyword} , '%')and
-               review_category = #{review_category}
-         </if>
-         
-         <if test='key=="4"'>
-           where review_title like concat('%', #{keyword} , '%') or
-               review_contents like concat('%', #{keyword} , '%')and
-               review_category = #{review_category}
-         </if>
-         
-      </if> 
+     <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '3'
+            </if>
+            
+         </if> 
       
       
    </select>
@@ -115,7 +115,31 @@
          ,A.REVIEW_LIKE
          ,A.REVIEW_HIT
       from REVIEW_BOARD A
-      where REVIEW_KEY=#{review_key}
+      where REVIEW_KEY=#{id}
 
    </select>
+   
+   
+   <insert id ="Review_insert" parameterType ="ReviewDto">
+  	insert into REVIEW_BOARD(
+          REVIEW_ID
+         ,REVIEW_TITLE
+         ,REVIEW_IMAGE1
+         ,REVIEW_IMAGE2
+         ,REVIEW_IMAGE3
+         ,REVIEW_CONTENTS 
+         ,REVIEW_WDATE
+         ,REVIEW_CATEGORY
+  	)values(
+  		#{review_id}
+  		,#{review_title}
+  		,#{review_image1}
+  		,#{review_image2}
+  		,#{review_image3}
+  		,#{review_contents}
+  		,now()
+  		,#{review_category}
+  	)
+  	 
+   </insert>
 </mapper>
