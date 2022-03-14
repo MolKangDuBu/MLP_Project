@@ -52,7 +52,7 @@
                                 <!-- Navigation-->
 
                                 <%@include file="../include/nav.jsp" %>
-
+						<input type ="hidden" id = review_key name =review_key value="<%=dto.getReview_key() %>">  
                                     <app-root _nghost-sc29="" ng-version="9.1.0">
                                         <!---->
                                         <router-outlet _ngcontent-sc29=""></router-outlet>
@@ -169,8 +169,12 @@
                                                         <div _ngcontent-sc102="" class="content-container">
                                                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
                                                                 <div class="container mt-3" style="text-align:right;">
+                                                               <%if(user_id.equals(dto.getReview_id())) {%>
                                                                     <button class="btn btn-secondary" type="button"
-                                                                        onclick="modify()">수정</button>
+                                                                        onclick="gomodify()">수정</button>
+                                                                        <button class="btn btn-secondary" type="button"
+                                                                        onclick="godelete()">삭제</button>
+                                                                	<%} %>
                                                                 </div>
                                                                 <div _ngcontent-sc99="" class="divider-container">
                                                                     <app-divider _ngcontent-sc99="" _nghost-sc98="">
@@ -229,23 +233,19 @@
                     window.onload = function () {
 
                     };
-                    function modify() {
-
-                        $("#Review_info").val(CKEDITOR.instances.editor.getData());
-
+                    function gomodify() {
                         var frm = document.writeform
-                        //var frmData = new FormData(document.writeform); 
-                        frm.action = "<%=request.getContextPath()%>/Review/save";
+                        frm.action = "<%=request.getContextPath()%>/Review/modify";
                         frm.method = "post";
                         frm.submit();
 
 
                     }
-                    function Category(cate) {
-                        var texts = ['', '음식', '카페', '놀거리'];
-                        document.getElementById("searchItem").innerHTML = texts[cate];
-                        document.getElementById("Review_categoty").value = cate;
 
+                    function godelete(){
+                   	 var frm = document.writeform
+                        frm.action = "<%=request.getContextPath()%>/Review/delete";
+                        frm.method = "post";
+                        frm.submit();
                     }
-
                 </script>

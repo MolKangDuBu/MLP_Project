@@ -62,7 +62,7 @@
             </if>
             
          </if> 
-         
+         where STORE_ACTIVE = 'Y'
          order by STORE_KEY desc
       ) A
       limit #{start}, #{pageSize} 
@@ -97,7 +97,7 @@
                   STORE_INFO like concat('%', #{keyword} , '%') and
                   STORE_CATEGORY = '3'
             </if>
-         
+         where STORE_ACTIVE = 'Y'
       </if> 
       
       
@@ -138,4 +138,25 @@
   	)
   	 
    </insert>
+   
+      <update id = "Store_modify" parameterType = "StoreDto">
+   	update STORE 
+   	set STORE_NAME = #{store_name}
+   		,STORE_BNUMBER = #{store_bnumber}
+   		,STORE_NUMBER = #{store_number}
+   		,STORE_ADDRESS =#{store_address}
+   		,STORE_INFO = #{store_info}
+   		,STORE_IMAGE1 = #{store_image1}
+   		,STORE_IMAGE2 = #{store_image2}
+   		,STORE_IMAGE3 = #{store_image3}
+   		,STORE_CATEGORY = #{store_category}
+   		
+   	where STORE_KEY = #{store_key} 
+   </update>
+   
+   <update id="Store_delete" parameterType="String">
+   		update STORE
+   		set STORE_ACTIVE = 'N'
+   		where STORE_KEY = #{id}
+   </update>
 </mapper>

@@ -59,8 +59,9 @@
             </if>
             
          </if> 
-         
+          where REVIEW_ACTIVE = 'Y'
          order by REVIEW_KEY desc
+         
       ) A
       limit #{start}, #{pageSize} 
 	</select>
@@ -96,7 +97,7 @@
             </if>
             
          </if> 
-      
+       where REVIEW_ACTIVE = 'Y'
       
    </select>
    
@@ -142,4 +143,23 @@
   	)
   	 
    </insert>
+   
+    
+      <update id = "Review_modify" parameterType = "ReviewDto">
+   	update REVIEW_BOARD 
+   	set REVIEW_TITLE = #{review_title}
+   		,REVIEW_CONTENTS = #{review_contents}
+   		,REVIEW_IMAGE1 = #{review_image1}
+   		,REVIEW_IMAGE2 = #{review_image2}
+   		,REVIEW_IMAGE3 = #{review_image3}
+   		,REVIEW_CATEGORY = #{review_category}
+   		
+   	where REVIEW_KEY = #{review_key} 
+   </update>
+   
+   <update id="Review_delete" parameterType="String">
+   		update REVIEW_BOARD
+   		set REVIEW_ACTIVE = 'N'
+   		where REVIEW_KEY = #{id}
+   </update>
 </mapper>

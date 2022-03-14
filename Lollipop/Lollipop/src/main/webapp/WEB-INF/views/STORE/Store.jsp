@@ -164,7 +164,7 @@
                                 <a _ngcontent-sc99="" class="no-decoration container"  onclick= "goView('<%=tempDto.getStore_key()%>')">
                                     <app-row _ngcontent-sc99="" _nghost-sc82="">
                                         <div _ngcontent-sc99="" class="img-container"><img _ngcontent-sc99=""
-                                                src="https://dnvefa72aowie.cloudfront.net/capri/bizPlatform/profile/19692845/1614771728198/c72db320900c5a60cac437797e634f7f5b43f89850f01d59dbb87a18231cb77a.jpeg?q=82&amp;s=300x300&amp;t=crop"
+                                                src="${pageContext.request.contextPath}/upload/<%=tempDto.getStore_image1()%>"
                                                 alt="돼지게티"></div>
                                         <div _ngcontent-sc99="" class="text-container">
                                             <app-row _ngcontent-sc99="" class="title" _nghost-sc82="">

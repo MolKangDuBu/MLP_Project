@@ -35,11 +35,14 @@
 	<%
  		StoreDto dto = (StoreDto)request.getAttribute("StoreDto");
     %>
+   
     <div style="width: 50%; margin: auto;">
         <!-- Navigation-->
    
      <%@include file="../include/nav.jsp" %>
-     
+      <input type ="hidden" id = userid name = userid value =<%=user_id%>>
+      <input type ="hidden" id = store_key name = store_key value =<%=dto.getStore_key()%>>
+      
     <app-root _nghost-sc29="" ng-version="9.1.0">
         <!---->
         <router-outlet _ngcontent-sc29=""></router-outlet>
@@ -57,7 +60,7 @@
                         <!---->
                        <div _ngcontent-sc102="" class="title-container">
                             <div _ngcontent-sc102="" class="short-region-mobile">서울 강남구</div>
-                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">글 작성</span>
+                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">가게 등록</span>
                                 </h1>
                         </div>
                      	<div >
@@ -123,7 +126,7 @@
 				              <li><span class="dropdown-item"  onclick = "Category('2')">카페</span></li>
 				              <li><span class="dropdown-item"  onclick = "Category('3')">놀거리</span></li>
 				          </ul>
-				          <input type = "hidden"  class = "form-control" id = "Store_category" name = "Store_category"  value = "    placeholder="가게주소를 입력하세요" value = "<%=dto.getStore_category()%>">"> 
+				          <input type = "hidden"  class = "form-control" id = "Store_category" name = "Store_category"  value = "    placeholder="가게주소를 입력하세요" value = "<%=dto.getStore_category()%>"> 
                     </div>
                 </td>
               </tr>      
@@ -243,9 +246,14 @@ window.onload = function(){
    CKEDITOR.editorConfig = function(config){
 	   config.enterMode = CKEDITOR.ENTER_BR
    };
-   var texts =['', '음식', '카페', '놀거리'];
+   CKEDITOR.instances.editor.setData('<%=dto.getStore_info()%>')
+   
+   
+   var texts =['선택하세요', '음식', '카페', '놀거리'];
    document.getElementById("searchItem").innerHTML = texts[<%=dto.getStore_category()%>];
 	document.getElementById("Store_category").value = <%=dto.getStore_category()%>
+ 
+ 
  };
 function add(){
 	

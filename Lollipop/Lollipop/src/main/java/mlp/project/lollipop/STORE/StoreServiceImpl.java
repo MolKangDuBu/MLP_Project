@@ -39,12 +39,12 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		
+		storedao.delete(id);
 	}
 
 	@Override
 	public void update(StoreDto dto) {
 		// TODO Auto-generated method stub
-		
+		storedao.update(dto);
 	}
 }

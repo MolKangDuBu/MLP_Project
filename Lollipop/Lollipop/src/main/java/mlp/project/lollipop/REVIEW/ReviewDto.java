@@ -6,15 +6,15 @@ import mlp.project.lollipop.STORE.StoreDto;
 public class ReviewDto extends BaseDto{
 
 
-	private int review_key;
-	private String review_id;//작성자 아이디, 외래키
-	private String review_title;
+	private int review_key =0;
+	private String review_id ="";//작성자 아이디, 외래키
+	private String review_title ="";
 	private String review_image1;
 	private String review_image2;
 	private String review_image3;
-	private String review_contents;
-	private String review_wdate;
-	private char review_category;
+	private String review_contents ="";
+	private String review_wdate ="";
+	private char review_category ='0';
 	private int review_like;//좋아요
 	private int review_hit;//조회수
 	

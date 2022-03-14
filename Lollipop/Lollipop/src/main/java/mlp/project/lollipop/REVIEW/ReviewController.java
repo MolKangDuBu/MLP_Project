@@ -58,17 +58,29 @@ public class ReviewController {
         model.addAttribute("reviewDto", dto);
         return "REVIEW/Play_write";
     }
+    
+    @RequestMapping(value = "/Review/modify")
+    public String Review_modify(String review_key, Model model) {      
+        model.addAttribute("reviewDto", reviewservice.getView(review_key));
+        return "REVIEW/Play_write";
+    }
+   
+    @RequestMapping(value = "/Review/delete")
+    public String Review_delete(String review_key) {      
+       reviewservice.delete(review_key);
+        return "redirect:/Review/list";
+    }
 
     @RequestMapping(value = "/Review/save")
     public String Review_save(ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
 
-        HashMap<String, String> map = new HashMap<String, String>();
+
         System.out.println("save");
         System.out.println(dto.getReview_title());
         System.out.println(dto.getReview_contents());
         System.out.println(dto.getReview_id());
 
-        map.put("result", "1");
+
         List<MultipartFile> multiList = new ArrayList<MultipartFile>();
 
         //null값을 확인하여 추가
@@ -108,14 +120,15 @@ public class ReviewController {
         	
         }
         
-        // if(dto.getId().equals("")) {
-        // reviewservice.insert(dto);
-        // }else {
-        // reviewservice.update(dto);
-        // }
+         if(dto.getReview_key()>=1) {
+        	reviewservice.update(dto);
+         }else {
+        	 reviewservice.insert(dto);
+
+         }
         
 
-        reviewservice.insert(dto);
+
         return "redirect:/Review/list";
 
     }

@@ -39,7 +39,8 @@
         <!-- Navigation-->
    
      <%@include file="../include/nav.jsp" %>
-     
+           <input type ="hidden" id = userid name = userid value =<%=user_id%>>
+      <input type ="hidden" id = review_key name = review_key value =<%=dto.getReview_key()%>>
     <app-root _nghost-sc29="" ng-version="9.1.0">
         <!---->
         <router-outlet _ngcontent-sc29=""></router-outlet>
@@ -75,7 +76,7 @@
                     <div class="mb-3" style="margin-top:13px;">
                      <p>제목</p>
                         <input type="text" class="form-control" id="review_title" name="review_title" 
-                        placeholder="제목을 입력하세요" value="">
+                        placeholder="제목을 입력하세요" value="<%=dto.getReview_title()%>">
                     </div>
                 </td>
               </tr>       
@@ -103,7 +104,7 @@
 				              <li><span class="dropdown-item"  onclick = "Category('2')">카페</span></li>
 				              <li><span class="dropdown-item"  onclick = "Category('3')">놀거리</span></li>
 				          </ul>
-				          <input type = "hidden"  class = "form-control" id = "review_categoty" name = "review_categoty"  value = "1"> 
+				          <input type = "hidden"  class = "form-control" id = "review_category" name = "review_category"  value = "1"> 
                     </div>
                 </td>
               </tr>      
@@ -220,9 +221,17 @@
 <script>
 
 window.onload = function(){
-   CKEDITOR.editorConfig = function(config){
-	   config.enterMode = CKEDITOR.ENTER_BR
-   };
+	   CKEDITOR.editorConfig = function(config){
+		   config.enterMode = CKEDITOR.ENTER_BR
+	   };
+	   CKEDITOR.instances.editor.setData('<%=dto.getReview_contents()%>')
+	   
+	   
+	   var texts =['선택하세요', '음식', '카페', '놀거리'];
+	   document.getElementById("searchItem").innerHTML = texts[<%=dto.getReview_category()%>];
+		document.getElementById("review_category").value = <%=dto.getReview_category()%>
+	 
+	 
  };
 function add(){
 	

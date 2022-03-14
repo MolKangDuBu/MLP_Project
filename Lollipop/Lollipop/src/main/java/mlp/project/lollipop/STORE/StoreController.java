@@ -52,9 +52,15 @@ public class StoreController {
 	    }
 
 	    @RequestMapping(value = "/Store/modify")
-	    public String Store_modify(StoreDto dto, Model model) {      
-	        model.addAttribute("StoreDto", storeservice.getView(Integer.toString(dto.getStore_key())));
+	    public String Store_modify(String store_key, Model model) {      
+	        model.addAttribute("StoreDto", storeservice.getView(store_key));
 	        return "STORE/Store_write";
+	    }
+	   
+	    @RequestMapping(value = "/Store/delete")
+	    public String Store_delete(String store_key) {      
+	        storeservice.delete(store_key);
+	        return "redirect:/Store/list";
 	    }
 	    
 	    @RequestMapping(value = "/Store/write")
@@ -66,15 +72,15 @@ public class StoreController {
 	    }
 
 	    @RequestMapping(value = "/Store/save")
-	    public String Store_save(StoreDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
+	    public String Store_save(String userid, StoreDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
 
-	        HashMap<String, String> map = new HashMap<String, String>();
+	    
 	        System.out.println("save");
 	        System.out.println(dto.getStore_name());
 	        System.out.println(dto.getStore_info());
 	        System.out.println(dto.getStore_bnumber());
 
-	        map.put("result", "1");
+	      
 	        List<MultipartFile> multiList = new ArrayList<MultipartFile>();
 
 	        //null값을 확인하여 추가
@@ -114,15 +120,14 @@ public class StoreController {
 	        	
 	        }
 	        
-	        // if(dto.getId().equals("")) {
-	        // Storeservice.insert(dto);
-	        // }else {
-	        // Storeservice.update(dto);
-	        // }
+	         if(dto.getStore_key()>=1) {
+	        	 storeservice.update(dto);
+	         }else {
+	        	 storeservice.insert(dto);
+	         }
 	        
-
-	        storeservice.insert(dto);
-	        return "redirect:/STORE/Store";
+	        
+	        return "redirect:/Store/list";
 
 	    }
 

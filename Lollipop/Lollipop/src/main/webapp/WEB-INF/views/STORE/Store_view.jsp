@@ -47,7 +47,8 @@
                     <form name="writeform" id="writeform" method="post" enctype="multipart/form-data">
 					
                         <% StoreDto dto=(StoreDto)request.getAttribute("StoreDto"); %>
-						<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">                        
+						<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">  
+						<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">                      
                             <div style="width: 50%; margin: auto;">
                                 <!-- Navigation-->
 
@@ -175,8 +176,12 @@
                                                         <div _ngcontent-sc102="" class="content-container">
                                                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
                                                                 <div class="container mt-3" style="text-align:right;">
+                                                                   <%if(user_id.equals("admin")) {%>
                                                                     <button class="btn btn-secondary" type="button"
-                                                                        onclick="modify()">수정</button>
+                                                                        onclick="gomodify()">수정</button>
+                                                                        <button class="btn btn-secondary" type="button"
+                                                                        onclick="godelete()">삭제</button>
+                                                                	<%} %>
                                                                 </div>
                                                                 <div _ngcontent-sc99="" class="divider-container">
                                                                     <app-divider _ngcontent-sc99="" _nghost-sc98="">
@@ -230,28 +235,25 @@
                 </html>
 
 
-                <script>
+ <script>
 
-                    window.onload = function () {
+     window.onload = function () {
 
-                    };
-                    function modify() {
-
-                        $("#Store_info").val(CKEDITOR.instances.editor.getData());
-
-                        var frm = document.writeform
-                        //var frmData = new FormData(document.writeform); 
-                        frm.action = "<%=request.getContextPath()%>/Store/modify";
-                        frm.method = "post";
-                        frm.submit();
+     };
+     function gomodify() {
+         var frm = document.writeform
+         frm.action = "<%=request.getContextPath()%>/Store/modify";
+         frm.method = "post";
+         frm.submit();
 
 
-                    }
-                    function Category(cate) {
-                        var texts = ['', '음식', '카페', '놀거리'];
-                        document.getElementById("searchItem").innerHTML = texts[cate];
-                        document.getElementById("Store_categoty").value = cate;
+     }
 
-                    }
+     function godelete(){
+    	 var frm = document.writeform
+         frm.action = "<%=request.getContextPath()%>/Store/delete";
+         frm.method = "post";
+         frm.submit();
+     }
 
-                </script>
+ </script>
