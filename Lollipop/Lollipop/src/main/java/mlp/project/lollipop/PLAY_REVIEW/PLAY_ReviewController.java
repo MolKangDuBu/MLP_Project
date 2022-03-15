@@ -1,11 +1,5 @@
-package mlp.project.lollipop.REVIEW;
+package mlp.project.lollipop.PLAY_REVIEW;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,63 +10,67 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import mlp.project.lollipop.STORE.StoreService;
 import mlp.project.lollipop.common.FileUploadUtil;
 
 @Controller
-public class ReviewController {
+public class PLAY_ReviewController {
 
     @Resource(name = "reviewService")
-    ReviewService reviewservice;
+    PLAY_ReviewService reviewservice;
 
-    @RequestMapping(value = "/Review/list")
-    public String Review_list(Model model, ReviewDto dto) {
+    
+    @RequestMapping(value = "/PLAY_Review/list")
+    public String Review_list(Model model, PLAY_ReviewDto dto, String store_key) {
         System.out.println(dto.getKey());
         System.out.println(dto.getKeyword());
-        dto.setStart(dto.getPg() * 10);
+        int pg = dto.getPg();
+    	dto.setStart((pg)*dto.getPageSize());
+    	
+    	dto.setStore_key(store_key);
+        List<PLAY_ReviewDto> list = reviewservice.getlist(dto);
 
-        List<ReviewDto> list = reviewservice.getlist(dto);
-
+        
         model.addAttribute("ReviewList", list);
         model.addAttribute("totalCnt", reviewservice.getTotal(dto));
 
-        return "REVIEW/Play_Review";
+        return "PLAY_REVIEW/Play_Review";
     }
 
-    @RequestMapping(value = "/Review/view")
+    @RequestMapping(value = "/PLAY_Review/view")
     public String Review_view(String review_key, Model model) {
-
-        ReviewDto dto = reviewservice.getView(review_key);
+    	
+    	PLAY_ReviewDto dto = reviewservice.getView(review_key);
+        reviewservice.incresehit(review_key);
         model.addAttribute("ReviewDto", dto);
-        return "REVIEW/Play_view";
+        return "PLAY_REVIEW/Play_view";
     }
 
-    @RequestMapping(value = "/Review/write")
+    @RequestMapping(value = "/PLAY_Review/write")
     public String Review_write(Model model) {
 
-        ReviewDto dto = new ReviewDto();
+    	PLAY_ReviewDto dto = new PLAY_ReviewDto();
         model.addAttribute("reviewDto", dto);
-        return "REVIEW/Play_write";
+        return "PLAY_REVIEW/Play_write";
     }
     
-    @RequestMapping(value = "/Review/modify")
+    @RequestMapping(value = "/PLAY_Review/modify")
     public String Review_modify(String review_key, Model model) {      
         model.addAttribute("reviewDto", reviewservice.getView(review_key));
-        return "REVIEW/Play_write";
+        return "PLAY_REVIEW/Play_write";
     }
    
-    @RequestMapping(value = "/Review/delete")
+    @RequestMapping(value = "/PLAY_Review/delete")
     public String Review_delete(String review_key) {      
        reviewservice.delete(review_key);
         return "redirect:/Review/list";
     }
 
-    @RequestMapping(value = "/Review/save")
-    public String Review_save(ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
+    @RequestMapping(value = "/PLAY_Review/save")
+    public String Review_save(PLAY_ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
 
 
         System.out.println("save");
@@ -129,29 +127,10 @@ public class ReviewController {
         
 
 
-        return "redirect:/Review/list";
+        return "redirect:/PLAY_Review/list";
 
     }
 
-    @RequestMapping("/fileUpload")
-    String fileUpload(@RequestParam MultipartFile multiFile, String contents) {
 
-        System.out.println(multiFile);
-        try {
-            InputStream in = multiFile.getInputStream();
-
-            String filename = multiFile.getOriginalFilename();
-            Path uploadPath = Paths.get("upload/images");
-
-            System.out.println(filename);
-            Path filePath = uploadPath.resolve(filename);
-            Files.copy(in, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-
-        return "save";
-    }
 
 }

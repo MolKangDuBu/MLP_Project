@@ -21,7 +21,7 @@ String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), ""
                         <a class="nav-link" href="${commonURL}/User/signup">회원가입</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">고객센터</a>
+                        <a class="nav-link" href="javascript:void(0);">고객센터</a>
                     </li>
                 </ul>
             </div>

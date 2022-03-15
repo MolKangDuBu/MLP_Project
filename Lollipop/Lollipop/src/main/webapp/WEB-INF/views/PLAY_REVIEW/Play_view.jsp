@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@page import="java.util.*" %>
-        <%@page import="mlp.project.lollipop.REVIEW.*" %>
+        <%@page import="mlp.project.lollipop.PLAY_REVIEW.*" %>
             <%@page import="mlp.project.lollipop.common.*" %>
                 <!DOCTYPE html>
                 <html lang="ko">
@@ -46,7 +46,7 @@
 			
                     <form name="writeform" id="writeform" method="post" enctype="multipart/form-data">
 					
-                        <% ReviewDto dto=(ReviewDto)request.getAttribute("ReviewDto"); %>
+                        <% PLAY_ReviewDto dto=(PLAY_ReviewDto)request.getAttribute("ReviewDto"); %>
 						                      
                             <div style="width: 50%; margin: auto;">
                                 <!-- Navigation-->
@@ -169,6 +169,8 @@
                                                         <div _ngcontent-sc102="" class="content-container">
                                                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
                                                                 <div class="container mt-3" style="text-align:right;">
+                                                                  
+                                                         
                                                                <%if(user_id.equals(dto.getReview_id())) {%>
                                                                     <button class="btn btn-secondary" type="button"
                                                                         onclick="gomodify()">수정</button>
@@ -235,16 +237,17 @@
                     };
                     function gomodify() {
                         var frm = document.writeform
-                        frm.action = "<%=request.getContextPath()%>/Review/modify";
+                        frm.action = "<%=request.getContextPath()%>/PLAY_Review/modify";
                         frm.method = "post";
                         frm.submit();
 
 
                     }
+                    
 
                     function godelete(){
                    	 var frm = document.writeform
-                        frm.action = "<%=request.getContextPath()%>/Review/delete";
+                        frm.action = "<%=request.getContextPath()%>/PLAY_Review/delete";
                         frm.method = "post";
                         frm.submit();
                     }

@@ -44,11 +44,12 @@
                 <body>
 
 			
-                    <form name="writeform" id="writeform" method="post" enctype="multipart/form-data">
+                    <form name="viewform" id="viewform" method="post" enctype="multipart/form-data">
 					
                         <% StoreDto dto=(StoreDto)request.getAttribute("StoreDto"); %>
 						<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">  
-						<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">                      
+						<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">
+						<input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">                      
                             <div style="width: 50%; margin: auto;">
                                 <!-- Navigation-->
 
@@ -157,31 +158,20 @@
 
                                                                             <p style ="margin-left:5%">가게 정보</p>
 																			<div style = "margin-left:5%"><%=dto.getStore_info() %></div>
-                                                                      	
-                                                                    <div>
-                                                                       
-                                                               
-
-
-                                                             
-                                                            </div>
-                                           
-
-
-
-
-
-
-
+                                                    
+      													<hr style="margin-top:13px;">
                                                         <div _ngcontent-sc102="" class="content-container">
                                                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
                                                                 <div class="container mt-3" style="text-align:right;">
+                                                               
                                                                    <%if(user_id.equals("admin")) {%>
                                                                     <button class="btn btn-secondary" type="button"
                                                                         onclick="gomodify()">수정</button>
                                                                         <button class="btn btn-secondary" type="button"
                                                                         onclick="godelete()">삭제</button>
                                                                 	<%} %>
+                                                                	   <button class="btn btn-secondary" type="button"
+                                                                        onclick="goReview('<%=dto.getStore_category()%>')">리뷰 보기</button>
                                                                 </div>
                                                                 <div _ngcontent-sc99="" class="divider-container">
                                                                     <app-divider _ngcontent-sc99="" _nghost-sc98="">
@@ -240,17 +230,39 @@
      window.onload = function () {
 
      };
+	function goReview(category){
+		console.log($("#store_category").val());	
+		 var frm = document.viewform
+		switch(category){
+		case '1':
+			frm.action ="<%=request.getContextPath()%>/FOOD_Review/list";
+			 frm.method = "post";
+	         frm.submit();
+			break;
+		case '2':
+			frm.action ="<%=request.getContextPath()%>/CAFE_Review/list";
+			 frm.method = "post";
+	         frm.submit();
+			break;
+		case '3':
+			frm.action ="<%=request.getContextPath()%>/PLAY_Review/list";
+			 frm.method = "post";
+	         frm.submit();
+			break;
+		}
+	}
+     
      function gomodify() {
-         var frm = document.writeform
+         var frm = document.viewform
          frm.action = "<%=request.getContextPath()%>/Store/modify";
          frm.method = "post";
          frm.submit();
 
 
      }
-
+	
      function godelete(){
-    	 var frm = document.writeform
+    	 var frm = document.viewform
          frm.action = "<%=request.getContextPath()%>/Store/delete";
          frm.method = "post";
          frm.submit();

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
-<%@page import="mlp.project.lollipop.REVIEW.*" %>
+<%@page import="mlp.project.lollipop.PLAY_REVIEW.*" %>
 <%@page import ="mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -33,7 +33,7 @@
 <form name = "writeform" id = "writeform" method="post" enctype = "multipart/form-data">
 
 	<%
- 		ReviewDto dto = (ReviewDto)request.getAttribute("reviewDto");
+	PLAY_ReviewDto dto = (PLAY_ReviewDto)request.getAttribute("reviewDto");
     %>
     <div style="width: 50%; margin: auto;">
         <!-- Navigation-->
@@ -239,7 +239,7 @@ function add(){
 		
 	   var frm = document.writeform
 	   //var frmData = new FormData(document.writeform); 
-		frm.action = "<%=request.getContextPath()%>/Review/save";
+		frm.action = "<%=request.getContextPath()%>/PLAY_Review/save";
 		frm.method = "post";
 		frm.submit();
 		

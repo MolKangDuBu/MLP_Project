@@ -1,9 +1,9 @@
-package mlp.project.lollipop.REVIEW;
+package mlp.project.lollipop.PLAY_REVIEW;
 
 import mlp.project.lollipop.common.BaseDto;
 import mlp.project.lollipop.STORE.StoreDto;
 
-public class ReviewDto extends BaseDto{
+public class PLAY_ReviewDto extends BaseDto{
 
 
 	private int review_key =0;
@@ -18,8 +18,16 @@ public class ReviewDto extends BaseDto{
 	private int review_like;//좋아요
 	private int review_hit;//조회수
 	
+	private String store_key="";
+	
 	
 
+	public String getStore_key() {
+		return store_key;
+	}
+	public void setStore_key(String store_key) {
+		this.store_key = store_key;
+	}
 	public int getReview_key() {
 		return review_key;
 	}

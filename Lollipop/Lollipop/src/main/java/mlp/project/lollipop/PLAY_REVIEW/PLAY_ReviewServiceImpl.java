@@ -1,4 +1,4 @@
-package mlp.project.lollipop.REVIEW;
+package mlp.project.lollipop.PLAY_REVIEW;
 
 import java.util.List;
 
@@ -7,31 +7,31 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service("reviewService")
-public class ReviewServiceImpl implements ReviewService{
+public class PLAY_ReviewServiceImpl implements PLAY_ReviewService{
 
 	@Resource(name="reviewDao")
-	ReviewDao reviewdao;
+	PLAY_ReviewDao reviewdao;
 
 	@Override
-	public List<ReviewDto> getlist(ReviewDto dto) {
+	public List<PLAY_ReviewDto> getlist(PLAY_ReviewDto dto) {
 		// TODO Auto-generated method stub
 		return reviewdao.getlist(dto);
 	}
 
 	@Override
-	public int getTotal(ReviewDto dto) {
+	public int getTotal(PLAY_ReviewDto dto) {
 		// TODO Auto-generated method stub
 		return reviewdao.getTotal(dto);
 	}
 
 	@Override
-	public void insert(ReviewDto dto) {
+	public void insert(PLAY_ReviewDto dto) {
 		// TODO Auto-generated method stub
 		reviewdao.insert(dto);
 	}
 
 	@Override
-	public ReviewDto getView(String id) {
+	public PLAY_ReviewDto getView(String id) {
 		// TODO Auto-generated method stub
 		return reviewdao.getView(id);
 	}
@@ -43,8 +43,14 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void update(ReviewDto dto) {
+	public void update(PLAY_ReviewDto dto) {
 		// TODO Auto-generated method stub
 		reviewdao.update(dto);
+	}
+
+	@Override
+	public void incresehit(String id) {
+		// TODO Auto-generated method stub
+		reviewdao.incresehit(id);
 	}
 }

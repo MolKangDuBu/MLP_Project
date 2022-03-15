@@ -34,10 +34,10 @@ public class Pager {
 		
 		String path="";
 		//System.out.println(path);
-		String beginLabel 	= "frist";//image  태그
-		String prevLabel 	= "previous"; 
-		String nextLabel 	= "next";
-		String endLabel 	= "last";	
+		String beginLabel 	= "처음";//image  태그
+		String prevLabel 	= "이전"; 
+		String nextLabel 	= "다음";
+		String endLabel 	= "마지막";	
 
 		
 		try {
@@ -66,6 +66,7 @@ public class Pager {
 				 
 			boolean hasPreviousPage = cpage - pageGroupSize >= 0;
 			//이전페이지로 갈게 있는가 여부  << < 1 2 3 4 5 > >>
+
 			boolean hasNextPage = pageGroupStart + pageGroupSize < pageTotal;
 			//다음페이지로 갈 수 있는가 여부 
 			
@@ -73,9 +74,9 @@ public class Pager {
 			
 			//  <<  < 
 			sb.append((cpage > 0) ? makeLink(0, beginLabel) : 
-				        "<li class=\"page-item\"><a class=\"page-link\"  href='#'>"+beginLabel+"</a></li>\r\n");
+				        "<li class=\"page-item\"><a class=\"page-link\"  href='javascript:void(0);'>"+beginLabel+"</a></li>\r\n");
 			sb.append(hasPreviousPage ? makeLink(pageGroupStart - 1, prevLabel) : 
-				        "<li class=\"page-item\"><a class=\"page-link\"  href='#'>"+prevLabel+"</a></li>\r\n");
+				        "<li class=\"page-item\"><a class=\"page-link\"  href='javascript:void(0);'>"+prevLabel+"</a></li>\r\n");
 			
 			for (int i = pageGroupStart; i < pageGroupEnd; i++) {
 				if (i == cpage) {
@@ -88,9 +89,9 @@ public class Pager {
 			
 
 			sb.append(hasNextPage ? makeLink(pageGroupEnd, nextLabel) : 
-				"<li class=\"page-item\"> <a class=\"page-link\" href='#'>"+nextLabel+"</a></li>\r\n");
+				"<li class=\"page-item\"> <a class=\"page-link\" href='javascript:void(0);'>"+nextLabel+"</a></li>\r\n");
 			sb.append((cpage < pageTotal) ? makeLink(pageTotal, endLabel) : 
-				"<li class=\"page-item\"><a class=\"page-link\"  href='#'>"+endLabel+"</a></li>\r\n");
+				"<li class=\"page-item\"><a class=\"page-link\"  href='javascript:void(0);'>"+endLabel+"</a></li>\r\n");
 		
 			sb.append("</ul>\r\n") ;  		
 			Tag = sb.toString() ; 	

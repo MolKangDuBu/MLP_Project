@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="REVIEW">
+<mapper namespace="PLAY_REVIEW">
 	
-	<select id ="Review_list" parameterType = "ReviewDto" resultType ="ReviewDto">
+	<select id ="PLAY_Review_list" parameterType = "PLAY_ReviewDto" resultType ="PLAY_ReviewDto">
 		
 	 select 
 	 	REVIEW_KEY
@@ -31,35 +31,45 @@
              ,@rownum := @rownum+1 AS rnum
             from REVIEW_BOARD A, (select @rownum:=0) B
             
-            
+       
          <if test='key!=null and keyword!=null'>
    
             <if test='key=="1"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                   REVIEW_ACTIVE = 'Y'
                  
             </if>
             
             <if test='key=="3"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
-                  REVIEW_CATEGORY = '1'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '1'and
+                  REVIEW_ACTIVE = 'Y'
             </if>
             
             <if test='key=="4"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
-            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
-                  REVIEW_CATEGORY = '2'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                  REVIEW_CATEGORY = '2'and
+                  REVIEW_ACTIVE = 'Y'
             </if>
             
             <if test='key=="5"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
-                  REVIEW_CATEGORY = '3'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '3' and
+                  REVIEW_ACTIVE = 'Y'
             </if>
             
          </if> 
-          where REVIEW_ACTIVE = 'Y'
+
+         
+           <if test = 'key ==""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	REVIEW_CATEGORY = '3'
+            </if>
+         
          order by REVIEW_KEY desc
          
       ) A
@@ -67,42 +77,48 @@
 	</select>
 	
 	
-	<select id="Review_getTotal" parameterType="ReviewDto" resultType="Integer">
+	<select id="PLAY_Review_getTotal" parameterType="PLAY_ReviewDto" resultType="Integer">
       select count(*) from REVIEW_BOARD
      
      <if test='key!=null and keyword!=null'>
    
             <if test='key=="1"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                   REVIEW_ACTIVE = 'Y'
                  
             </if>
             
             <if test='key=="3"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
-                  REVIEW_CATEGORY = '1'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '1' and
+                  REVIEW_ACTIVE = 'Y'
             </if>
             
             <if test='key=="4"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
-            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
-                  REVIEW_CATEGORY = '2'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                  REVIEW_CATEGORY = '2'and
+                  REVIEW_ACTIVE = 'Y'
             </if>
             
             <if test='key=="5"'>
-            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
-                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
-                  REVIEW_CATEGORY = '3'
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '3'and
+                  REVIEW_ACTIVE = 'Y'
+                
             </if>
-            
          </if> 
-       where REVIEW_ACTIVE = 'Y'
+      	<if test = 'key ==""'>
+            	where REVIEW_ACTIVE = 'Y'
+            </if>
       
    </select>
    
    
-      <select id="Review_getview"  parameterType="String"  resultType="ReviewDto">
+      <select id="PLAY_Review_getview"  parameterType="String"  resultType="PLAY_ReviewDto">
        select
          A.REVIEW_KEY
          ,A.REVIEW_ID
@@ -121,7 +137,7 @@
    </select>
    
    
-   <insert id ="Review_insert" parameterType ="ReviewDto">
+   <insert id ="PLAY_Review_insert" parameterType ="PLAY_ReviewDto">
   	insert into REVIEW_BOARD(
           REVIEW_ID
          ,REVIEW_TITLE
@@ -145,7 +161,7 @@
    </insert>
    
     
-      <update id = "Review_modify" parameterType = "ReviewDto">
+      <update id = "PLAY_Review_modify" parameterType = "PLAY_ReviewDto">
    	update REVIEW_BOARD 
    	set REVIEW_TITLE = #{review_title}
    		,REVIEW_CONTENTS = #{review_contents}
@@ -157,9 +173,17 @@
    	where REVIEW_KEY = #{review_key} 
    </update>
    
-   <update id="Review_delete" parameterType="String">
+   <update id="PLAY_Review_delete" parameterType="String">
    		update REVIEW_BOARD
    		set REVIEW_ACTIVE = 'N'
    		where REVIEW_KEY = #{id}
    </update>
+   
+   <update id = "PLAY_Review_hit" parameterType ="String">
+   	update REVIEW_BOARD
+   	set REVIEW_HIT = REVIEW_HIT+1
+   	where REVIEW_KEY = #{id}
+   </update>
+   
+
 </mapper>

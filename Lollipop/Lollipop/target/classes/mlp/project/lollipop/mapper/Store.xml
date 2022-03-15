@@ -40,8 +40,7 @@
             <if test='key=="1"'>
             where (STORE_NAME like concat('%', #{keyword} , '%') or
                   STORE_INFO like concat('%', #{keyword} , '%')) and
-                  STORE_ACTIVE = 'Y'
-                 
+                  STORE_ACTIVE = 'Y'       
             </if>
             
             <if test='key=="3"'>
@@ -65,9 +64,9 @@
                   STORE_ACTIVE = 'Y'
             </if>
          </if> 
-         <if test = 'keyword ==null'>
-            	where STORE_ACTIVE = 'Y'
-            </if>
+    	<if test = 'key ==""'>
+                 where STORE_ACTIVE = 'Y'       
+        </if>
 
          order by STORE_KEY desc
       ) A
@@ -110,7 +109,7 @@
         
       </if> 
       
-        <if test = 'keyword ==null'>
+        <if test = 'key ==""'>
             	where STORE_ACTIVE = 'Y'
         </if>
    </select>
