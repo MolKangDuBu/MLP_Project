@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("reviewDao")
+@Repository("playreviewDao")
 public class PLAY_ReviewDaoImpl implements PLAY_ReviewDao{
 
 	@Autowired
@@ -18,6 +18,11 @@ public class PLAY_ReviewDaoImpl implements PLAY_ReviewDao{
 		return sm.selectList("PLAY_Review_list" ,dto);
 	}
 
+	@Override
+	public List<PLAY_ReviewDto> searchlist(PLAY_ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return sm.selectList("PLAY_search_list" ,dto);
+	}
 	@Override
 	public int getTotal(PLAY_ReviewDto dto) {
 		// TODO Auto-generated method stub
@@ -54,5 +59,6 @@ public class PLAY_ReviewDaoImpl implements PLAY_ReviewDao{
 		// TODO Auto-generated method stub
 		sm.update("PLAY_Review_hit", id);
 	}
+
 
 }

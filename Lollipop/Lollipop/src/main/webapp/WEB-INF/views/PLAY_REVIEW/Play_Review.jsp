@@ -125,11 +125,11 @@
                                               
                                                 <p>
                                                     <img src="D:\OneDrive\바탕화~1-DESKTOP-OS4S3HI-7407125\풀스택 프로젝트\게시판디자인\images\별.PNG">
-                                                    <h6><%=tempDto.getReview_like()%></h6>
+                                                    <h6><%=tempDto.getReview_hit()%></h6>
                                                 </p>
                                             </app-row>
                                             <div _ngcontent-sc99="" class="poi-info">
-                                                <p _ngcontent-sc99="" class="address"> 서울특별시 강남구 봉은사로30길 64 (역삼동, 해석빌딩) </p>
+                                                <p _ngcontent-sc99="" class="address"> <%=tempDto.getReview_address() %> </p>
                                                 <p _ngcontent-sc99="" class="branch"> </p>
                                             </div>
                                         </div>

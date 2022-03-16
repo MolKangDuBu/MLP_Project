@@ -1,38 +1,36 @@
-package mlp.project.lollipop.PLAY_REVIEW;
+package mlp.project.lollipop.CAFE_REVIEW;
 
 import mlp.project.lollipop.common.BaseDto;
 import mlp.project.lollipop.STORE.StoreDto;
 
-public class PLAY_ReviewDto extends BaseDto{
+public class Cafe_ReviewDto extends BaseDto{
 
-
-	private int review_key =0;
-	private String review_id ="";//작성자 아이디, 외래키
-	private String review_title ="";
-	private String review_image1;
-	private String review_image2;
-	private String review_image3;
-	private String review_contents ="";
-	private String review_wdate ="";
-	private char review_category ='0';
-	private int review_like;//좋아요
-	private int review_hit;//조회수
-	private String review_address ="";
-	
-	private String store_key="";
+	private int store_key=0; //외래키로 사용
+	private int review_key=0;
+	private String review_id="";//작성자 아이디, 외래키
+	private String review_title="";
+	private String review_image1="";
+	private String review_image2="";
+	private String review_image3="";
+	private String review_contents="";
+	private String review_wdate="";
+	private String review_address="";
+	private char review_category='0';
+	private int review_like=0;//좋아요
+	private int review_hit=0;//조회수
 	
 	
-
+	
 	public String getReview_address() {
 		return review_address;
 	}
 	public void setReview_address(String review_address) {
 		this.review_address = review_address;
 	}
-	public String getStore_key() {
+	public int getStore_key() {
 		return store_key;
 	}
-	public void setStore_key(String store_key) {
+	public void setStore_key(int store_key) {
 		this.store_key = store_key;
 	}
 	public int getReview_key() {
@@ -101,9 +99,12 @@ public class PLAY_ReviewDto extends BaseDto{
 	public void setReview_hit(int review_hit) {
 		this.review_hit = review_hit;
 	}
-	
-	
-	
-	
-	
+//	@Override
+//	public String toString() {
+//		return "ReviewDto [store_key=" + store_key + ", review_key=" + review_key + ", review_id=" + review_id
+//				+ ", review_title=" + review_title + ", review_image1=" + review_image1 + ", review_image2="
+//				+ review_image2 + ", review_image3=" + review_image3 + ", review_contents=" + review_contents
+//				+ ", review_wdate=" + review_wdate + ", review_address=" + review_address + ", review_category="
+//				+ review_category + ", review_like=" + review_like + ", review_hit=" + review_hit + "]";
+//	}
 }

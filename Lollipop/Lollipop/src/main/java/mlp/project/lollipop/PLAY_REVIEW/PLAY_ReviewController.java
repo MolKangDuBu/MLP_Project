@@ -19,7 +19,7 @@ import mlp.project.lollipop.common.FileUploadUtil;
 @Controller
 public class PLAY_ReviewController {
 
-    @Resource(name = "reviewService")
+    @Resource(name = "playreviewService")
     PLAY_ReviewService reviewservice;
 
     
@@ -27,14 +27,20 @@ public class PLAY_ReviewController {
     public String Review_list(Model model, PLAY_ReviewDto dto, String store_key) {
         System.out.println(dto.getKey());
         System.out.println(dto.getKeyword());
+        
         int pg = dto.getPg();
     	dto.setStart((pg)*dto.getPageSize());
-    	
-    	dto.setStore_key(store_key);
-        List<PLAY_ReviewDto> list = reviewservice.getlist(dto);
+    	if(store_key != null) {
+    		dto.setStore_key(store_key);
+    		List<PLAY_ReviewDto> list = reviewservice.searchlist(dto);
+    		model.addAttribute("ReviewList", list);
+    	}else {
+
+    		 List<PLAY_ReviewDto> list = reviewservice.getlist(dto);
+    		 model.addAttribute("ReviewList", list);
+    	}
 
         
-        model.addAttribute("ReviewList", list);
         model.addAttribute("totalCnt", reviewservice.getTotal(dto));
 
         return "PLAY_REVIEW/Play_Review";
@@ -43,9 +49,11 @@ public class PLAY_ReviewController {
     @RequestMapping(value = "/PLAY_Review/view")
     public String Review_view(String review_key, Model model) {
     	
+    	
     	PLAY_ReviewDto dto = reviewservice.getView(review_key);
         reviewservice.incresehit(review_key);
         model.addAttribute("ReviewDto", dto);
+       
         return "PLAY_REVIEW/Play_view";
     }
 

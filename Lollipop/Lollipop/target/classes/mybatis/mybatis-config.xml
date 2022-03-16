@@ -9,6 +9,7 @@
 	<typeAliases>
     	<typeAlias alias="UserDto" type="mlp.project.lollipop.USER.UserDto"/>
 		<typeAlias alias="PLAY_ReviewDto" type="mlp.project.lollipop.PLAY_REVIEW.PLAY_ReviewDto"/>
+		<typeAlias alias="Cafe_ReviewDto" type="mlp.project.lollipop.CAFE_REVIEW.Cafe_ReviewDto"/>
 		<typeAlias alias="StoreDto" type="mlp.project.lollipop.STORE.StoreDto"/>
 		
 	</typeAliases>
@@ -16,6 +17,7 @@
 		 <mapper resource=	"/mlp/project/lollipop/mapper/User.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/PLAY_Review.xml"/>
 		  <mapper resource=	"/mlp/project/lollipop/mapper/Store.xml"/>
+		  <mapper resource=	"/mlp/project/lollipop/mapper/Cafe_Review.xml"/>
 		
 	</mappers>
 	

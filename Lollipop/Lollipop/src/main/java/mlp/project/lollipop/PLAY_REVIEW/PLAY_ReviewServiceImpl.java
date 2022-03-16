@@ -6,10 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-@Service("reviewService")
+@Service("playreviewService")
 public class PLAY_ReviewServiceImpl implements PLAY_ReviewService{
 
-	@Resource(name="reviewDao")
+	@Resource(name="playreviewDao")
 	PLAY_ReviewDao reviewdao;
 
 	@Override
@@ -52,5 +52,11 @@ public class PLAY_ReviewServiceImpl implements PLAY_ReviewService{
 	public void incresehit(String id) {
 		// TODO Auto-generated method stub
 		reviewdao.incresehit(id);
+	}
+
+	@Override
+	public List<PLAY_ReviewDto> searchlist(PLAY_ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return reviewdao.searchlist(dto);
 	}
 }
