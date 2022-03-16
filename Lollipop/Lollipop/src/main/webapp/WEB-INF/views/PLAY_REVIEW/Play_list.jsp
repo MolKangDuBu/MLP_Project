@@ -65,7 +65,7 @@
 											                선택하세요
 											        </button>
                                                 <ul class="dropdown-menu">
-									            
+									            <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('1')">전체</a></li>
 									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('3')">음식</a></li>
 									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('4')">카페</a></li>
 									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('5')">놀거리</a></li>
@@ -101,11 +101,14 @@
                         <!---->
                         <!---->
                         <div _ngcontent-sc102="" class="title-container">
-                       
+                       	<%String title = (String)request.getAttribute("title");
+                       	if(title.equals("null") ) {%>
                             <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">놀거리 게시판</span></h1>
                         </div>
-                     
-
+                       <% }else{%>
+						<h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop"><%=title%></span></h1>
+                        </div>
+						<%} %>
                         <div _ngcontent-sc102="" class="content-container">
                             <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
 <!-- 여기부터 리스트 추가 -->

@@ -49,6 +49,7 @@
                         <% StoreDto dto=(StoreDto)request.getAttribute("StoreDto"); %>
 						<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">  
 						<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">
+						<input type ="hidden" id = store_name name =store_name value="<%=dto.getStore_name() %>">
 						<input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">                      
                             <div style="width: 50%; margin: auto;">
                                 <!-- Navigation-->

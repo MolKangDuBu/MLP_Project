@@ -24,7 +24,7 @@ public class PLAY_ReviewController {
 
     
     @RequestMapping(value = "/PLAY_Review/list")
-    public String Review_list(Model model, PLAY_ReviewDto dto, String store_key) {
+    public String Review_list(Model model, PLAY_ReviewDto dto, String store_key, String store_name) {
         System.out.println(dto.getKey());
         System.out.println(dto.getKeyword());
         
@@ -39,17 +39,23 @@ public class PLAY_ReviewController {
     		 List<PLAY_ReviewDto> list = reviewservice.getlist(dto);
     		 model.addAttribute("ReviewList", list);
     	}
+    	if(store_name !=null) {
+    		model.addAttribute("title", store_name);
+    		System.out.println("aaa : "+store_name);
+    	}else {
+    		model.addAttribute("title", "null");
+    	}
 
         
         model.addAttribute("totalCnt", reviewservice.getTotal(dto));
 
-        return "PLAY_REVIEW/Play_Review";
+        return "PLAY_REVIEW/Play_list";
     }
 
     @RequestMapping(value = "/PLAY_Review/view")
     public String Review_view(String review_key, Model model) {
     	
-    	
+    	System.out.println("asdsad : "+review_key);
     	PLAY_ReviewDto dto = reviewservice.getView(review_key);
         reviewservice.incresehit(review_key);
         model.addAttribute("ReviewDto", dto);
