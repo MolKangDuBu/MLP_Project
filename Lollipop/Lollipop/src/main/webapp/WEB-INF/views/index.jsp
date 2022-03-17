@@ -117,7 +117,7 @@
             <div class="card-body">
               <h5 class="card-title">카페</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="./Cafe_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
           <div class="card" style="width: 18rem;">

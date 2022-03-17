@@ -27,6 +27,7 @@ public class Cafe_ReviewController {
 		
 //		System.out.println("list key=====>" + dto.getKey());
 //		System.out.println("list keyword=====>" + dto.getKeyword());
+//		System.out.println("list keyword=====>" + dto.getStore_key());
 		
 		dto.setStart( dto.getPg()*10);
 
@@ -38,11 +39,30 @@ public class Cafe_ReviewController {
 		
 		model.addAttribute("ReviewList", list);
 		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
+		model.addAttribute("")
 		
 		return "CAFE_REVIEW/Cafe_list";
 	}
 	
-	@RequestMapping(value = "/Review/listcat", method=RequestMethod.GET)
+	@RequestMapping(value = "Cafe_Review/Reviewlist", method=RequestMethod.GET)
+	public String Cafe_Review_reviewlist(Model model, Cafe_ReviewDto dto) {
+		
+		dto.setStart( dto.getPg()*10);
+
+		List<Cafe_ReviewDto> list = reviewservice.getList(dto);
+		
+		for(Cafe_ReviewDto tempDto : list) {
+			System.out.println(tempDto.getReview_title());
+			System.out.println(tempDto.getStore_key());
+		}
+		
+		model.addAttribute("ReviewList", list);
+		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
+		
+		return "CAFE_REVIEW/Cafe_Reviewlist";
+	}
+	
+	@RequestMapping(value = "/Cafe_Review/listcat", method=RequestMethod.GET)
 	public String Review_listcat(Model model, Cafe_ReviewDto dto) {
 		
 //		System.out.println("list key=====>" + dto.getKey());
@@ -110,19 +130,15 @@ public class Cafe_ReviewController {
 	          	dto.setReview_image3(fileNameList.get(2));
 	        	break;
 	        default:
-	        		break;
-	        	
+	        		break;	        	
 	        }
 		
 		if(dto.getReview_key()>=1) {
 			reviewservice.update(dto);
-
 		}
-		else {
-			
+		else {			
 			reviewservice.insert(dto);
-		}
-		
+		}		
 		
 		return "redirect:/Cafe_Review/list";
 	}
@@ -150,7 +166,8 @@ public class Cafe_ReviewController {
 	
 	@RequestMapping(value = "/Cafe_Review/delete")
 	public String Review_delete(String review_key) {
+//		System.out.println("Review_delete=====================" + review_key);
 		reviewservice.delete(review_key);
-		return "redirect:/Review/list";
+		return "redirect:/Cafe_Review/list";
 	}
 }

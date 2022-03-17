@@ -7,7 +7,7 @@
 <html>
 <head>
  <meta charset="utf-8">
-    <title>   | 롤리팝 카페</title>
+    <title>롤리팝 | 카페 리뷰</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="og:locale" content="ko_KR">
@@ -34,7 +34,7 @@
 	List<Cafe_ReviewDto> list = (List<Cafe_ReviewDto>)request.getAttribute("ReviewList");
 	%>
 	
-	<form name="listform" method="get" id= "listform">
+	<form name="reviewlistform" method="get" id= "reviewlistform">
 	<input type="hidden" name="key" id="key" value="<%=key%>"/>
 	<input type="hidden" name="pg"  id="pg" value="<%=pg%>"/>
 	<input type="hidden" name="review_id"  id="review_id" value=""/>
@@ -65,7 +65,7 @@
                                             </app-row>
                                         </app-current-location>
                                         <div _ngcontent-sc85="" class="searchbar">
-                                        <input _ngcontent-sc85="" type="search" placeholder="업체명 검색" 
+                                        <input _ngcontent-sc85="" type="search" placeholder="리뷰 검색" 
                                         value="<%=keyword %>" name="keyword" id="keyword" class="ng-untouched ng-pristine ng-valid" />
                                          <button class="btn btn-secondary" type="button" onclick = "goSearch()"> 검색 </button>
                                             <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
@@ -88,37 +88,10 @@
                         <!---->
                         <!---->
                         <div _ngcontent-sc102="" class="title-container">
-                       <h1 _ngcontent-sc102="">카페 게시판 </h1>
+                       		<h1 _ngcontent-sc102=""> <%=dto.getReview_title() %> 게시판 </h1>
                         </div>
                         
-         <!-- 카테고리 -->
-         
-                        <div _ngcontent-sc102="" class="categories-container">
-                            <app-category-chips _ngcontent-sc102="" _nghost-sc97="">
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('전체')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem1" class="active"> 전체 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('오늘의 팝딜')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem2" class=""> 오늘의 팝딜 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('음식점')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem3" class=""> 음식점 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('카페')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem4" class="" > 카페 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('놀거리')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem5" class="" > 놀거리 </app-chip>
-                                </a>
-                                <input type = "hidden" id = review_category name = review_category value = '2'>
-                            </app-category-chips>
-                        </div>
-                        
+     
 
 <!--  여기부터 리스트 추가 -->
 
@@ -165,7 +138,7 @@
 	       	  
 	          <div class="container mt-3" style="text-align:right;">
 	         	   <a href="<%=request.getContextPath()%>/Review/write" 
-	               class="btn btn-secondary">글쓰기</a>
+	               class="btn btn-secondary">리뷰 쓰기</a>
 	          </div>
               </div>
                                 
@@ -211,7 +184,7 @@
 
 	function goSearch()
 	{
-		let frm = document.listform;
+		let frm = document.reviewlistform;
 		frm.pg.value=0;
 		frm.action = "<%=request.getContextPath()%>/Cafe_Review/list";
 		frm.method="get";
@@ -220,7 +193,7 @@
 	
 	function goPage(pg)
 	{
-		frm = document.listform;
+		frm = document.reviewlistform;
 		frm.pg.value=pg;///////////
 		frm.method="get";
 		frm.action="${pageContext.request.contextPath}/Cafe_Review/list";
@@ -229,19 +202,11 @@
 	
 	function goView(review_key)
 	{
-		frm = document.listform;
+		frm = document.reviewlistform;
 		frm.review_key.value=review_key;///////////
 		frm.method="get";
 		frm.action="${pageContext.request.contextPath}/Cafe_Review/view";
 		frm.submit();
 	}
 	
-	function categorySearch(id){
-		document.getElementById("key").value=id;//컨트롤러로 넘기기 위해서
-		let frm = document.listform;
-		frm.pg.value=0;
-		frm.action = "<%=request.getContextPath()%>/Cafe_Review/listcat";
-		frm.method = "get";
-		frm.submit();
-	}
 </script>

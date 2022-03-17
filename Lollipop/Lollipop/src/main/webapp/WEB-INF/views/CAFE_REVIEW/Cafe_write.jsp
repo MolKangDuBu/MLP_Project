@@ -43,12 +43,14 @@
                         placeholder="카페명을 입력하세요" value="<%=dto.getReview_title()%>">
                     </div>
                 </td>
-              </tr>       
+              </tr>    
+              
+              
               <tr>
                 <td>주소</td>
                 <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                        <input type="text" class="form-control" id="review_address" name="review_address" 
+                    <div class="mb-3" style="margin-top:13px;">	
+                    <input type="text" class="form-control" id="review_address" name="review_address"                         
                         placeholder="주소를 입력하세요" value="<%=dto.getReview_address()%>">
                     </div>
                 </td>
