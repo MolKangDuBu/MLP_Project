@@ -52,8 +52,7 @@
                     <app-responsive-container _ngcontent-sc86="" _nghost-sc79="">
                         <nav _ngcontent-sc86="">
                             <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
-                                    class="no-decoration" href="/"><img _ngcontent-sc86="" src="assets/town-logo.svg"
-                                        alt="롤리팝 로고" class="daangn-logo"></a>
+                                    class="no-decoration" href="/"></a>
                                 <div _ngcontent-sc86="" class="divider"></div>
                                 <app-searchbar _ngcontent-sc86="" placeholder="제목, 내용 검색" _nghost-sc85="">
                                     <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
@@ -145,7 +144,7 @@
                                	 <%=Pager.makeTag(request, 10, totalCnt) %>
                                 </div>
                                 <div class="container mt-3" style="text-align:right;">
-           						 <a href="<%=request.getContextPath()%>/Review/write" 
+           						 <a href="<%=request.getContextPath()%>/PLAY_Review/write" 
                						class="btn btn-secondary">글쓰기</a>
        							</div>
                                 <div _ngcontent-sc99="" class="divider-container">

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import = "mlp.project.lollipop.common.*" %>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.TODAY_REVIEW.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +20,25 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 
     <link href="resources/css/styles.css" rel="stylesheet" />
-
+		  <style>
+				     /* 캐러셀(이미지슬라이드) 이미지 크기변경 */
+				      .carousel-inner{
+				        width:100%;
+				        height:500px; /* 이미지 높이 변경 */
+				      }
+				      .carousel-item{
+				        width: 100%;
+				        height:100%;
+				      }
+				      .d-block {
+				        display:block;
+				        width: 100%;
+				        height: 100%;
+				      }
+				      </style>
 </head>
 <body>
+<%List<Today_ReviewDto> list = (List<Today_ReviewDto>)request.getAttribute("TodayList"); %>
     <div style="width: 80%; margin: auto;">
     <!-- Navigation-->
     <nav style ="background-color: bisque;"> 
@@ -95,37 +115,37 @@
         </header>
         <!-- Icons Grid-->
         <br/>       
-    <div class="row">
-        <div class="card" style="width: 18rem;"> 
+    <div class="row" style = "text-align: center;">
+        <div class="card" style="width: 18rem; margin-left: 5%;"> 
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">오늘의 팝딜</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/lollipop/Today/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-        <div class="card" style="width: 18rem;"> 
+        <div class="card" style="width: 18rem; margin-left: 5%;"> 
             <img src="resources/Image/food.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">음식</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/lollipop/PLAY_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 18rem; margin-left: 5%;">
             <img src="resources/Image/coffee.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">카페</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/lollipop/Cafe_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 18rem; margin-left: 5%;">
             <img src="resources/Image/park.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">놀거리</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/lollipop/PLAY_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
         </div>
@@ -143,15 +163,12 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
+            <%for(int i =0;i<list.size();i++){ %>
                 <div class="carousel-item active">
-                    <img src="resources/Image/food.jpg" class="d-block w-100" alt="food">
+                    <img src="${pageContext.request.contextPath}/upload/<%=list.get(i).getReview_image1()%>" class="d-block w-100" alt="food">
                 </div>
-                <div class="carousel-item">
-                    <img src="resources/Image/coffee.jpg" class="d-block w-100" alt="coffee">
-                </div>
-                <div class="carousel-item">
-                    <img src="resources/Image/park.jpg" class="d-block w-100" alt="park">
-                </div>
+             <%} %>   
+
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">

@@ -41,21 +41,7 @@
 <%List<Today_ReviewDto> list = (List<Today_ReviewDto>)request.getAttribute("TodayList"); %>
     <div style="width: 80%; margin: auto;">
     <!-- Navigation-->
-    <nav style ="background-color: bisque;"> 
-        <div class="container">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">공지사항</a>
-                </li>              
-                <li class="nav-item">
-                    <a class="nav-link" href="#">고객센터</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">로그인</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <%@include file="./include/nav.jsp" %>
 
  
         <!-- Masthead-->
@@ -119,9 +105,9 @@
         <div class="card" style="width: 18rem; margin-left: 5%;"> 
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">오늘의 팝딜</h5>
+              <h5 class="card-title">팝딜</h5>
               <p class="card-text">test</p>
-              <a href="${commonURL}/lollipop/Today/list" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/Today/list" class="btn btn-primary">이동</a>
             </div>
           </div>
         <div class="card" style="width: 18rem; margin-left: 5%;"> 
@@ -129,7 +115,7 @@
             <div class="card-body">
               <h5 class="card-title">음식</h5>
               <p class="card-text">test</p>
-              <a href="${commonURL}/lollipop/PLAY_Review/list" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/FOOD_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
           <div class="card" style="width: 18rem; margin-left: 5%;">
@@ -137,7 +123,7 @@
             <div class="card-body">
               <h5 class="card-title">카페</h5>
               <p class="card-text">test</p>
-              <a href="${commonURL}/lollipop/Cafe_Review/list" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/Cafe_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
           <div class="card" style="width: 18rem; margin-left: 5%;">
@@ -145,7 +131,7 @@
             <div class="card-body">
               <h5 class="card-title">놀거리</h5>
               <p class="card-text">test</p>
-              <a href="${commonURL}/lollipop/PLAY_Review/list" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/PLAY_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
         </div>

@@ -15,13 +15,19 @@ public class Cafe_ReviewDaoImpl implements Cafe_ReviewDao{
 	@Override
 	public List<Cafe_ReviewDto> getList(Cafe_ReviewDto dto) {
 		// TODO Auto-generated method stub
-		return sm.selectList("Review_getList", dto);
+		return sm.selectList("Cafe_Review_getList", dto);
+	}
+	
+	@Override
+	public List<Cafe_ReviewDto> getReviewList(Cafe_ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return sm.selectList("Cafe_Review_reviewlist", dto);
 	}
 
 	@Override
 	public int getTotal(Cafe_ReviewDto dto) {
 		// TODO Auto-generated method stub
-		return sm.selectOne("Review_getTotal", null);
+		return sm.selectOne("Review_getTotal", dto);
 	}
 
 	@Override
@@ -60,5 +66,7 @@ public class Cafe_ReviewDaoImpl implements Cafe_ReviewDao{
 		sm.update("Cafe_Review_hit", id);
 		
 	}
+
+	
 
 }

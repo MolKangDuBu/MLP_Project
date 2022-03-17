@@ -7,7 +7,6 @@ request.setAttribute("commonURL", request.getContextPath());
 
 
 String user_id= StringUtil.nullToValue(session.getAttribute("user_id"), "");
-String user_name= StringUtil.nullToValue(session.getAttribute("user_name"), "");
 String user_mail= StringUtil.nullToValue(session.getAttribute("user_mail"), "");
 String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), "");
 %>
@@ -16,13 +15,13 @@ String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), ""
             <div class="container">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">로그인</a>
+                        <a class="nav-link active" aria-current="page" href="${commonURL}/User/login">로그인</a>
                     </li>              
                     <li class="nav-item">
-                        <a class="nav-link" href="#">회원가입</a>
+                        <a class="nav-link" href="${commonURL}/User/signup">회원가입</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">고객센터</a>
+                        <a class="nav-link" href="javascript:void(0);">고객센터</a>
                     </li>
                 </ul>
             </div>

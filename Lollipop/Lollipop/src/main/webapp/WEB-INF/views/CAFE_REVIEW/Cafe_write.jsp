@@ -21,10 +21,11 @@
 	<%
 	Cafe_ReviewDto dto = (Cafe_ReviewDto)request.getAttribute("Cafe_ReviewDto");
 	%>
+	<%@include file="../include/nav.jsp" %>
 
-
-	<form  name="myform" action="/Cafe_Review/save" enctype="multipart/form-data">	
-		<input type="hidden" name="review_id" value="<%=dto.getReview_id()%>" />
+	<form  name="myform" enctype="multipart/form-data">	
+		<input type="hidden" id = "review_id" name="review_id" value="<%=user_id%>" />
+		<input type ="hidden" id = review_key name = review_key value =<%=dto.getReview_key()%>>
     <div class="container" style="margin-top:80px">
         <h2>갤러리 쓰기</h2>
 
@@ -43,12 +44,14 @@
                         placeholder="카페명을 입력하세요" value="<%=dto.getReview_title()%>">
                     </div>
                 </td>
-              </tr>       
+              </tr>    
+              
+              
               <tr>
                 <td>주소</td>
                 <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                        <input type="text" class="form-control" id="review_address" name="review_address" 
+                    <div class="mb-3" style="margin-top:13px;">	
+                    <input type="text" class="form-control" id="review_address" name="review_address"                         
                         placeholder="주소를 입력하세요" value="<%=dto.getReview_address()%>">
                     </div>
                 </td>
@@ -116,7 +119,7 @@ window.onload = function(){
 
 function goWrite()
 {
-	
+
 	$("#review_contents").val(CKEDITOR.instances.editor.getData());
 	var frm = document.myform;
 	if( frm.review_title.value.trim().length==0)

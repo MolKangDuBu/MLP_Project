@@ -19,10 +19,15 @@
 <%@include file ="../include/nav.jsp" %>
 <%
  	 Cafe_ReviewDto dto = (Cafe_ReviewDto)request.getAttribute("Cafe_ReviewDto");
-%>
 
- <form name="viewform" id="viewform" method="post" enctype="multipart/form-data">
+%>
+<!-- key=카페&pg=0&review_id=&review_key=0&keyword=&review_category=2 -->
+ <form name="viewform" id="viewform">
  <input type="hidden" name="review_key" id="review_key" value="<%=dto.getReview_key() %>" />
+ <input type="hidden" name="store_key" id="store_key" value="<%=dto.getStore_key() %>" />
+ <input type="hidden" name="review_category" id="review_category" value="2" />
+ <input type="hidden" name="key" id="key" value="" />
+
 
  <div class="container" style="margin-top:80px">
         <h2>게시판 상세보기</h2>
@@ -80,14 +85,16 @@
  
        
           <div class="container mt-3" style="text-align:right;">
-          <%if(user_id.equals(dto.getReview_id())) { %>
-            <a href="#none" onclick="goList()" class="btn btn-secondary">목록</a>
+           <a href="#none" onclick="goList()" class="btn btn-secondary">목록</a>
+           
+          <%if(user_id.equals(dto.getReview_id())&&!user_id.equals("")) { %>
+           
          	<a href="#none" onclick="goModify()" class="btn btn-secondary">수정</a>
          	<a href="#none" onclick="goDelete()" class="btn btn-secondary">삭제</a>
        	  <%} %>
           </div>
           
-    </div>
+   
     </form>
 
   <app-footer _ngcontent-sc105="" _nghost-sc92="">
@@ -115,9 +122,23 @@
 </html>
 <script>
 
-function goList()
+
+window.onload = function(){
+	
+	console.log(<%=user_id%>)
+	console.log(<%=dto.getReview_id()%>)
+	
+}
+ function goList()
 {	
 	location.href="<%=request.getContextPath()%>/Cafe_Review/list";
+}
+
+function goReviewList()
+{
+	var frm = document.viewform;	
+	frm.action="<%=request.getContextPath()%>/Cafe_Review/Reviewlist"
+	frm.submit();
 }
 
 function goModify()
@@ -130,33 +151,10 @@ function goModify()
 
 function goDelete()
 {
-	if( confirm("삭제하시겠습니까?"))
-	{
-			var userid='<%=user_id%>';
-			
-			if(userid =="")
-				{
-					alert("로그인하세요");
-					location.href="${commonURL}/User/login";
-				}
-			
-			var queryString = $("form[name=viewform]").serialize();
-			 // console.log( frmData );
-		   $.ajax({
-		      url:"${commonURL}/Cafe_Review/delete",
-		     data: queryString,
-		     dataType:"JSON",
-		      type:"POST",
-		   })
-		   .done( (result)=>{
-				alert("삭제되었습니다.")
-			 	location.href="${commonURL}/Cafe_Review/list";
-		   })
-		   .fail( (error)=>{
-		      console.log(error);
-		   })
-		}
-	
+	var frm = document.viewform
+	frm.action = "<%=request.getContextPath()%>/Cafe_Review/delete";
+	frm.method = "post";
+	frm.submit();	
 }
 
 </script>

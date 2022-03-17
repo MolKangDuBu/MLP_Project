@@ -41,14 +41,13 @@ public class PLAY_ReviewController {
     	}
     	if(store_name !=null) {
     		model.addAttribute("title", store_name);
-    		System.out.println("aaa : "+store_name);
     	}else {
     		model.addAttribute("title", "null");
     	}
 
         
         model.addAttribute("totalCnt", reviewservice.getTotal(dto));
-
+        System.out.println("ㅇㅇㅇㅇ : "+reviewservice.getTotal(dto));
         return "PLAY_REVIEW/Play_list";
     }
 
@@ -80,7 +79,7 @@ public class PLAY_ReviewController {
     @RequestMapping(value = "/PLAY_Review/delete")
     public String Review_delete(String review_key) {      
        reviewservice.delete(review_key);
-        return "redirect:/Review/list";
+        return "redirect:/PLAY_Review/list";
     }
 
     @RequestMapping(value = "/PLAY_Review/save")

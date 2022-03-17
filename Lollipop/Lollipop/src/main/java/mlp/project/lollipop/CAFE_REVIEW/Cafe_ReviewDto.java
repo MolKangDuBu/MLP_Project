@@ -5,7 +5,7 @@ import mlp.project.lollipop.STORE.StoreDto;
 
 public class Cafe_ReviewDto extends BaseDto{
 
-	private int store_key=0; //외래키로 사용
+	private String store_key=""; //외래키로 사용
 	private int review_key=0;
 	private String review_id="";//작성자 아이디, 외래키
 	private String review_title="";
@@ -26,11 +26,11 @@ public class Cafe_ReviewDto extends BaseDto{
 	}
 	public void setReview_address(String review_address) {
 		this.review_address = review_address;
-	}
-	public int getStore_key() {
+	}	
+	public String getStore_key() {
 		return store_key;
 	}
-	public void setStore_key(int store_key) {
+	public void setStore_key(String store_key) {
 		this.store_key = store_key;
 	}
 	public int getReview_key() {

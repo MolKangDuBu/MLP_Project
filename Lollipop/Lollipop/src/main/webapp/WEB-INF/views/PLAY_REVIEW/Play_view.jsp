@@ -171,12 +171,13 @@
                                                                 <div class="container mt-3" style="text-align:right;">
                                                                   
                                                          
-                                                               <%if(user_id.equals(dto.getReview_id())) {%>
+                                                               <%if(user_id.equals(dto.getReview_id())&&!user_id.equals("")) {%>
                                                                     <button class="btn btn-secondary" type="button"
                                                                         onclick="gomodify()">수정</button>
                                                                         <button class="btn btn-secondary" type="button"
                                                                         onclick="godelete()">삭제</button>
                                                                 	<%} %>
+                                                                	<a href="#none" onclick="goList()" class="btn btn-secondary">목록</a>
                                                                 </div>
                                                                 <div _ngcontent-sc99="" class="divider-container">
                                                                     <app-divider _ngcontent-sc99="" _nghost-sc98="">
@@ -233,7 +234,8 @@
                 <script>
 
                     window.onload = function () {
-
+                    	console.log(<%=user_id%>)
+                    	console.log(<%=dto.getReview_id()%>)
                     };
                     function gomodify() {
                         var frm = document.writeform
@@ -244,11 +246,16 @@
 
                     }
                     
-
+                    
                     function godelete(){
                    	 var frm = document.writeform
                         frm.action = "<%=request.getContextPath()%>/PLAY_Review/delete";
                         frm.method = "post";
                         frm.submit();
+                    }
+                    
+                    function goList()
+                    {	
+                    	location.href="redirect:/PLAY_Review/list";
                     }
                 </script>

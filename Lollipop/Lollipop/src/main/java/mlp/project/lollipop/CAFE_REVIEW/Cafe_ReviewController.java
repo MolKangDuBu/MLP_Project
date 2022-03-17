@@ -22,11 +22,34 @@ public class Cafe_ReviewController {
 	Cafe_ReviewService reviewservice;
 	
 	
-	@RequestMapping(value = "/Cafe_Review/list", method=RequestMethod.GET)
-	public String Review_list(Model model, Cafe_ReviewDto dto) {
+	@RequestMapping(value = "/Cafe_Review/list")
+	public String Review_list(Model model, Cafe_ReviewDto dto, String store_name) {
 		
 //		System.out.println("list key=====>" + dto.getKey());
 //		System.out.println("list keyword=====>" + dto.getKeyword());
+//		System.out.println("list keyword=====>" + dto.getStore_key());
+		
+		dto.setStart( dto.getPg()*10);
+	
+		List<Cafe_ReviewDto> list = reviewservice.getList(dto);
+		
+		for(Cafe_ReviewDto tempDto : list) {
+			System.out.println(tempDto.getReview_title());
+		}
+		if(store_name !=null) {
+			model.addAttribute("title", store_name);
+		}else {
+    		model.addAttribute("title", "null");
+    	}
+		model.addAttribute("ReviewList", list);
+		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
+		
+		
+		return "CAFE_REVIEW/Cafe_list";
+	}
+	
+	@RequestMapping(value = "Cafe_Review/Reviewlist")
+	public String Cafe_Review_reviewlist(Model model, Cafe_ReviewDto dto) {
 		
 		dto.setStart( dto.getPg()*10);
 
@@ -34,15 +57,16 @@ public class Cafe_ReviewController {
 		
 		for(Cafe_ReviewDto tempDto : list) {
 			System.out.println(tempDto.getReview_title());
+			System.out.println(tempDto.getStore_key());
 		}
 		
 		model.addAttribute("ReviewList", list);
 		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
 		
-		return "CAFE_REVIEW/Cafe_list";
+		return "CAFE_REVIEW/Cafe_Reviewlist";
 	}
 	
-	@RequestMapping(value = "/Review/listcat", method=RequestMethod.GET)
+	@RequestMapping(value = "/Cafe_Review/listcat", method=RequestMethod.GET)
 	public String Review_listcat(Model model, Cafe_ReviewDto dto) {
 		
 //		System.out.println("list key=====>" + dto.getKey());
@@ -76,6 +100,7 @@ public class Cafe_ReviewController {
 	@RequestMapping("/Cafe_Review/save")
 	String Review_save(Cafe_ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi)
 	{
+	
 		List<MultipartFile> multiList = new ArrayList<MultipartFile>();
 		
 		//null값을 확인하여 추가
@@ -110,19 +135,18 @@ public class Cafe_ReviewController {
 	          	dto.setReview_image3(fileNameList.get(2));
 	        	break;
 	        default:
-	        		break;
-	        	
+	        		break;	        	
 	        }
 		
+		System.out.println("키값 : "+dto.getReview_key());
 		if(dto.getReview_key()>=1) {
+			System.out.println("수정");
 			reviewservice.update(dto);
-
 		}
 		else {
-			
+			System.out.println("삭제");
 			reviewservice.insert(dto);
-		}
-		
+		}		
 		
 		return "redirect:/Cafe_Review/list";
 	}
@@ -150,7 +174,8 @@ public class Cafe_ReviewController {
 	
 	@RequestMapping(value = "/Cafe_Review/delete")
 	public String Review_delete(String review_key) {
+//		System.out.println("Review_delete=====================" + review_key);
 		reviewservice.delete(review_key);
-		return "redirect:/Review/list";
+		return "redirect:/Cafe_Review/list";
 	}
 }

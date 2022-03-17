@@ -44,8 +44,9 @@
        
                     <div class="join-wrap" style="color: rgba(241, 19, 123, 0.863); width: 915px; display: flex; flex-direction: row; 
                     align-items: flex-end; justify-content: flex-end; padding-bottom: 15px; font-size: 13px;">
-                        <a href="">회원가입</a>&nbsp;&nbsp;&nbsp;
-                        <a href="">비밀번호 찾기</a>
+                        <a href="${commonURL}/User/signup">회원가입</a>&nbsp;&nbsp;&nbsp;
+                         <a href="${commonURL}/User/findid">아이디 찾기</a>&nbsp;&nbsp;&nbsp;
+                        <a href="${commonURL}/User/findpwd">비밀번호 찾기</a>
                     </div>
       
                 <footer>

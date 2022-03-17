@@ -241,7 +241,7 @@
 	         frm.submit();
 			break;
 		case '2':
-			frm.action ="<%=request.getContextPath()%>/CAFE_Review/list";
+			frm.action ="<%=request.getContextPath()%>/Cafe_Review/list";
 			 frm.method = "post";
 	         frm.submit();
 			break;

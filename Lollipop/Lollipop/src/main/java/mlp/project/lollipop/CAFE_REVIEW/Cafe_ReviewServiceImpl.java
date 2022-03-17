@@ -17,6 +17,12 @@ public class Cafe_ReviewServiceImpl implements Cafe_ReviewService{
 		// TODO Auto-generated method stub
 		return reviewDao.getList(dto);
 	}
+	
+	@Override
+	public List<Cafe_ReviewDto> getReviewList(Cafe_ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return reviewDao.getReviewList(dto);
+	}
 
 	@Override
 	public int getTotal(Cafe_ReviewDto dto) {
@@ -59,4 +65,6 @@ public class Cafe_ReviewServiceImpl implements Cafe_ReviewService{
 		// TODO Auto-generated method stub
 		reviewDao.incresehit(id);
 	}
+
+
 }

@@ -8,11 +8,18 @@
 기술한다  -->
 	<typeAliases>
     	<typeAlias alias="UserDto" type="mlp.project.lollipop.USER.UserDto"/>
-		<typeAlias alias="ReviewDto" type="mlp.project.lollipop.REVIEW.ReviewDto"/>
+		<typeAlias alias="PLAY_ReviewDto" type="mlp.project.lollipop.PLAY_REVIEW.PLAY_ReviewDto"/>
+		<typeAlias alias="Cafe_ReviewDto" type="mlp.project.lollipop.CAFE_REVIEW.Cafe_ReviewDto"/>
+		<typeAlias alias="StoreDto" type="mlp.project.lollipop.STORE.StoreDto"/>
+		<typeAlias alias="TodayDto" type="mlp.project.lollipop.TODAY_REVIEW.Today_ReviewDto"/>
+		
 	</typeAliases>
 	<mappers>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/User.xml"/>
-		 <mapper resource=	"/mlp/project/lollipop/mapper/Review.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/PLAY_Review.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Store.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Cafe_Review.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Today_Review.xml"/>
 		
 	</mappers>
 	

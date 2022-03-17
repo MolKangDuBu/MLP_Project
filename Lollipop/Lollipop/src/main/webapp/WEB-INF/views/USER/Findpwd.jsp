@@ -39,8 +39,8 @@
             <section class="join-and-find">
            
                 <div class="join-wrap">
-                	<a href="">로그인</a>&nbsp;
-                    <a href>회원가입</a>
+                	<a href="${commonURL}/User/login">로그인</a>&nbsp;
+                    <a href="${commonURL}/User/signup">회원가입</a>
                 </div>
             </section>
             <footer>

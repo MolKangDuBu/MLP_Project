@@ -248,7 +248,7 @@ function add(){
 function Category(cate){
 	var texts =['', '음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[cate];
-	document.getElementById("review_categoty").value = cate;
+	document.getElementById("review_category").value = cate;
 	
 }
 

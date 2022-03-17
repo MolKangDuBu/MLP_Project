@@ -51,9 +51,7 @@
                 <app-navbar-desktop _ngcontent-sc88="" _nghost-sc86="">
                     <app-responsive-container _ngcontent-sc86="" _nghost-sc79="">
                         <nav _ngcontent-sc86="">
-                            <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
-                                    class="no-decoration" href="/"><img _ngcontent-sc86="" src="assets/town-logo.svg"
-                                        alt="롤리팝 로고" class="daangn-logo"></a>
+                            <app-row _ngcontent-sc86="" _nghost-sc82="">
                                 <div _ngcontent-sc86="" class="divider"></div>
                                 <app-searchbar _ngcontent-sc86="" placeholder="메뉴명 검색" _nghost-sc85="">
                                     <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
