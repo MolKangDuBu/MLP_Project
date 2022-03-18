@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="STORE">
+<<<<<<< HEAD
 	<select id ="Store_list" parameterType = "StoreDto" resultType ="StoreDto">
 		
 	 select 
@@ -171,4 +172,7 @@
    		set STORE_ACTIVE = 'N'
    		where STORE_KEY = #{id}
    </update>
+=======
+
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </mapper>

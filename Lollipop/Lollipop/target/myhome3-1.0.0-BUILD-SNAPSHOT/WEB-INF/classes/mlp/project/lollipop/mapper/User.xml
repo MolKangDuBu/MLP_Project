@@ -5,6 +5,7 @@
  
 <mapper namespace="USER">
 
+<<<<<<< HEAD
 	<select id = "User_info" parameterType = "UserDto" resultType = "UserDto">
 		select * from USER 
 		where USER_ID = #{user_id}
@@ -39,4 +40,6 @@
 	</update>
 	
 	
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </mapper>

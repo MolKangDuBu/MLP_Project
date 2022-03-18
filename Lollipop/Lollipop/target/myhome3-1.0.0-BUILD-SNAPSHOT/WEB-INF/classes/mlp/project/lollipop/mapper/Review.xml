@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="REVIEW">
+<<<<<<< HEAD
 	
 	<select id ="Review_list" parameterType = "ReviewDto" resultType ="ReviewDto">
 		
@@ -162,4 +163,7 @@
    		set REVIEW_ACTIVE = 'N'
    		where REVIEW_KEY = #{id}
    </update>
+=======
+
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </mapper>

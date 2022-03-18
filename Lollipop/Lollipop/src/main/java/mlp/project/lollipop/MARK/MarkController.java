@@ -1,6 +1,9 @@
 package mlp.project.lollipop.MARK;
 
+<<<<<<< HEAD
 import java.util.HashMap;
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,7 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +30,7 @@ public class MarkController {
 	@Resource(name="markService")
 	MarkService markService;
 	
+<<<<<<< HEAD
 	@RequestMapping(value = "/mark/{store_key}")
 	public @ResponseBody String addMark(@PathVariable("store_key") int store_key, HttpSession session) {
 		
@@ -129,6 +136,23 @@ public class MarkController {
 		return "MARK/Mark_list2";
 	}
 	
+=======
+	@RequestMapping(value = "/mark/list")
+	String Mark_list(Model model, MarkDto dto)
+	{	
+		dto.setPageSize(12);
+		dto.setStart( dto.getPg() * dto.getPageSize());
+		
+		List<MarkDto> list = markService.getList(dto);
+		int cnt = markService.getTotal(dto);
+		
+		model.addAttribute("markList", list);
+		model.addAttribute("totalCnt", cnt);
+		
+		return "MARK/Mark_list";
+	}
+	
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 	@RequestMapping(value = "/mark/view")
 	String mark_view(MarkDto dto, Model model)
 	{

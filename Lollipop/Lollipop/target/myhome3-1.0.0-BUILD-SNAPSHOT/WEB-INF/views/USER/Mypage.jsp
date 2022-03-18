@@ -2,18 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@page import  = "mlp.project.lollipop.USER.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>롤리팝 회원가입</title>
+=======
+    <title>내 정보</title>
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<<<<<<< HEAD
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </head>
 
 <body>
@@ -27,6 +34,7 @@
 		<div class="w3-container w3-card-4">
             <header>
                 <div class="logo-wrap">
+<<<<<<< HEAD
                     <img src="../resources/Image/lollipop.png" width="50%" style="display: block; margin: 0px auto;">
                 </div>
             </header>
@@ -52,14 +60,46 @@
 				<p>
 					<label>이메일 주소</label>
 					<input type="email" id="user_mail" name="user_mail" value="<%=dto.getUser_mail()%>" class="w3-input" required placeholder="abc@multi.com">
+=======
+                    <img src="assets/img/lollipop.png" width="50%" style="display: block; margin: 0px auto;">
+                </div>
+            </header>
+			<section id="joinForm" action="./member/join_member.do" method="post">
+				<p>
+					<div>아이디</div>
+					<div type="text" id="id" name="id" style="font-weight: bold; font-size:large; border-bottom-style:none;">&nbsp;회원 아이디</div>
+				</p>
+				<p>
+					<label>비밀번호</label> 
+					<input class="w3-input" id="pw" name="pw" type="password" required >
+				</p>
+				<p>
+					<div>이름</div> 
+					<div type="text" id="name" name="name" style="font-weight: bold; font-size:large; border-bottom-style:none;">&nbsp;회원 이름</div>
+				</p>
+                 <p>
+					<label>핸드폰 번호</label> 
+					<input class="w3-input" id="pw2" type="tel" placeholder="회원 핸드폰 번호" required >
+				</p>
+				<p>
+					<label>이메일 주소</label>
+					<input type="email" id="email" name="email" class="w3-input" placeholder="회원 이메일 주소" required >
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 					<span id="email_check" class="w3-text-red"></span>
 				</p>
             
 				<p class="w3-center">
+<<<<<<< HEAD
 					<button type="button" id="joinBtn" onclick = "Modify()" class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">수정</button>
 					<button type="button" onclick="goCancel()" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 				</p>
 	
+=======
+					<button type="submit" id="modifyBtn" class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">수정하기</button>
+					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
+				</p>
+			</section>
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
             <footer>
                 <div class="copyright-wrap" style="display: flex; flex-direction: column; align-items: center; height: 30px;">
                     <span>Copyright © Lollipop Corp. All Rights Reserved.</span>
@@ -71,6 +111,7 @@
 </body>
 </html>
 
+<<<<<<< HEAD
 <script>
 function Modify()
 {
@@ -96,4 +137,61 @@ function Modify()
 function goCancel(){
 	location.href="${commonURL}/";
 }
+=======
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function(){
+            $("#joinForm").submit(function(){
+                if($("#pw").val() !== $("#pw2").val()){
+                    alert("비밀번호가 다릅니다.");
+                    $("#pw").val("").focus();
+                    $("#pw2").val("");
+                    return false;
+                }else if ($("#pw").val().length < 8) {
+                    alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+                    $("#pw").val("").focus();
+                    return false;
+                }else if($.trim($("#pw").val()) !== $("#pw").val() || $.trim($("#email").val()) !== $("#email").val() || $.trim($("#id").val()) !== $("#id").val()){
+                    alert("공백은 입력이 불가능합니다.");
+                    return false;
+                }
+            })
+            
+            $("#id").keyup(function() {
+                $.ajax({
+                    url : "../member/check_id.do",
+                    type : "POST",
+                    data : {
+                        id : $("#id").val()
+                    },
+                    success : function(result) {
+                        if (result == 1) {
+                            $("#id_check").html("중복된 아이디가 있습니다.");
+                            $("#joinBtn").attr("disabled", "disabled");
+                        } else {
+                            $("#id_check").html("");
+                            $("#joinBtn").removeAttr("disabled");
+                        }
+                    },
+                })
+            });
+            
+            $("#email").keyup(function(){
+                $.ajax({
+                    url : "./check_email.do",
+                    type : "POST",
+                    data : {
+                        email : $("#email").val()
+                    },
+                    success : function(result) {
+                        if (result == 1) {
+                            $("#email_check").html("중복된 이메일이 있습니다.");
+                        } else {
+                            $("#email_check").html("");
+                        }
+                    },
+                })
+            });
+        })
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </script>

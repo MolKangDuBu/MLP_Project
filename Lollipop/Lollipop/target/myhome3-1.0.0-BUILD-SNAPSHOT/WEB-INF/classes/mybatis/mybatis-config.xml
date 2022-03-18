@@ -7,17 +7,27 @@
 너무 길어서 짧은 별명을 만들어서 접근하기 위해
 기술한다  -->
 	<typeAliases>
+<<<<<<< HEAD
      	<typeAlias alias="MarkDto" type="mlp.project.lollipop.MARK.MarkDto"/>	
     	<typeAlias alias="UserDto" type="mlp.project.lollipop.USER.UserDto"/>
 		<typeAlias alias="ReviewDto" type="mlp.project.lollipop.REVIEW.ReviewDto"/>
 		<typeAlias alias="StoreDto" type="mlp.project.lollipop.STORE.StoreDto"/>
+=======
+    	<typeAlias alias="FreeBoardDto" type="mlp.project.lollipop.MARK.MarkDto"/>
+
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 	</typeAliases>
 	
 	<mappers>
+<<<<<<< HEAD
 		 <mapper resource="/mlp/project/lollipop/mapper/Mark.xml"/>
 		 <mapper resource="/mlp/project/lollipop/mapper/User.xml"/>
 		 <mapper resource="/mlp/project/lollipop/mapper/Review.xml"/>
 		 <mapper resource="/mlp/project/lollipop/mapper/Store.xml"/>
+=======
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Mark.xml"/>
+		
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 	</mappers>
 	
 </configuration>

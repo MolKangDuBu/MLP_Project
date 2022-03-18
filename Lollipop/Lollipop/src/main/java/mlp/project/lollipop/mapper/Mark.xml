@@ -5,6 +5,7 @@
  
 <mapper namespace="Mark">
 
+<<<<<<< HEAD
 	<select id="findMark" resultType="String" parameterType="MarkDto">
 		select IF(COUNT(*) = 0, 'false', 'true') AS markYN
 		from mark_board
@@ -46,13 +47,19 @@
 		ORDER BY STORE_wdate DESC
 	</select>
 
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 	<!-- 쿼리를 xml로 작성하고 id:식별값  
 		  parameterType:우리가 전달할값 
 	     resultType : 받아오는값  -->
 	     
 	<!-- if test="key=='1'"  - 이렇게 쓰면 안된다 인식안된다 -->
 	
+<<<<<<< HEAD
 	<select id="Mark_list"  parameterType="MarkDto"  resultType="MarkDto">
+=======
+	<select id="Mark_getList"  parameterType="MarkDto"  resultType="MarkDto">
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
  		
  		select * from 
  		(
@@ -62,9 +69,38 @@
 				,A.MARK_KEY
 				,A.MARK_WDATE
 			    ,@rownum := @rownum+1 AS rnum
+<<<<<<< HEAD
 				from mark_board A, (select @rownum:=0) B                          
 			
 			order by MARK_KEY desc
+=======
+				from mark_board A, (select @rownum:=0) B
+				
+			<if test='key!=null and keyword!=null'>
+	
+				<if test='key=="1"'>
+				where title like concat('%', #{keyword} , '%') or
+				      comment like concat('%', #{keyword} , '%') or 
+				      writer like concat('%', #{keyword} , '%') 
+				</if>
+				
+				<if test='key=="2"'>
+				where title like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="3"'>
+				where comment like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="4"'>
+				where title like concat('%', #{keyword} , '%') or
+				      comment like concat('%', #{keyword} , '%') 
+				</if>
+				
+			</if> 
+			
+			order by MARK_ID desc
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 		) A
 		limit #{start}, #{pageSize}    
 	</select>
@@ -79,6 +115,31 @@
 	
 	<select id="Mark_getTotal" parameterType="MarkDto" resultType="Integer">
 		select count(*) from mark_board
+<<<<<<< HEAD
+=======
+		<if test='key!=null and keyword!=null'>
+
+			<if test='key=="1"'>
+			where title like concat('%', #{keyword} , '%') or
+			      comment like concat('%', #{keyword} , '%') or 
+			      writer like concat('%', #{keyword} , '%') 
+			</if>
+			
+			<if test='key=="2"'>
+			where title like concat('%', #{keyword} , '%')
+			</if>
+			
+			<if test='key=="3"'>
+			where comment like concat('%', #{keyword} , '%')
+			</if>
+			
+			<if test='key=="4"'>
+			where title like concat('%', #{keyword} , '%') or
+			      comment like concat('%', #{keyword} , '%') 
+			</if>
+			
+		</if> 
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 		
 	</select>
 
@@ -102,9 +163,14 @@
 
 	</select>
 	
+<<<<<<< HEAD
 	<delete id="delMark" parameterType="MarkDto">
 		delete from mark_board 
 		where store_key=#{store_key} and mark_id=#{mark_id}
+=======
+	<delete id="Mark_delete" parameterType="String" >
+	delete from mark_board where id=#{id}
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 	</delete>
 	
 	
@@ -117,7 +183,10 @@
 	where  id=#{id}
 	</update>
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> b0f420b40a1fa4b43dc33107125ed7cab6b2d99b
 </mapper>
 
 
