@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
-<%@page import="mlp.project.lollipop.REVIEW.*" %>
+<%@page import="mlp.project.lollipop.PLAY_REVIEW.*" %>
 <%@page import ="mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -871,8 +871,8 @@
 <!-- 여기부터 리스트 추가 -->
 
    			<%
-            	List<ReviewDto> list = (List<ReviewDto>)request.getAttribute("ReviewList");
-           		for(ReviewDto tempDto : list){
+            	List<PLAY_ReviewDto> list = (List<PLAY_ReviewDto>)request.getAttribute("ReviewList");
+           		for(PLAY_ReviewDto tempDto : list){
             %>
                                 <a _ngcontent-sc99="" class="no-decoration container"  onclick= "goView('<%=tempDto.getReview_key()%>')">
                                     <app-row _ngcontent-sc99="" _nghost-sc82="">

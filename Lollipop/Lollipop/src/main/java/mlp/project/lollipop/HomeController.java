@@ -43,7 +43,7 @@ public class HomeController {
         model.addAttribute("TodayList", list);
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "index";
+		return "index2";
 	}
 	
 }

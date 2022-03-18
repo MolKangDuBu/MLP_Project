@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@page import = "mlp.project.lollipop.common.*" %>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.STORE.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - Login Page</title>
-
+  <title>Insertion HTML5 Template</title>
 <!--
 
 Template 2101 Insertion
@@ -37,8 +38,12 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
- 
- <%@include file="../include/nav.jsp" %>
+ <%
+	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
+	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
+	String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
+	int totalCnt = (Integer)request.getAttribute("totalCnt");
+%>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -54,27 +59,15 @@ http://www.tooplate.com/view/2101-insertion
           <div class="col-xl-12">
             <nav class="navbar navbar-expand-sm">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white">Home</a>
-                </li>
                 <li class="nav-item active">
+                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
+                </li>
+                <li class="nav-item">
                   <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
                 </li>
                 <li class="nav-item">
-                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white active">Contact</a>
+                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
                 </li>
-			 <%if(user_id==null|| user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mapage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
               </ul>
             </nav>
           </div>
@@ -84,7 +77,7 @@ http://www.tooplate.com/view/2101-insertion
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
- 			<h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
           <p class="tm-site-description"></p>
         </div>
       </div>
@@ -105,54 +98,56 @@ http://www.tooplate.com/view/2101-insertion
         </form>
       </div>
 
-      <div class="row tm-mt-big tm-about-row tm-mb-medium">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
-          <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
-            <i class="fas fa-3x fa-comments mb-4"></i>
-            <h2 class="tm-media-2-header">FindPassword</h2>
-          </div>
-          <div class="tm-bg-gray tm-contact-middle">
-            <form id ="findpwdform" name ="findpwdform">
- 
-              <div class="form-group mb-4">
-                <input type="text"  id = "user_id" name="user_id" class="form-control" placeholder="ID" required/>
-              </div>
-              <div class="form-group mb-4">
-                <input type="text"  id = "user_mail" name="user_mail" class="form-control" placeholder="Email" required/>
-              </div>
-              <div class="form-group mb-4">
-                <input type="text" id = "user_phone" name="user_phone" class="form-control" placeholder="Phone" required/>
-              </div>
-              	<div class="join-wrap" style="color: rgba(241, 19, 123, 0.863);padding-bottom: 15px; font-size: 13px;">
-                        <a href="${commonURL}/User/signup">회원가입</a>&nbsp;&nbsp;&nbsp;
-                         <a href="${commonURL}/User/login">로그인</a>
-                        
-                    </div>
-          	
-              <div class="form-group mb-0">
-                <button type="button" class="btn btn-secondary"onclick ="Findpwd()">Find password</button>
-              </div>
-            </form>
-          </div>
-          <div class="tm-bg-gray tm-contact-right">
-           
+<form name = "listform" id = "listform">
+	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
+	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
+	<input type = "hidden" name = "store_key" id = "store_key" value ="0"/> 
 
-             <div>
-               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">Our Location</h2>
-               <address class="mb-4">
-                 990 Maecenas lobortis dolor,<br>
-                 Euismod leo, scelerisque <br>
-                 10550 finibus
-               </address>
-                <p class="mb-0">Tel: <a href="tel:+0100200980" class="tm-link-gray">010-020-0980</a></p>
-                <p class="mb-0">Fax: <a href="tel:+0900800770" class="tm-link-gray">090-080-0770</a></p>
-             </div>
+  <div class="row">
+        <div class="col-lg-12">
+          <div class="tm-tag-line">
+          <h2 class="tm-tag-line-title">Store_board</h2>
           </div>
         </div>
       </div>
 
-      <!-- Bottom links -->
-      <div class="row tm-about-row tm-mb-medium">
+      <div class="row mb-5">
+        <div class="col-xl-12">
+          <div class="media-boxes">
+<!-- 게시판 시작 -->
+			<%
+            	List<StoreDto> list = (List<StoreDto>)request.getAttribute("StoreList");
+           		for(StoreDto tempDto : list){
+            %>
+            <div class="media">
+              <img src="${pageContext.request.contextPath}/upload/<%=tempDto.getStore_image1()%>" width = "100px" height ="117px" alt="Image" class="mr-3">
+              <div class="media-body tm-bg-gray">
+                <div class="tm-description-box">
+                  <h5 class="tm-text-blue"><%=tempDto.getStore_name()%></h5>
+                  <p class="mb-0"> <%=tempDto.getStore_address()%></p>
+                </div>
+                <div class="tm-buy-box">
+                  <a href="#none" class="tm-bg-blue tm-text-white tm-buy" onclick ="goView(<%=tempDto.getStore_key()%>)" >view</a>
+                  <span class="tm-text-blue tm-price-tag"><%=tempDto.getStore_name()%></span>
+                </div>
+              </div>
+            </div>
+		<%} %>
+		  
+		  </div> <!-- media-boxes -->
+		     
+        </div>
+        <div style="margin:0 auto">
+             <%=Pager.makeTag(request, 10, totalCnt) %>
+        </div>
+        <div class="container mt-3" style="text-align:right;">
+		 	<a href="<%=request.getContextPath()%>/Store/write" 
+						class="btn btn-secondary">글쓰기</a>
+       	</div> 
+   
+      </div>
+
+      <div class="row tm-mb-medium">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
           <h4 class="mb-4 tm-font-300">Latest Albums</h4>
           <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
@@ -175,7 +170,8 @@ http://www.tooplate.com/view/2101-insertion
           <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
         </div>
       </div>
-      <footer class="row tm-about-row">
+      </form>
+      <footer class="row">
         <div class="col-xl-12">
           <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
           
@@ -188,14 +184,11 @@ http://www.tooplate.com/view/2101-insertion
 
   <!-- load JS -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
-  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
 
-    /* DOM is ready
-    ------------------------------------------------*/
-    $(function () {
+    /* DOM is ready*/
+  $(function () {
 
       if (renderPage) {
         $('body').addClass('loaded');
@@ -204,34 +197,59 @@ http://www.tooplate.com/view/2101-insertion
       $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
     });
 
-    
- 
 
 
   </script>
-  </form>
 </body>
 </html>
 <script>
-function Findpwd(){
-	var frmData = $("form[name=findpwdform]").serialize();
-	      
-	   $.ajax({
-	      url:"${commonURL}/User/findpwd_proc",
-	      data:frmData,
-	      type:"POST",
-	   })
-	   .done( (result)=>{
-	      if(result.result==1){
-	    	  alert("이메일로 비밀번호가 전송되었습니다.");
-	          location.href="${commonURL}/"; //시작화면으로 이동하기  
-	      }else{
-	    	  alert("정보에 맞는 아이디를 찾을 수 없습니다.");
-	      }
-	   })
-	   .fail( (error)=>{
-	      console.log(error);
-	   })
+window.onload = function(){
+	
+	let key = '<%=key%>';
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+key).classList.add("active");
+}
+			
+function changeSearch(id){
+	
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+id).classList.add("active");
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Store/list";
+	frm.method ="GET";
+	frm.submit();
+	
 }
 
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Store/list";
+	frm.method ="GET";
+	frm.submit();
+}
+
+function goPage(pg){
+	
+	frm = document.listform;
+	frm.pg.value = pg;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Store/list";
+	frm.submit();
+}
+
+function goView(id){
+	frm = document.listform;
+	frm.store_key.value = id;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Store/view";
+	frm.submit();
+}
 </script>

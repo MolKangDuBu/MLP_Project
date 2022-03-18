@@ -40,7 +40,7 @@ public class StoreController {
 	        model.addAttribute("StoreList", list);
 	        model.addAttribute("totalCnt", storeservice.getTotal(dto));
 
-	        return "STORE/Store";
+	        return "STORE/Store2";
 	    }
 
 	    @RequestMapping(value = "/Store/view")
@@ -48,13 +48,13 @@ public class StoreController {
 
 	        StoreDto dto = storeservice.getView(store_key);
 	        model.addAttribute("StoreDto", dto);
-	        return "STORE/Store_view";
+	        return "STORE/Store_view2";
 	    }
 
 	    @RequestMapping(value = "/Store/modify")
 	    public String Store_modify(String store_key, Model model) {      
 	        model.addAttribute("StoreDto", storeservice.getView(store_key));
-	        return "STORE/Store_write";
+	        return "STORE/Store_write2";
 	    }
 	   
 	    @RequestMapping(value = "/Store/delete")
@@ -68,7 +68,7 @@ public class StoreController {
 
 	        StoreDto dto = new StoreDto();
 	        model.addAttribute("StoreDto", dto);
-	        return "STORE/Store_write";
+	        return "STORE/Store_write2";
 	    }
 
 	    @RequestMapping(value = "/Store/save")

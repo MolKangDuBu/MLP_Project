@@ -117,6 +117,7 @@ public class UserController {
 		String userid =(String) session.getAttribute("user_id");
 		
 		if(userid ==null) {
+			System.out.println("aaaa");
 			userservice.Insert(dto);
 			map.put("result", "1");
 		}else {

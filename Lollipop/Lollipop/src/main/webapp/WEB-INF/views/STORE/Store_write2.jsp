@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.STORE.*" %>
+<%@page import ="mlp.project.lollipop.common.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - Login Page</title>
-
+  <title>Insertion - Contact Page</title>
 <!--
 
 Template 2101 Insertion
@@ -32,13 +34,19 @@ http://www.tooplate.com/view/2101-insertion
       alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
       renderPage = false;
     }
+    
   </script>
-
+  <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<script type="text/javascript" src="/lollipop/ckfinder/ckfinder.js"></script>
 </head>
 
 <body>
- 
- <%@include file="../include/nav.jsp" %>
+	<%
+ 		StoreDto dto = (StoreDto)request.getAttribute("StoreDto");
+    %>
+    <%@include file="../include/nav.jsp" %>
+    <input type ="hidden" id = userid name = userid value =<%=user_id%>>
+    <input type ="hidden" id = store_key name = store_key value =<%=dto.getStore_key()%>>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -55,7 +63,7 @@ http://www.tooplate.com/view/2101-insertion
             <nav class="navbar navbar-expand-sm">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white">Home</a>
+                  <a href="index.html" class="nav-link tm-nav-link tm-text-white">Home</a>
                 </li>
                 <li class="nav-item active">
                   <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
@@ -63,18 +71,6 @@ http://www.tooplate.com/view/2101-insertion
                 <li class="nav-item">
                   <a href="contact.html" class="nav-link tm-nav-link tm-text-white active">Contact</a>
                 </li>
-			 <%if(user_id==null|| user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mapage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
               </ul>
             </nav>
           </div>
@@ -84,8 +80,8 @@ http://www.tooplate.com/view/2101-insertion
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
- 			<h1 class="text-uppercase mb-3 tm-site-name"></h1>
-          <p class="tm-site-description"></p>
+          <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
+          <p class="tm-site-description">New HTML Website Template</p>
         </div>
       </div>
 
@@ -109,44 +105,72 @@ http://www.tooplate.com/view/2101-insertion
         <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
           <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
             <i class="fas fa-3x fa-comments mb-4"></i>
-            <h2 class="tm-media-2-header">FindPassword</h2>
+            <h2 class="tm-media-2-header">가게 등록</h2>
           </div>
           <div class="tm-bg-gray tm-contact-middle">
-            <form id ="findpwdform" name ="findpwdform">
- 
+            <form id ="writeform"name ="writeform" method="post" enctype = "multipart/form-data">
               <div class="form-group mb-4">
-                <input type="text"  id = "user_id" name="user_id" class="form-control" placeholder="ID" required/>
-              </div>
-              <div class="form-group mb-4">
-                <input type="text"  id = "user_mail" name="user_mail" class="form-control" placeholder="Email" required/>
+                <input type="text" id = "Store_name" name = "Store_name" class="form-control" placeholder="가게명" required/>
               </div>
               <div class="form-group mb-4">
-                <input type="text" id = "user_phone" name="user_phone" class="form-control" placeholder="Phone" required/>
+                <input type="text" id = "Store_bnumber" name ="Store_bnumber" class="form-control" placeholder="사업자 번호" required/>
               </div>
-              	<div class="join-wrap" style="color: rgba(241, 19, 123, 0.863);padding-bottom: 15px; font-size: 13px;">
-                        <a href="${commonURL}/User/signup">회원가입</a>&nbsp;&nbsp;&nbsp;
-                         <a href="${commonURL}/User/login">로그인</a>
-                        
-                    </div>
-          	
-              <div class="form-group mb-0">
-                <button type="button" class="btn btn-secondary"onclick ="Findpwd()">Find password</button>
+              <div class="form-group mb-4">
+                <input type="text" id ="Store_number" name = "Store_number" class="form-control" placeholder="가게 번호" required/>
               </div>
-            </form>
-          </div>
-          <div class="tm-bg-gray tm-contact-right">
+              <div class="form-group mb-4">
+                <input type="text" id="Store_address" name ="Store_address" class="form-control" placeholder="가게 주소" required/>
+              </div>
+                   <div class="form-group mb-4">
+                <select name="position" class="tm-select" id="position" required>
+                  <option value="">선택하세요</option>
+                  <option value="1">음식</option>
+                  <option value="2">카페</option>
+                  <option value="3">놀거리</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <input type="hidden" id ="Store_category" name ="Store_categoey" class="form-control" placeholder="Full Name" required/>
+              </div>
+            
+                 <div class="form-group mb-4">
+                <textarea rows="8" id="editor" name="editor" class="form-control" placeholder="내용을 입력하세요" required></textarea>
+              </div>
+              <script>
+							var editor = CKEDITOR.editorConfig = function( config ) {
+								config.language = 'es';
+								config.uiColor = '#F7B42C';
+								config.height = 300;
+								config.toolbarCanCollapse = true;
+								config.extraPlugins = 'uploadimage';
+							};
+
+							var editor = CKEDITOR.replace( 'editor' );
+							CKFinder.setupCKEditor( editor, '/lollipop/ckfinder' ) ;
+							
+			</script>
+			  <div class="form-group mb-4">
+                <input type="hidden" id= "Store_info" name ="Store_info" class="form-control" placeholder="Full Name" required/>
+              </div>
+              
            
 
-             <div>
-               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">Our Location</h2>
-               <address class="mb-4">
-                 990 Maecenas lobortis dolor,<br>
-                 Euismod leo, scelerisque <br>
-                 10550 finibus
-               </address>
-                <p class="mb-0">Tel: <a href="tel:+0100200980" class="tm-link-gray">010-020-0980</a></p>
-                <p class="mb-0">Fax: <a href="tel:+0900800770" class="tm-link-gray">090-080-0770</a></p>
-             </div>
+           
+              <div class="form-group mb-0">
+                <button type="button" class="btn btn-secondary" onclick ="add()">등록</button>
+              </div>
+            
+          </div>
+          <div class="tm-bg-gray tm-contact-right">
+        	<div class="form-group mb-4">
+                <input type="file"  id = "upload1" name = "upload1" class="form-control" placeholder="썸네일1" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="file" id="upload2" name = "upload2" class="form-control" placeholder="썸네일2" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="file" id ="upload3" name = "upload3" class="form-control" placeholder="썸네일3" required/>
+              </div>
           </div>
         </div>
       </div>
@@ -181,6 +205,7 @@ http://www.tooplate.com/view/2101-insertion
           
           - Design:  Tooplate</p>
         </div>
+        </form>
       </footer>
     </div> <!-- .container -->
 
@@ -189,8 +214,8 @@ http://www.tooplate.com/view/2101-insertion
   <!-- load JS -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
   <script>
 
     /* DOM is ready
@@ -204,34 +229,42 @@ http://www.tooplate.com/view/2101-insertion
       $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
     });
 
-    
- 
-
-
   </script>
-  </form>
 </body>
 </html>
-<script>
-function Findpwd(){
-	var frmData = $("form[name=findpwdform]").serialize();
-	      
-	   $.ajax({
-	      url:"${commonURL}/User/findpwd_proc",
-	      data:frmData,
-	      type:"POST",
-	   })
-	   .done( (result)=>{
-	      if(result.result==1){
-	    	  alert("이메일로 비밀번호가 전송되었습니다.");
-	          location.href="${commonURL}/"; //시작화면으로 이동하기  
-	      }else{
-	    	  alert("정보에 맞는 아이디를 찾을 수 없습니다.");
-	      }
-	   })
-	   .fail( (error)=>{
-	      console.log(error);
-	   })
-}
 
+<script>
+window.onload = function(){
+	   CKEDITOR.editorConfig = function(config){
+		   config.enterMode = CKEDITOR.ENTER_BR
+	   };
+	   CKEDITOR.instances.editor.setData('<%=dto.getStore_info()%>')
+	   
+	   
+	   var texts =['선택하세요', '음식', '카페', '놀거리'];
+	   document.getElementById("position").value = <%=dto.getStore_category()%>
+		document.getElementById("Store_category").value = <%=dto.getStore_category()%>
+	 
+	 
+	 };
+	function add(){
+		
+		   $("#Store_info").val(CKEDITOR.instances.editor.getData());
+		   document.getElementById("Store_category").value = document.getElementById("position").value;
+		   var frm = document.writeform
+		   //var frmData = new FormData(document.writeform); 
+			frm.action = "<%=request.getContextPath()%>/Store/save";
+			frm.method = "post";
+			frm.submit();
+			
+
+	}
+	function Category(cate){
+		var texts =['', '음식', '카페', '놀거리'];
+		document.getElementById("searchItem").innerHTML = texts[cate];
+		document.getElementById("Store_category").value = cate;
+		
+	}
 </script>
+
+

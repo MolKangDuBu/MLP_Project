@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@page import = "mlp.project.lollipop.common.*" %>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.TODAY_REVIEW.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - Login Page</title>
-
+  <title>Insertion HTML5 Template</title>
 <!--
 
 Template 2101 Insertion
@@ -37,8 +38,7 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
- 
- <%@include file="../include/nav.jsp" %>
+   <%@include file="./include/nav.jsp" %>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -54,16 +54,16 @@ http://www.tooplate.com/view/2101-insertion
           <div class="col-xl-12">
             <nav class="navbar navbar-expand-sm">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white">Home</a>
-                </li>
                 <li class="nav-item active">
+                  <a href="index.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
+                </li>
+                <li class="nav-item">
                   <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
                 </li>
                 <li class="nav-item">
-                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white active">Contact</a>
+                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
                 </li>
-			 <%if(user_id==null|| user_id.equals("")){ %>
+                     <%if(user_id==null || user_id.equals("")){ %>
                 <li class="nav-item">
                   <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
                 </li>
@@ -84,7 +84,7 @@ http://www.tooplate.com/view/2101-insertion
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
- 			<h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
           <p class="tm-site-description"></p>
         </div>
       </div>
@@ -105,54 +105,62 @@ http://www.tooplate.com/view/2101-insertion
         </form>
       </div>
 
-      <div class="row tm-mt-big tm-about-row tm-mb-medium">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
-          <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
-            <i class="fas fa-3x fa-comments mb-4"></i>
-            <h2 class="tm-media-2-header">FindPassword</h2>
-          </div>
-          <div class="tm-bg-gray tm-contact-middle">
-            <form id ="findpwdform" name ="findpwdform">
- 
-              <div class="form-group mb-4">
-                <input type="text"  id = "user_id" name="user_id" class="form-control" placeholder="ID" required/>
-              </div>
-              <div class="form-group mb-4">
-                <input type="text"  id = "user_mail" name="user_mail" class="form-control" placeholder="Email" required/>
-              </div>
-              <div class="form-group mb-4">
-                <input type="text" id = "user_phone" name="user_phone" class="form-control" placeholder="Phone" required/>
-              </div>
-              	<div class="join-wrap" style="color: rgba(241, 19, 123, 0.863);padding-bottom: 15px; font-size: 13px;">
-                        <a href="${commonURL}/User/signup">회원가입</a>&nbsp;&nbsp;&nbsp;
-                         <a href="${commonURL}/User/login">로그인</a>
-                        
-                    </div>
-          	
-              <div class="form-group mb-0">
-                <button type="button" class="btn btn-secondary"onclick ="Findpwd()">Find password</button>
-              </div>
-            </form>
-          </div>
-          <div class="tm-bg-gray tm-contact-right">
-           
-
-             <div>
-               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">Our Location</h2>
-               <address class="mb-4">
-                 990 Maecenas lobortis dolor,<br>
-                 Euismod leo, scelerisque <br>
-                 10550 finibus
-               </address>
-                <p class="mb-0">Tel: <a href="tel:+0100200980" class="tm-link-gray">010-020-0980</a></p>
-                <p class="mb-0">Fax: <a href="tel:+0900800770" class="tm-link-gray">090-080-0770</a></p>
-             </div>
-          </div>
+      <div class="row tm-albums-container grid">
+       <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
+          <a href="${commonURL}lollipop/Today/list"> <figure class="effect-sadie">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-01.jpg" alt="Image" class="img-fluid">
+            <figcaption>
+              <h2>오늘의 팝딜</h2>
+              <p>Rollover text and description text goes here over mouse over...</p>
+            </figcaption>
+          </figure></a>
+        </div>
+        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
+           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-02.jpg" alt="Image" class="img-fluid">
+            <figcaption>
+              <h2>음식</h2>
+              <p>Maecenas iaculis et turpis et iaculis. Aenean at volutpat diam.</p>
+            </figcaption>
+          </figure></a>
+        </div>
+        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
+           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-03.jpg" alt="Image" class="img-fluid">
+            <figcaption>
+              <h2>카페</h2>
+              <p>Vivamus eget elit purus. Nullam consectetur porttitor elementum.</p>
+            </figcaption>
+          </figure></a>
+        </div>
+        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
+          <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-04.jpg" alt="Image" class="img-fluid">
+            <figcaption>
+              <h2>놀거리</h2>
+              <p>Praesent nec feugiat dolor, elementum mollis purus. Etiam faucibus.</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
 
-      <!-- Bottom links -->
-      <div class="row tm-about-row tm-mb-medium">
+
+
+      <div class="row tm-mb-big tm-subscribe-row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-bg-gray tm-subscribe-form">
+          <h3 class="tm-text-pink tm-mb-30">Subscribe our updates!</h3>
+          <p class="tm-mb-30">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi semper, ligula et pretium porttitor, leo orci accumsan ligula.</p>
+          <form action="index.html" method="POST">
+            <div class="form-group mb-0">
+              <input type="text" class="form-control tm-subscribe-input" placeholder="Your Email">
+              <input type="submit" value="Submit" class="tm-bg-pink tm-text-white d-block ml-auto tm-subscribe-btn">
+            </div>
+          </form>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 img-fluid pl-0 tm-subscribe-img"></div>
+      </div>
+
+      <div class="row tm-mb-medium">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
           <h4 class="mb-4 tm-font-300">Latest Albums</h4>
           <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
@@ -175,7 +183,7 @@ http://www.tooplate.com/view/2101-insertion
           <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
         </div>
       </div>
-      <footer class="row tm-about-row">
+      <footer class="row">
         <div class="col-xl-12">
           <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
           
@@ -188,14 +196,10 @@ http://www.tooplate.com/view/2101-insertion
 
   <!-- load JS -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
-  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
 
-    /* DOM is ready
-    ------------------------------------------------*/
-    $(function () {
+    /* DOM is ready*/
+  $(function () {
 
       if (renderPage) {
         $('body').addClass('loaded');
@@ -204,34 +208,8 @@ http://www.tooplate.com/view/2101-insertion
       $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
     });
 
-    
- 
 
 
   </script>
-  </form>
 </body>
 </html>
-<script>
-function Findpwd(){
-	var frmData = $("form[name=findpwdform]").serialize();
-	      
-	   $.ajax({
-	      url:"${commonURL}/User/findpwd_proc",
-	      data:frmData,
-	      type:"POST",
-	   })
-	   .done( (result)=>{
-	      if(result.result==1){
-	    	  alert("이메일로 비밀번호가 전송되었습니다.");
-	          location.href="${commonURL}/"; //시작화면으로 이동하기  
-	      }else{
-	    	  alert("정보에 맞는 아이디를 찾을 수 없습니다.");
-	      }
-	   })
-	   .fail( (error)=>{
-	      console.log(error);
-	   })
-}
-
-</script>

@@ -39,7 +39,7 @@ public class Today_ReviewController {
 	        model.addAttribute("TodayList", list);
 	        model.addAttribute("totalCnt", todayservice.getTotal(dto));
 
-	        return "TODAY_REVIEW/Today_list";
+	        return "TODAY_REVIEW/Today_list2";
 	    }
 
 	    @RequestMapping(value = "/Today/view")
