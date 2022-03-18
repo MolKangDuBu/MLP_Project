@@ -187,7 +187,7 @@
        	  		<%=Pager.makeTag(request, 10, totalCnt)%>
      		  </div>
 	       	  <div class="container mt-3" style="text-align:right;">
-	         	   <a href="<%=request.getContextPath()%>/PLAY_Review/write" 
+	         	   <a href="<%=request.getContextPath()%>/FOOD_Review/write" 
 	               class="btn btn-secondary">글쓰기</a>
           	  </div>        	 	 
 

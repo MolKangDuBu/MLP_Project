@@ -104,7 +104,7 @@
 				              <li><span class="dropdown-item"  onclick = "Category('2')">카페</span></li>
 				              <li><span class="dropdown-item"  onclick = "Category('3')">놀거리</span></li>
 				          </ul>
-				          <input type = "hidden"  class = "form-control" id = "review_category" name = "review_category"  value = "1"> 
+				          <input type = "hidden"  class = "form-control" id = "review_category" name = "review_category"  value = "3"> 
                     </div>
                 </td>
               </tr>      

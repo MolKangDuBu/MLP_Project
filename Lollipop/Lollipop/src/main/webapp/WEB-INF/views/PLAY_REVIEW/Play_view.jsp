@@ -236,6 +236,7 @@
                     window.onload = function () {
                     	console.log(<%=user_id%>)
                     	console.log(<%=dto.getReview_id()%>)
+                    	console.log(<%=dto.getReview_key()%>)
                     };
                     function gomodify() {
                         var frm = document.writeform

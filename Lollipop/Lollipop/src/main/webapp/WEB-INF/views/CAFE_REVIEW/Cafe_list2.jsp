@@ -180,6 +180,7 @@
              </div>
                <div class="tm-buy-box">
 	             <a class="tm-bg-blue tm-text-white tm-buy" onclick="goView('<%=tempDto.getReview_key()%>', '<%=tempDto.getStore_key()%>')">View</a>
+	         
 	        	  <span class="tm-text-blue tm-price-tag"><%=tempDto.getReview_hit()%></span>
 	           </div>
              </div>
@@ -268,6 +269,7 @@ window.onload = function(){
 		frm.review_key.value=review_key;///////////
 		frm.store_key.value=store_key;///////////
 		
+	
 		frm.method="get";
 		frm.action="${pageContext.request.contextPath}/Cafe_Review/view";
 		frm.submit();

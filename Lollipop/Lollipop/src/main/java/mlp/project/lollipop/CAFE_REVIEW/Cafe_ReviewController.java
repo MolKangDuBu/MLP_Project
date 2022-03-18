@@ -157,8 +157,9 @@ public class Cafe_ReviewController {
 //		System.out.println("=====================1========================");
 //		System.out.println(dto);
 
-		
+
 		Cafe_ReviewDto resultDto = reviewservice.getView(dto);
+
 //		System.out.println("=====================2========================");
 //		System.out.println(resultDto);
 		reviewservice.increasehit(dto.getReview_key()+"");
