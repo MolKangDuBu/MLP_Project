@@ -2,23 +2,16 @@ package mlp.project.lollipop.QNA;
 
 import mlp.project.lollipop.common.BaseDto;
 
-/**
- * 
- * QNA_KEY
-QNA_ID
-QNA_TITLE
-QNA_CONTENTS
-QNA_WDATE
- * @author ASUS
- *
- */
-public class QnaDto extends BaseDto{
+public class QnaDto extends BaseDto {
 
 	private int qna_key;
-	private String qna_id;//愿�由ъ옄 �븘�씠�뵒
-	private String qna_title;
-	private String qna_contents;
-	private String qna_wdate;
+	private String qna_id="";
+	private String qna_title="";
+	private String qna_contents="";
+	private String qna_wdate="";
+	private int qna_hit=0;
+	private String user_name="";
+	
 	
 	public int getQna_key() {
 		return qna_key;
@@ -50,10 +43,17 @@ public class QnaDto extends BaseDto{
 	public void setQna_wdate(String qna_wdate) {
 		this.qna_wdate = qna_wdate;
 	}
-	@Override
-	public String toString() {
-		return "QnaDto [qna_key=" + qna_key + ", qna_id=" + qna_id + ", qna_title=" + qna_title + ", qna_contents="
-				+ qna_contents + ", qna_wdate=" + qna_wdate + "]";
+	public int getQna_hit() {
+		return qna_hit;
+	}
+	public void setQna_hit(int qna_hit) {
+		this.qna_hit = qna_hit;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	
 	

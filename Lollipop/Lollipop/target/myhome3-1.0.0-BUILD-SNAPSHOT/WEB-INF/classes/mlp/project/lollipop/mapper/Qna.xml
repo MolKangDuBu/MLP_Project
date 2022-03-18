@@ -4,5 +4,77 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="QNA">
-
+<select id="Qna_getList" parameterType="QnaDto" resultType="QnaDto">
+	
+	select 
+		qna_key
+		  ,qna_id
+          ,(select user_name from user B where A.qna_id=B.user_id) as user_name
+		  ,qna_title
+		  ,qna_contents
+		  ,qna_hit
+		  ,qna_wdate
+          ,rnum
+	from
+	(
+		select qna_key
+			  ,qna_id
+			  ,qna_title
+			  ,qna_contents
+			  ,qna_hit
+			  ,qna_wdate
+	          ,@rownum := @rownum+1 AS rnum  -- 새로 일련번호를 붙이자 
+		from qna_board A,  (select @rownum:=0) B
+	    order by qna_key desc 
+	)A limit #{start}, #{pageSize}
+    
+    
+	</select>
+	
+	
+	<select id="Qna_getTotal" parameterType="QnaDto" resultType="Integer">
+		select count(*)
+		from qna_board A
+	</select>
+	
+	<insert id="Qna_insert"  parameterType="QnaDto">
+	insert into qna_board (
+		qna_id
+		, qna_title
+		, qna_contents
+		, qna_wdate
+		, qna_hit
+	)
+	values(
+		#{qna_id}
+		, #{qna_title}
+		, #{qna_contents}
+		, now()
+		, 0
+	)
+	</insert>
+	
+	<select id="Qna_getView" parameterType="QnaDto" resultType="QnaDto">
+		select 
+		  qna_key
+		  ,qna_id
+          ,(select user_name from user B where A.qna_id=B.user_id) as user_name
+		  ,qna_title
+		  ,qna_contents
+		  ,qna_hit
+		  ,qna_wdate
+		from qna_board where qna_key=#{qna_key}
+	</select>
+	
+	<update id="Qna_update" parameterType="QnaDto">
+		update qna_board 
+			set qna_id=#{qna_id}
+				,qna_title=#{qna_title}
+				,qna_contents=#{qna_contents}
+			where qna_key = #{qna_key}
+	</update>
+	
+	<delete id="Qna_delete" parameterType="QnaDto">
+		delete from qna_board where qna_key = #{qna_key}
+	</delete>
 </mapper>

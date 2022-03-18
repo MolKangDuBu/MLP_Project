@@ -8,19 +8,42 @@ import org.springframework.stereotype.Repository;
 
 @Repository("qnaDao")
 public class QnaDaoImpl implements QnaDao{
-	
-	@Autowired
+
+	@Autowired 
 	SqlSessionTemplate sm;
 	
 	@Override
 	public List<QnaDto> getList(QnaDto dto) {
-		return sm.selectList("Qna_getList",dto);
+		return sm.selectList("Qna_getList", dto);
 	}
 
 	@Override
 	public int getTotal(QnaDto dto) {
-		// TODO Auto-generated method stub
+		
 		return sm.selectOne("Qna_getTotal", dto);
+	}
+
+	@Override
+	public QnaDto getView(QnaDto dto) {
+		
+		return  sm.selectOne("Qna_getView", dto);
+}
+	@Override
+	public void insert(QnaDto dto) {
+		sm.insert("Qna_insert", dto);
+		
+	}
+
+	@Override
+	public void update(QnaDto dto) {
+		sm.insert("Qna_update", dto);
+		
+	}
+
+	@Override
+	public void delete(QnaDto dto) {
+		sm.insert("Qna_delete", dto);
+		
 	}
 
 }

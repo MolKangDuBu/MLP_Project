@@ -9,48 +9,44 @@ import org.springframework.stereotype.Service;
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService{
 
-	// 객체를 주입하는 어노테이션
-	// dao = noticeDao; (DI 객체주입)
+	
 	@Resource(name ="noticeDao")
-	NoticeDao dao;
+	NoticeDao noticedao;
 
 	@Override
 	public List<NoticeDto> getList(NoticeDto dto) {
-		
-		 return dao.getList(dto);
-	}
-
-	@Override
-	public void insert(NoticeDto dto) {
-		dao.insert(dto);
-		
-	}
-
-	@Override
-	public void insert_reply(NoticeDto dto) {
-		dao.insert_reply(dto);
-		
-	}
-
-	@Override
-	public NoticeDto getView(NoticeDto dto) {
-	
-		return dao.getView(dto);
+		return noticedao.getList(dto);
 	}
 
 	@Override
 	public int getTotal(NoticeDto dto) {
-		return dao.getTotal(dto);
+		return noticedao.getTotal(dto);
 	}
 
 	@Override
-	public void delete(String key) {
-		dao.delete(key);
-		
+	public NoticeDto getView(NoticeDto dto) {
+		return noticedao.getView(dto);
+	}
+
+	@Override
+	public void insert(NoticeDto dto) {
+		noticedao.insert(dto);
 	}
 
 	@Override
 	public void update(NoticeDto dto) {
-		dao.update(dto);
+		noticedao.update(dto);
+	}
+
+	@Override
+	public void delte(NoticeDto dto) {
+		noticedao.delte(dto);
 	}
 }
+
+
+
+
+
+
+

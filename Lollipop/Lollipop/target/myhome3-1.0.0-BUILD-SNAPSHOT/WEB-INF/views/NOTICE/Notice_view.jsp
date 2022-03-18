@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
+<%@page import="mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,7 @@
 
  <%@include file="../include/nav.jsp" %>
 	<%
+	
 		String key = StringUtil.nullToValue(request.getParameter("key"), "1");
 		String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
 		String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
@@ -27,7 +30,7 @@
 	%>
 	
 	<form name="myform">
-		<input type="hidden" name="seq"      value="<%=dto.getSeq()%>" >
+		<input type="hidden" name="notice_key" value="<%=dto.getNotice_key()%>" >
 		<input type="hidden" name="pg"      value="<%=pg%>" >
 		<input type="hidden" name="key"     value="<%=key%>" >
 		<input type="hidden" name="keyword" value="<%=keyword%>" >
@@ -38,13 +41,13 @@
             <tbody>
               <tr class="table-secondary">
                 <th >제목</th>
-                <td colspan="3"><%=dto.getTitle()%></td>
+                <td colspan="3"><%=dto.getNotice_title()%></td>
               </tr>
               <tr >
                 <th >작성자</th>
-                <td><%=dto.getUsername()%></td>
+                <td><%=dto.getNotice_id()%></td>
                 <th>작성일</th>
-                <td><%=dto.getRegdate()%></td>
+                <td><%=dto.getNotice_wdate()%></td>
        
               </tr>
               <tr>
@@ -52,7 +55,7 @@
               </tr>
               <tr>
                 <td colspan="4">             
-					<%=dto.getContents().replaceAll("\n", "<br/>")%>
+					<%=dto.getNotice_contents()%>
                 </td>
               </tr>
             </tbody>
@@ -64,7 +67,11 @@
             <a href="#none" onclick="goList()" class="btn btn-secondary">목록</a>
             <a href="#none" onclick="goReply()" class="btn btn-secondary">답글달기</a>
             
-            <%if(userid.equals(dto.getUsername())) {%>
+            <a href="#none" onclick="goModify()" class="btn btn-secondary">수정</a>
+            <a href="#none" onclick="goDelete()" class="btn btn-secondary">삭제</a>
+            
+            
+            <%if(userid.equals(dto.getNotice_id())) {%>
          	<a href="#none" onclick="goModify()" class="btn btn-secondary">수정</a>
          	<a href="#none" onclick="goDelete()" class="btn btn-secondary">삭제</a>
          	<% }%>
@@ -88,7 +95,7 @@
 		  </table>
           
             <input type="hidden" name="userid" id="userid" value="<%=userid%>" />
-            <input type="hidden" name="board_id" id="board_id" value="<%=dto.getSeq()%>" />
+            <input type="hidden" name="notice_key" id="notice_key" value="<%=dto.getNotice_key()%>" />
             <input type="hidden" name="comment_id" id="comment_id" value="" />
             
             <div class="mb-3" style="margin-top:13px;">
@@ -123,7 +130,7 @@ function goList()
 function goModify()
 {
 	var frm = document.myform;
-	frm.action="<%=request.getContextPath()%>/notice/modify";
+	frm.action="<%=request.getContextPath()%>/notice/write";
 	frm.submit();
 }
 
@@ -133,7 +140,7 @@ function goDelete()
 	if( confirm("삭제하시겠습니까?"))
 	{
 		var frm = document.myform;
-		frm.action="<%=request.getContextPath()%>/freeboard/delete";
+		frm.action="<%=request.getContextPath()%>/notice/delete";
 		frm.submit();
 	}
 }

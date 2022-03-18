@@ -4,10 +4,9 @@ import java.util.List;
 
 public interface NoticeDao {
 	List<NoticeDto> getList(NoticeDto dto);
-	void insert(NoticeDto dto);
-	void insert_reply(NoticeDto dto);
-	NoticeDto getView(NoticeDto dto);
 	int getTotal(NoticeDto dto);
-	void delete(String key);
+	NoticeDto getView(NoticeDto dto);
+	void insert(NoticeDto dto);
 	void update(NoticeDto dto);
+	void delte(NoticeDto dto);
 }

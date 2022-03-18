@@ -1,49 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="mlp.project.lollipop.NOTICE.*" %>
+<%@page import = "mlp.project.lollipop.common.*" %>
+<%
 
-	<%
-	request.setAttribute("commonURL", request.getContextPath());
-	
-	String userid= StringUtil.nullToValue(session.getAttribute("userid"), "");
-	String username= StringUtil.nullToValue(session.getAttribute("username"), "");
-	String email= StringUtil.nullToValue(session.getAttribute("email"), "");
-	String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
-	
-	%>
-<meta charset="UTF-8">
-  <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
-       <div class="container-fluid">
-         <ul class="navbar-nav">
-           <li class="nav-item">
-             <a class="nav-link active" href="${commonURL}/board/list">게시판</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link active" href="${commonURL}/freeboard/list">답변형게시판</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link" href="${commonURL}/gallery/list">갤러리</a>
-           </li>
-         
-           <%if(userid.equals("")) {%>
-           <li class="nav-item">
-             <a class="nav-link" href="${commonURL}/member/join">회원가입</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link" href="${commonURL}/member/login">로그인</a>
-           </li>
-           <%}else{%>
-           <li class="nav-item">
-             <a class="nav-link" href="${commonURL}/member/myinfo">내정보</a>
-           </li>
-            <li class="nav-item">
-             <a class="nav-link" href="${commonURL}/member/logout">로그아웃</a>
-           </li>
-           <%} %>
-         </ul>
-         
-         <div class="d-flex">
-        	<a class="nav-link" href="${commonURL}/"><button class="btn btn-primary" type="button">Home</button></a>
-      	</div>
-       </div>
-   </nav>
+request.setAttribute("commonURL", request.getContextPath());
+
+
+String user_id= StringUtil.nullToValue(session.getAttribute("user_id"), "");
+String user_mail= StringUtil.nullToValue(session.getAttribute("user_mail"), "");
+String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), "");
+%>
+
+     <nav style ="background-color: rgba(241, 19, 123, 0.863);"> 
+            <div class="container">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${commonURL}/User/login">로그인</a>
+                    </li>              
+                    <li class="nav-item">
+                        <a class="nav-link" href="${commonURL}/User/signup">회원가입</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">고객센터</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>

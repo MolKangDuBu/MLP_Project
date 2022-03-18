@@ -1,13 +1,11 @@
 package mlp.project.lollipop.QNA;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class QnaController {
@@ -18,19 +16,28 @@ public class QnaController {
 	@RequestMapping(value = "/Qna/list")
 	public String Qna_list(Model model, QnaDto dto) {
 		
-		dto.setStart(dto.getPg()*10); 
-
-		System.out.println("[QnaController Qna_list dto]"+dto.getKey());
-
-		List<QnaDto> qnaList = qnaservice.getList(dto);
-		int totalCnt = qnaservice.getTotal(dto);
-
-		System.out.println("[QnaController Qna_list qnaList]"+qnaList);
-		System.out.println("[QnaController Qna_list totalCnt]"+totalCnt);
+		dto.setStart((dto.getPg())*10);
+		model.addAttribute("qnaList", qnaservice.getList(dto) );
+		model.addAttribute("totalCnt",qnaservice.getTotal(dto)  );///////////////////
 		
-		model.addAttribute("qnaList", qnaList);
-		model.addAttribute("totalCnt", totalCnt);
+		return "QNA/qna_list";
+	}
+	
+	@RequestMapping(value = "/Qna/write")
+	public String Qna_write(Model model) {
+		QnaDto dto = new QnaDto();
+		model.addAttribute("qnaDto",dto );
 		
-		return "QNA/Qna";
+		return "QNA/qna_write";
+	}
+	
+	@RequestMapping(value = "/Qna/save")
+	public String Qna_save(Model model, QnaDto dto) {
+		if(dto.getQna_key()==0)
+			qnaservice.insert(dto);
+		else 
+			qnaservice.update(dto);
+		return "redirect:/Qna/list";
+	
 	}
 }

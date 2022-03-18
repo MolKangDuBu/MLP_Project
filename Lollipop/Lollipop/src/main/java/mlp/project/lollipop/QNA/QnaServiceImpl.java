@@ -19,7 +19,29 @@ public class QnaServiceImpl implements QnaService{
 
 	@Override
 	public int getTotal(QnaDto dto) {
-		// TODO Auto-generated method stub
 		return qnaDao.getTotal(dto);
+	}
+
+	@Override
+	public QnaDto getView(QnaDto dto) {
+		return qnaDao.getView(dto);
+	}
+
+	@Override
+	public void insert(QnaDto dto) {
+		qnaDao.insert(dto);
+		
+	}
+
+	@Override
+	public void update(QnaDto dto) {
+		qnaDao.update(dto);
+		
+	}
+
+	@Override
+	public void delete(QnaDto dto) {
+		qnaDao.delete(dto);
+		
 	}
 }

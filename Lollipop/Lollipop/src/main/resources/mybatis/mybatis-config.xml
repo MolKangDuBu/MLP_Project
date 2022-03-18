@@ -3,16 +3,23 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<!-- 원래 클래스명은 패키지까지 포함하기때문에 너무 길어서 짧은 별명을 만들어서 접근하기 위해 기술한다 -->
+<!--  원래 클래스명은 패키지까지 포함하기때문에
+너무 길어서 짧은 별명을 만들어서 접근하기 위해
+기술한다  -->
 	<typeAliases>
-		<typeAlias alias="MarkDto" type="mlp.project.lollipop.MARK.MarkDto" />
-		<typeAlias alias="NoticeDto" type="mlp.project.lollipop.NOTICE.NoticeDto" />
-		<typeAlias alias="QnaDto" type="mlp.project.lollipop.QNA.QnaDto" />
+    	<typeAlias alias="FreeBoardDto" type="mlp.project.lollipop.MARK.MarkDto"/>
+		<typeAlias alias="ReviewDto" type="mlp.project.lollipop.REVIEW.ReviewDto"/>
+		<typeAlias alias="FoodReviewDto" type="mlp.project.lollipop.FOODREVIEW.FoodReviewDto"/>
+		<typeAlias alias="NoticeDto" type="mlp.project.lollipop.NOTICE.NoticeDto"/>
+		<typeAlias alias="QnaDto" type="mlp.project.lollipop.QNA.QnaDto"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="/mlp/project/lollipop/mapper/Mark.xml" />
-		<mapper resource="/mlp/project/lollipop/mapper/Notice.xml" />
-		<mapper resource="/mlp/project/lollipop/mapper/Qna.xml" />
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Mark.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Review.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/FoodReview.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Notice.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Qna.xml"/>
+		
 	</mappers>
-
+	
 </configuration>

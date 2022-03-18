@@ -6,53 +6,42 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-// 객체 생성 어노테이션
-// NoticeDaoImpl noticeDao = new NoticeDaoImpl();
 @Repository("noticeDao")
 public class NoticeDaoImpl implements NoticeDao{
 
-	@Autowired
+	@Autowired 
 	SqlSessionTemplate sm;
-	
 	
 	@Override
 	public List<NoticeDto> getList(NoticeDto dto) {
-		// TODO Auto-generated method stub
 		return sm.selectList("Notice_getList", dto);
 	}
 
 	@Override
-	public void insert(NoticeDto dto) {
-		sm.insert("Notice_insert", dto);
+	public int getTotal(NoticeDto dto) {
 		
-	}
-
-	@Override
-	public void insert_reply(NoticeDto dto) {
-		sm.update("Notice_updateLevel", dto);
-		sm.insert("Notice_reply", dto);
-		
+		return sm.selectOne("Notice_getTotal", dto);
 	}
 
 	@Override
 	public NoticeDto getView(NoticeDto dto) {
 		
-		return sm.selectOne("Notice_getView", dto);
+		return  sm.selectOne("Notice_getView", dto);
 	}
 
 	@Override
-	public int getTotal(NoticeDto dto) {
-		return sm.selectOne("Notice_getTotal", dto);
-	}
-
-	@Override
-	public void delete(String key) {
-		sm.delete("Notice_delete", key);
+	public void insert(NoticeDto dto) {
+		 sm.insert("Notice_insert", dto);
 	}
 
 	@Override
 	public void update(NoticeDto dto) {
-		sm.update("Notice_update", dto);
+		sm.update("Notice_update", dto);	
+	}
+
+	@Override
+	public void delte(NoticeDto dto) {
+		sm.delete("Notice_delete", dto);
 	}
 
 }
