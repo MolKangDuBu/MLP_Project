@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/main/java/mlp/project/lollipop/REVIEW/ReviewController.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/REVIEW/ReviewDto.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/STORE/StoreController.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/STORE/StoreDto.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/USER/UserController.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/USER/UserDaoImpl.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/common/LoginInterceptor.java=UTF-8
+encoding//src/main/java/mlp/project/lollipop/common/Pager.java=UTF-8

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="STORE">
+	<select id ="Store_list" parameterType = "StoreDto" resultType ="StoreDto">
+		
+	 select 
+	 	STORE_KEY
+       	,STORE_NAME
+		,STORE_INFO
+		,STORE_BNUMBER
+		,STORE_NUMBER
+		,STORE_ADDRESS
+		,STORE_IMAGE1
+		,STORE_IMAGE2
+		,STORE_IMAGE3
+		,STORE_WDATE
+		,rnum
+       from 
+       (
+          select
+         	A.STORE_KEY
+	       	,A.STORE_NAME
+			,A.STORE_INFO
+			,A.STORE_BNUMBER
+			,A.STORE_NUMBER
+			,A.STORE_ADDRESS
+			,A.STORE_IMAGE1
+			,A.STORE_IMAGE2
+			,A.STORE_IMAGE3
+			,A.STORE_WDATE
+             ,@rownum := @rownum+1 AS rnum
+            from STORE A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_ACTIVE = 'Y'
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '1' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="4"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%'))and
+                  STORE_CATEGORY = '2' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="5"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '3' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+         </if> 
+         <if test = 'keyword ==null'>
+            	where STORE_ACTIVE = 'Y'
+            </if>
+
+         order by STORE_KEY desc
+      ) A
+      limit #{start}, #{pageSize} 
+	</select>
+	
+	
+	<select id="Store_getTotal" parameterType="StoreDto" resultType="Integer">
+      select count(*) from STORE
+     
+      <if test='key!=null and keyword!=null'>
+
+            <if test='key=="1"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_ACTIVE = 'Y'
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '1' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="4"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or 
+            	  STORE_INFO like concat('%', #{keyword} , '%'))and
+                  STORE_CATEGORY = '2' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="5"'>
+            where (STORE_NAME like concat('%', #{keyword} , '%') or
+                  STORE_INFO like concat('%', #{keyword} , '%')) and
+                  STORE_CATEGORY = '3' and
+                  STORE_ACTIVE = 'Y'
+            </if>
+        
+      </if> 
+      
+        <if test = 'keyword ==null'>
+            	where STORE_ACTIVE = 'Y'
+        </if>
+   </select>
+   
+   
+      <select id="Store_getview"  parameterType="String"  resultType="StoreDto">
+       select *
+      from STORE A
+      where STORE_KEY=#{id}
+
+   </select>
+   
+   
+   <insert id ="Store_insert" parameterType ="StoreDto">
+  	insert into STORE(
+          STORE_NAME
+         ,STORE_BNUMBER
+         ,STORE_NUMBER
+         ,STORE_ADDRESS
+         ,STORE_INFO
+         ,STORE_IMAGE1
+         ,STORE_IMAGE2
+         ,STORE_IMAGE3 
+         ,STORE_WDATE
+         ,STORE_CATEGORY
+  	)values(
+  		#{store_name}
+  		,#{store_bnumber}
+  		,#{store_number}
+  		,#{store_address}
+  		,#{store_info}
+  		,#{store_image1}
+  		,#{store_image2}
+  		,#{store_image3}
+  		,now()
+  		,#{store_category}
+  	)
+  	 
+   </insert>
+   
+      <update id = "Store_modify" parameterType = "StoreDto">
+   	update STORE 
+   	set STORE_NAME = #{store_name}
+   		,STORE_BNUMBER = #{store_bnumber}
+   		,STORE_NUMBER = #{store_number}
+   		,STORE_ADDRESS =#{store_address}
+   		,STORE_INFO = #{store_info}
+   		,STORE_IMAGE1 = #{store_image1}
+   		,STORE_IMAGE2 = #{store_image2}
+   		,STORE_IMAGE3 = #{store_image3}
+   		,STORE_CATEGORY = #{store_category}
+   		
+   	where STORE_KEY = #{store_key} 
+   </update>
+   
+   <update id="Store_delete" parameterType="String">
+   		update STORE
+   		set STORE_ACTIVE = 'N'
+   		where STORE_KEY = #{id}
+   </update>
+</mapper>

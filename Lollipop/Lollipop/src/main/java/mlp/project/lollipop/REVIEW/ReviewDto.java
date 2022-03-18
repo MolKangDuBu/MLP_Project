@@ -1,27 +1,25 @@
 package mlp.project.lollipop.REVIEW;
 
-public class ReviewDto {
+import mlp.project.lollipop.common.BaseDto;
+import mlp.project.lollipop.STORE.StoreDto;
 
-	private int store_key; //외래키로 사용
-	private int review_key;
-	private String review_id;//작성자 아이디, 외래키
-	private String review_title;
+public class ReviewDto extends BaseDto{
+
+
+	private int review_key =0;
+	private String review_id ="";//�옉�꽦�옄 �븘�씠�뵒, �쇅�옒�궎
+	private String review_title ="";
 	private String review_image1;
 	private String review_image2;
 	private String review_image3;
-	private String review_contents;
-	private String review_wdate;
-	private char review_category;
-	private int review_like;//좋아요
-	private int review_hit;//조회수
+	private String review_contents ="";
+	private String review_wdate ="";
+	private char review_category ='0';
+	private int review_like;//醫뗭븘�슂
+	private int review_hit;//議고쉶�닔
 	
 	
-	public int getStore_key() {
-		return store_key;
-	}
-	public void setStore_key(int store_key) {
-		this.store_key = store_key;
-	}
+
 	public int getReview_key() {
 		return review_key;
 	}

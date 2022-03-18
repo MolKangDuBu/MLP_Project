@@ -1,18 +1,39 @@
 package mlp.project.lollipop.STORE;
 
-public class StoreDto {
+import mlp.project.lollipop.common.BaseDto;
+
+public class StoreDto extends BaseDto{
 	
-	private int store_key;
-	private String store_name;
-	private String store_bnumber;//사업자 등록번호
-	private String store_number;//매장 번호
-	private String store_address;
-	private String store_info;
+	private int store_key =0;
+	private String store_name ="";
+	private String store_bnumber = "";//�궗�뾽�옄 �벑濡앸쾲�샇
+	private String store_number ="";//留ㅼ옣 踰덊샇
+	private String store_address ="";
+	private String store_info ="";
+	private String store_category ="0";
 	private String store_image1;
 	private String store_image2;
 	private String store_image3;
-	private String store_wdate;
+	private String store_wdate ="";
+	private String store_active ="";
+	private String store_mark ="";
 	
+	private String user_id="";
+	
+	
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getStore_category() {
+		return store_category;
+	}
+	public void setStore_category(String store_category) {
+		this.store_category = store_category;
+	}
 	public int getStore_key() {
 		return store_key;
 	}
@@ -73,9 +94,24 @@ public class StoreDto {
 	public void setStore_wdate(String store_wdate) {
 		this.store_wdate = store_wdate;
 	}
-	
-	
-	
-	
+	public String getStore_active() {
+		return store_active;
+	}
+	public void setStore_active(String store_active) {
+		this.store_active = store_active;
+	}
+	public String getStore_mark() {
+		return store_mark;
+	}
+	public void setStore_mark(String store_mark) {
+		this.store_mark = store_mark;
+	}
+	@Override
+	public String toString() {
+		return "StoreDto [store_key=" + store_key + ", store_name=" + store_name + ", store_bnumber=" + store_bnumber
+				+ ", store_number=" + store_number + ", store_address=" + store_address + ", store_info=" + store_info
+				+ ", store_category=" + store_category + ", store_image1=" + store_image1 + ", store_image2="
+				+ store_image2 + ", store_image3=" + store_image3 + ", store_wdate=" + store_wdate + ", store_active=" + store_active + ", store_mark=" + store_mark + "]";
+	}
 	
 }

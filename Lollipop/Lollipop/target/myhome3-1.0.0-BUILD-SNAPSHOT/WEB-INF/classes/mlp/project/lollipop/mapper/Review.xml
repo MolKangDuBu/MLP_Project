@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="REVIEW">
+	
+	<select id ="Review_list" parameterType = "ReviewDto" resultType ="ReviewDto">
+		
+	 select 
+	 	REVIEW_KEY
+       	,REVIEW_TITLE
+       	,(select USER_ID from USER B where B.USER_ID = A.REVIEW_ID)as REVIEW_ID
+		,REVIEW_CONTENTS
+		,REVIEW_IMAGE1
+		,REVIEW_IMAGE2
+		,REVIEW_IMAGE3
+		,REVIEW_WDATE
+		,rnum
+       from 
+       (
+          select
+          	 A.REVIEW_KEY
+            ,A.REVIEW_ID
+            ,A.REVIEW_TITLE
+            ,A.REVIEW_IMAGE1
+			,A.REVIEW_IMAGE2
+			,A.REVIEW_IMAGE3
+            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_WDATE
+             ,@rownum := @rownum+1 AS rnum
+            from REVIEW_BOARD A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '3'
+            </if>
+            
+         </if> 
+          where REVIEW_ACTIVE = 'Y'
+         order by REVIEW_KEY desc
+         
+      ) A
+      limit #{start}, #{pageSize} 
+	</select>
+	
+	
+	<select id="Review_getTotal" parameterType="ReviewDto" resultType="Integer">
+      select count(*) from REVIEW_BOARD
+     
+     <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%')and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_CATEGORY = '3'
+            </if>
+            
+         </if> 
+       where REVIEW_ACTIVE = 'Y'
+      
+   </select>
+   
+   
+      <select id="Review_getview"  parameterType="String"  resultType="ReviewDto">
+       select
+         A.REVIEW_KEY
+         ,A.REVIEW_ID
+         ,A.REVIEW_TITLE
+         ,A.REVIEW_IMAGE1
+         ,A.REVIEW_IMAGE2
+         ,A.REVIEW_IMAGE3
+         ,A.REVIEW_CONTENTS 
+         ,A.REVIEW_WDATE
+         ,A.REVIEW_CATEGORY
+         ,A.REVIEW_LIKE
+         ,A.REVIEW_HIT
+      from REVIEW_BOARD A
+      where REVIEW_KEY=#{id}
+
+   </select>
+   
+   
+   <insert id ="Review_insert" parameterType ="ReviewDto">
+  	insert into REVIEW_BOARD(
+          REVIEW_ID
+         ,REVIEW_TITLE
+         ,REVIEW_IMAGE1
+         ,REVIEW_IMAGE2
+         ,REVIEW_IMAGE3
+         ,REVIEW_CONTENTS 
+         ,REVIEW_WDATE
+         ,REVIEW_CATEGORY
+  	)values(
+  		#{review_id}
+  		,#{review_title}
+  		,#{review_image1}
+  		,#{review_image2}
+  		,#{review_image3}
+  		,#{review_contents}
+  		,now()
+  		,#{review_category}
+  	)
+  	 
+   </insert>
+   
+    
+      <update id = "Review_modify" parameterType = "ReviewDto">
+   	update REVIEW_BOARD 
+   	set REVIEW_TITLE = #{review_title}
+   		,REVIEW_CONTENTS = #{review_contents}
+   		,REVIEW_IMAGE1 = #{review_image1}
+   		,REVIEW_IMAGE2 = #{review_image2}
+   		,REVIEW_IMAGE3 = #{review_image3}
+   		,REVIEW_CATEGORY = #{review_category}
+   		
+   	where REVIEW_KEY = #{review_key} 
+   </update>
+   
+   <update id="Review_delete" parameterType="String">
+   		update REVIEW_BOARD
+   		set REVIEW_ACTIVE = 'N'
+   		where REVIEW_KEY = #{id}
+   </update>
+</mapper>

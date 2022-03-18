@@ -10,13 +10,12 @@
     <meta name="author" content="" />
     <title>test</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="resources/Image/x-icon" href="resources/assets/favicon.ico" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="resources/css/styles.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -106,7 +105,7 @@
             </div>
           </div>
         <div class="card" style="width: 18rem;"> 
-            <img src="food.jpg" class="card-img-top" alt="...">
+            <img src="resources/Image/food.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">음식</h5>
               <p class="card-text">test</p>
@@ -114,7 +113,7 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="coffee.jpg" class="card-img-top" alt="...">
+            <img src="resources/Image/coffee.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">카페</h5>
               <p class="card-text">test</p>
@@ -122,7 +121,7 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="park.jpg" class="card-img-top" alt="...">
+            <img src="resources/Image/park.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">놀거리</h5>
               <p class="card-text">test</p>
@@ -145,13 +144,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="food.jpg" class="d-block w-100" alt="food">
+                    <img src="resources/Image/food.jpg" class="d-block w-100" alt="food">
                 </div>
                 <div class="carousel-item">
-                    <img src="coffee.jpg" class="d-block w-100" alt="coffee">
+                    <img src="resources/Image/coffee.jpg" class="d-block w-100" alt="coffee">
                 </div>
                 <div class="carousel-item">
-                    <img src="park.jpg" class="d-block w-100" alt="park">
+                    <img src="resources/Image/park.jpg" class="d-block w-100" alt="park">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -236,7 +235,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="resources/js/scripts.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
