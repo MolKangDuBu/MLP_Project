@@ -4,5 +4,89 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="NOTICE">
+	<select id="Notice_getList" parameterType="NoticeDto" resultType="NoticeDto">
+	
+	select 
+		notice_key
+		  ,notice_id
+          ,(select user_name from user B where A.notice_id=B.user_id) as user_name
+		  ,notice_title
+		  ,notice_contents
+		  ,notice_hit
+		  ,notice_wdate
+          ,rnum
+	from
+	(
+		select notice_key
+			  ,notice_id
+			  ,notice_title
+			  ,notice_contents
+			  ,notice_hit
+			  ,notice_wdate
+	          ,@rownum := @rownum+1 AS rnum  -- 새로 일련번호를 붙이자 
+		from notice_board A,  (select @rownum:=0) B
+	    order by notice_key desc 
+	)A limit #{start}, #{pageSize}
+    
+    
+	</select>
+	
+	
+	<select id="Notice_getTotal" parameterType="NoticeDto" resultType="Integer">
+		select count(*)
+		from notice_board A
+	</select>
+	
+	<insert id="Notice_insert"  parameterType="NoticeDto">
+	insert into notice_board (
+		notice_id
+		, notice_title
+		, notice_contents
+		, notice_wdate
 
+	)
+	values(
+		#{notice_id}
+		, #{notice_title}
+		, #{notice_contents}
+		, now()
+
+	)
+	</insert>
+	
+	<select id="Notice_getView" parameterType="NoticeDto" resultType="NoticeDto">
+		select 
+		  notice_key
+		  ,notice_id
+          ,(select user_name from user B where A.notice_id=B.user_id) as user_name
+		  ,notice_title
+		  ,notice_contents
+		  ,notice_hit
+		  ,notice_wdate
+		from notice_board where notice_key=#{notice_key}
+	</select>
+	
+	<update id="Notice_update" parameterType="NoticeDto">
+		update notice_board 
+			set notice_id=#{notice_id}
+				,notice_title=#{notice_title}
+				,notice_contents=#{notice_contents}
+			where notice_key = #{notice_key}
+	</update>
+	
+	<delete id="Notice_delete" parameterType="NoticeDto">
+		delete from notice_board where notice_key = #{notice_key}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+

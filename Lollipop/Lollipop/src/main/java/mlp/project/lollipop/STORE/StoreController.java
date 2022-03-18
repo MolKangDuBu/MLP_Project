@@ -1,22 +1,16 @@
 package mlp.project.lollipop.STORE;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -30,11 +24,13 @@ public class StoreController {
 	
 	
 	 @RequestMapping(value = "/Store/list")
-	    public String Store_list(Model model, StoreDto dto) {
+	    public String Store_list(Model model, StoreDto dto,HttpServletRequest request, HttpServletResponse response) {
 	        System.out.println(dto.getKey());
 	        System.out.println(dto.getKeyword());
 	        dto.setStart(dto.getPg() * 10);
-
+	        HttpSession session = request.getSession();
+			String userid =(String) session.getAttribute("user_id");
+			dto.setUser_id(userid);
 	        List<StoreDto> list = storeservice.getlist(dto);
 
 	        model.addAttribute("StoreList", list);
@@ -52,7 +48,8 @@ public class StoreController {
 	    }
 
 	    @RequestMapping(value = "/Store/modify")
-	    public String Store_modify(String store_key, Model model) {      
+	    public String Store_modify(String store_key, Model model) {     
+	    	
 	        model.addAttribute("StoreDto", storeservice.getView(store_key));
 	        return "STORE/Store_write2";
 	    }
@@ -79,6 +76,7 @@ public class StoreController {
 	        System.out.println(dto.getStore_name());
 	        System.out.println(dto.getStore_info());
 	        System.out.println(dto.getStore_bnumber());
+	        System.out.println("카테고리 : "+dto.getStore_category());
 
 	      
 	        List<MultipartFile> multiList = new ArrayList<MultipartFile>();

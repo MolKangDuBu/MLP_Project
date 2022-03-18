@@ -13,6 +13,9 @@
 		<typeAlias alias="FOOD_ReviewDto" type="mlp.project.lollipop.FOOD_REVIEW.FOOD_ReviewDto"/>
 		<typeAlias alias="StoreDto" type="mlp.project.lollipop.STORE.StoreDto"/>
 		<typeAlias alias="TodayDto" type="mlp.project.lollipop.TODAY_REVIEW.Today_ReviewDto"/>
+		<typeAlias alias="MarkDto" type="mlp.project.lollipop.MARK.MarkDto"/>
+		<typeAlias alias="NoticeDto" type="mlp.project.lollipop.NOTICE.NoticeDto"/>
+		<typeAlias alias="QnaDto" type="mlp.project.lollipop.QNA.QnaDto"/>
 		
 	</typeAliases>
 	<mappers>
@@ -22,7 +25,9 @@
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Cafe_Review.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Today_Review.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Food_Review.xml"/>
-		
+		 <mapper resource="/mlp/project/lollipop/mapper/Mark.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Notice.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Qna.xml"/>
 	</mappers>
 	
 </configuration>

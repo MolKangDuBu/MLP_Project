@@ -99,6 +99,7 @@ http://www.tooplate.com/view/2101-insertion
 <input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">
 <input type ="hidden" id = store_name name =store_name value="<%=dto.getStore_name() %>">
 <input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">
+
       <div class="row tm-about-row tm-mt-big tm-mb-medium">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-about-col-left">
           <div class="tm-v-center tm-bg-gray h-100 tm-about-text">

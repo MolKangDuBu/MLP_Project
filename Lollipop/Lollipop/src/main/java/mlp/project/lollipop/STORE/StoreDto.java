@@ -15,9 +15,32 @@ public class StoreDto extends BaseDto{
 	private String store_image2;
 	private String store_image3;
 	private String store_wdate ="";
+	private String store_active ="";
+	private String store_mark ="";
+	private String user_id="";
 	
 	
 	
+	
+	
+	public String getStore_active() {
+		return store_active;
+	}
+	public void setStore_active(String store_active) {
+		this.store_active = store_active;
+	}
+	public String getStore_mark() {
+		return store_mark;
+	}
+	public void setStore_mark(String store_mark) {
+		this.store_mark = store_mark;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getStore_category() {
 		return store_category;
 	}

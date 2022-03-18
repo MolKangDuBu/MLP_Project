@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@page import = "mlp.project.lollipop.common.*" %>
     <%@page import="java.util.*" %>
-<%@page import="mlp.project.lollipop.TODAY_REVIEW.*" %>
+<%@page import="mlp.project.lollipop.STORE.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,13 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
-
+    <%@include file="../include/nav.jsp" %>
+ <%
+	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
+	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
+	String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
+	int totalCnt = (Integer)request.getAttribute("totalCnt");
+%>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -47,15 +54,15 @@ http://www.tooplate.com/view/2101-insertion
   </div>
 
   <div class="tm-main">
-  <%@include file="./include/nav.jsp" %>
-   <div class="tm-welcome-section">
+
+    <div class="tm-welcome-section">
       <div class="container tm-navbar-container">
         <div class="row">
           <div class="col-xl-12">
             <nav class="navbar navbar-expand-sm">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a href="${commonURL}index.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
+                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
                 </li>
                 <li class="nav-item">
                   <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
@@ -63,25 +70,12 @@ http://www.tooplate.com/view/2101-insertion
                 <li class="nav-item">
                   <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
                 </li>
-                     <%if(user_id==null || user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mypage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
               </ul>
             </nav>
           </div>
         </div>
       </div>
- 
-   
+
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
@@ -106,59 +100,60 @@ http://www.tooplate.com/view/2101-insertion
         </form>
       </div>
 
-      <div class="row tm-albums-container grid">
-       <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-          <a href="${commonURL}lollipop/Today/list"> <figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-01.jpg" alt="Image" class="img-fluid">
-            <figcaption>
-              <h2>오늘의 팝딜</h2>
-              <p>Rollover text and description text goes here over mouse over...</p>
-            </figcaption>
-          </figure></a>
-        </div>
-        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-02.jpg" alt="Image" class="img-fluid">
-            <figcaption>
-              <h2>음식</h2>
-              <p>Maecenas iaculis et turpis et iaculis. Aenean at volutpat diam.</p>
-            </figcaption>
-          </figure></a>
-        </div>
-        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-03.jpg" alt="Image" class="img-fluid">
-            <figcaption>
-              <h2>카페</h2>
-              <p>Vivamus eget elit purus. Nullam consectetur porttitor elementum.</p>
-            </figcaption>
-          </figure></a>
-        </div>
-        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-          <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-04.jpg" alt="Image" class="img-fluid">
-            <figcaption>
-              <h2>놀거리</h2>
-              <p>Praesent nec feugiat dolor, elementum mollis purus. Etiam faucibus.</p>
-            </figcaption>
-          </figure>
+<form name = "listform" id = "listform">
+	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
+	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
+	<input type = "hidden" name = "store_key" id = "store_key" value ="0"/> 
+    <input type="hidden" value="<%=user_id%>" id="login_user_id" >
+  <div class="row">
+        <div class="col-lg-12">
+          <div class="tm-tag-line">
+          <h2 class="tm-tag-line-title">Store_board</h2>
+          </div>
         </div>
       </div>
 
-
-
-      <div class="row tm-mb-big tm-subscribe-row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-bg-gray tm-subscribe-form">
-          <h3 class="tm-text-pink tm-mb-30">Subscribe our updates!</h3>
-          <p class="tm-mb-30">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi semper, ligula et pretium porttitor, leo orci accumsan ligula.</p>
-          <form action="index.html" method="POST">
-            <div class="form-group mb-0">
-              <input type="text" class="form-control tm-subscribe-input" placeholder="Your Email">
-              <input type="submit" value="Submit" class="tm-bg-pink tm-text-white d-block ml-auto tm-subscribe-btn">
+      <div class="row mb-5">
+        <div class="col-xl-12">
+          <div class="media-boxes">
+<!-- 게시판 시작 -->
+			<%
+            	List<StoreDto> list = (List<StoreDto>)request.getAttribute("StoreList");
+           		for(StoreDto tempDto : list){
+            %>
+            <div class="media" >
+              <img  onclick ="goView(<%=tempDto.getStore_key()%>)" src="${pageContext.request.contextPath}/upload/<%=tempDto.getStore_image1()%>" width = "100px" height ="117px" alt="Image" class="mr-3">
+              <div class="media-body tm-bg-gray" >
+                <div class="tm-description-box" onclick ="goView(<%=tempDto.getStore_key()%>)">
+                  <h5 class="tm-text-blue"><%=tempDto.getStore_name()%></h5>
+                  <p class="mb-0"> <%=tempDto.getStore_address()%></p>
+                </div>
+           	 <%if(user_id!=null && !user_id.equals("")){ %>
+                  <% if (tempDto.getStore_mark().equals("N")){ %>
+                <div class="tm-buy-box">
+                	<img src="${pageContext.request.contextPath}/resources/img/markoff.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
+                </div>
+             	 <%} else { %>
+                <div class="tm-buy-box">
+                  <img src="${pageContext.request.contextPath}/resources/img/markon.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
+                </div>
+             	<%}%>
+             <%} %>
+              </div>
             </div>
-          </form>
+		<%} %>
+		  
+		  </div> <!-- media-boxes -->
+		     
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 img-fluid pl-0 tm-subscribe-img"></div>
+        <div style="margin:0 auto">
+             <%=Pager.makeTag(request, 10, totalCnt) %>
+        </div>
+        <div class="container mt-3" style="text-align:right;">
+		 	<a href="<%=request.getContextPath()%>/Store/write" 
+						class="btn btn-secondary">글쓰기</a>
+       	</div> 
+   
       </div>
 
       <div class="row tm-mb-medium">
@@ -184,6 +179,7 @@ http://www.tooplate.com/view/2101-insertion
           <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
         </div>
       </div>
+      </form>
       <footer class="row">
         <div class="col-xl-12">
           <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
@@ -197,6 +193,8 @@ http://www.tooplate.com/view/2101-insertion
 
   <!-- load JS -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
   <script>
 
     /* DOM is ready*/
@@ -214,3 +212,87 @@ http://www.tooplate.com/view/2101-insertion
   </script>
 </body>
 </html>
+<script>
+window.onload = function(){
+	
+	let key = '<%=key%>';
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+key).classList.add("active");
+
+}
+			
+function changeSearch(id){
+	
+	for(var i =1; i<=5; i++){
+		document.getElementById("searchItem"+i).classList.remove("active");
+	}
+	document.getElementById("searchItem"+id).classList.add("active");
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Store/list";
+	frm.method ="GET";
+	frm.submit();
+	
+}
+
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/Store/list";
+	frm.method ="GET";
+	frm.submit();
+}
+
+function goPage(pg){
+	
+	frm = document.listform;
+	frm.pg.value = pg;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Store/list";
+	frm.submit();
+}
+
+function goView(id){
+	frm = document.listform;
+	frm.store_key.value = id;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/Store/view";
+	frm.submit();
+}
+
+var userid = $("#login_user_id").val();
+//input태그를 hidden속성으로 숨겨서 값을 가져왔다.
+$("#mymark_btn").click(function(event) {
+	frm = document.listform;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/mark/list";
+	frm.submit();
+		
+});
+function addMarkList(id){
+	
+	// ajax 로 서버를 다녀와야함
+	document.listform.store_key.value = id;
+	var queryString = $("form[name=listform]").serialize(); 
+	console.log(queryString);
+	$.ajax({
+	  url:"${pageContext.request.contextPath}/mark/add",
+	  data:queryString,
+	  type:"POST",
+	  dataType:"json"
+	})
+	.done( (result)=>{
+		
+	  	alert(result.result);
+	  	location.reload();
+	 	
+	 })
+	.fail( (error)=>{
+	   console.log(error);
+	})
+}
+</script>

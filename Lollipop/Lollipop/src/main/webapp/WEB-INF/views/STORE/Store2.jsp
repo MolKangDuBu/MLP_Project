@@ -3,6 +3,7 @@
     <%@page import = "mlp.project.lollipop.common.*" %>
     <%@page import="java.util.*" %>
 <%@page import="mlp.project.lollipop.STORE.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +39,7 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
+    <%@include file="../include/nav.jsp" %>
  <%
 	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
 	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
@@ -102,7 +104,7 @@ http://www.tooplate.com/view/2101-insertion
 	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
 	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
 	<input type = "hidden" name = "store_key" id = "store_key" value ="0"/> 
-
+    <input type="hidden" value="<%=user_id%>" id="login_user_id" >
   <div class="row">
         <div class="col-lg-12">
           <div class="tm-tag-line">
@@ -117,19 +119,27 @@ http://www.tooplate.com/view/2101-insertion
 <!-- 게시판 시작 -->
 			<%
             	List<StoreDto> list = (List<StoreDto>)request.getAttribute("StoreList");
+			 
            		for(StoreDto tempDto : list){
             %>
-            <div class="media">
-              <img src="${pageContext.request.contextPath}/upload/<%=tempDto.getStore_image1()%>" width = "100px" height ="117px" alt="Image" class="mr-3">
-              <div class="media-body tm-bg-gray">
-                <div class="tm-description-box">
+            <div class="media" >
+              <img  onclick ="goView(<%=tempDto.getStore_key()%>)" src="${pageContext.request.contextPath}/upload/<%=tempDto.getStore_image1()%>" width = "100px" height ="117px" alt="Image" class="mr-3">
+              <div class="media-body tm-bg-gray" >
+                <div class="tm-description-box" onclick ="goView(<%=tempDto.getStore_key()%>)">
                   <h5 class="tm-text-blue"><%=tempDto.getStore_name()%></h5>
                   <p class="mb-0"> <%=tempDto.getStore_address()%></p>
                 </div>
+           	 <%if(user_id!=null && !user_id.equals("")){ %>
+                  <% if (tempDto.getStore_mark().equals("N")){ %>
                 <div class="tm-buy-box">
-                  <a href="#none" class="tm-bg-blue tm-text-white tm-buy" onclick ="goView(<%=tempDto.getStore_key()%>)" >view</a>
-                  <span class="tm-text-blue tm-price-tag"><%=tempDto.getStore_name()%></span>
+                	<img src="${pageContext.request.contextPath}/resources/img/markoff.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
                 </div>
+             	 <%} else { %>
+                <div class="tm-buy-box">
+                  <img src="${pageContext.request.contextPath}/resources/img/markon.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
+                </div>
+             	<%}%>
+             <%} %>
               </div>
             </div>
 		<%} %>
@@ -185,6 +195,7 @@ http://www.tooplate.com/view/2101-insertion
   <!-- load JS -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
   <script>
 
     /* DOM is ready*/
@@ -210,6 +221,7 @@ window.onload = function(){
 		document.getElementById("searchItem"+i).classList.remove("active");
 	}
 	document.getElementById("searchItem"+key).classList.add("active");
+
 }
 			
 function changeSearch(id){
@@ -251,5 +263,37 @@ function goView(id){
 	frm.method = "get";
 	frm.action = "${pageContext.request.contextPath}/Store/view";
 	frm.submit();
+}
+
+var userid = $("#login_user_id").val();
+//input태그를 hidden속성으로 숨겨서 값을 가져왔다.
+$("#mymark_btn").click(function(event) {
+	frm = document.listform;
+	frm.method = "get";
+	frm.action = "${pageContext.request.contextPath}/mark/list";
+	frm.submit();
+		
+});
+function addMarkList(id){
+	
+	// ajax 로 서버를 다녀와야함
+	document.listform.store_key.value = id;
+	var queryString = $("form[name=listform]").serialize(); 
+	console.log(queryString);
+	$.ajax({
+	  url:"${pageContext.request.contextPath}/mark/add",
+	  data:queryString,
+	  type:"POST",
+	  dataType:"json"
+	})
+	.done( (result)=>{
+		
+	  	alert(result.result);
+	  	location.reload();
+	 	
+	 })
+	.fail( (error)=>{
+	   console.log(error);
+	})
 }
 </script>

@@ -18,6 +18,8 @@
 		,STORE_IMAGE3
 		,STORE_WDATE
 		,rnum
+		,STORE_ACTIVE
+		,STORE_MARK
        from 
        (
           select
@@ -31,7 +33,15 @@
 			,A.STORE_IMAGE2
 			,A.STORE_IMAGE3
 			,A.STORE_WDATE
+			,A.STORE_ACTIVE
              ,@rownum := @rownum+1 AS rnum
+             ,
+             case
+				when  A.STORE_KEY in (select STORE_KEY from mark_board where mark_id=#{user_id})
+	            then 'Y'
+	            else 'N'
+			end as STORE_MARK
+			
             from STORE A, (select @rownum:=0) B
             
             
@@ -40,7 +50,8 @@
             <if test='key=="1"'>
             where (STORE_NAME like concat('%', #{keyword} , '%') or
                   STORE_INFO like concat('%', #{keyword} , '%')) and
-                  STORE_ACTIVE = 'Y'       
+                  STORE_ACTIVE = 'Y'
+                 
             </if>
             
             <if test='key=="3"'>
@@ -64,9 +75,9 @@
                   STORE_ACTIVE = 'Y'
             </if>
          </if> 
-    	<if test = 'key ==""'>
-                 where STORE_ACTIVE = 'Y'       
-        </if>
+         <if test = 'keyword ==""'>
+            	where STORE_ACTIVE = 'Y'
+            </if>
 
          order by STORE_KEY desc
       ) A
@@ -109,7 +120,7 @@
         
       </if> 
       
-        <if test = 'key ==""'>
+        <if test = 'keyword ==null'>
             	where STORE_ACTIVE = 'Y'
         </if>
    </select>

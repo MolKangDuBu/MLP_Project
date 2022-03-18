@@ -41,12 +41,13 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
-	<%
- 		StoreDto dto = (StoreDto)request.getAttribute("StoreDto");
-    %>
+	
     <%@include file="../include/nav.jsp" %>
-    <input type ="hidden" id = userid name = userid value =<%=user_id%>>
-    <input type ="hidden" id = store_key name = store_key value =<%=dto.getStore_key()%>>
+<%
+ 		StoreDto dto = (StoreDto)request.getAttribute("StoreDto");
+		
+    %>
+
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -109,17 +110,19 @@ http://www.tooplate.com/view/2101-insertion
           </div>
           <div class="tm-bg-gray tm-contact-middle">
             <form id ="writeform"name ="writeform" method="post" enctype = "multipart/form-data">
+                <input type ="hidden" id = userid name = userid value ="<%=user_id%>">
+    			<input type ="hidden" id = store_key name = store_key value ="<%=dto.getStore_key()%>">
               <div class="form-group mb-4">
-                <input type="text" id = "Store_name" name = "Store_name" class="form-control" placeholder="가게명" required/>
+                <input type="text" id = "Store_name" name = "Store_name" value ="<%=dto.getStore_name()%>" class="form-control" placeholder="가게명" required/>
               </div>
               <div class="form-group mb-4">
-                <input type="text" id = "Store_bnumber" name ="Store_bnumber" class="form-control" placeholder="사업자 번호" required/>
+                <input type="text" id = "Store_bnumber" name ="Store_bnumber" value ="<%=dto.getStore_bnumber()%>" class="form-control" placeholder="사업자 번호" required/>
               </div>
               <div class="form-group mb-4">
-                <input type="text" id ="Store_number" name = "Store_number" class="form-control" placeholder="가게 번호" required/>
+                <input type="text" id ="Store_number" name = "Store_number" value ="<%=dto.getStore_number()%>" class="form-control" placeholder="가게 번호" required/>
               </div>
               <div class="form-group mb-4">
-                <input type="text" id="Store_address" name ="Store_address" class="form-control" placeholder="가게 주소" required/>
+                <input type="text" id="Store_address" name ="Store_address" value ="<%=dto.getStore_address()%>" class="form-control" placeholder="가게 주소" required/>
               </div>
                    <div class="form-group mb-4">
                 <select name="position" class="tm-select" id="position" required>
@@ -130,7 +133,7 @@ http://www.tooplate.com/view/2101-insertion
                 </select>
               </div>
               <div class="form-group mb-4">
-                <input type="hidden" id ="Store_category" name ="Store_categoey" class="form-control" placeholder="Full Name" required/>
+                <input type="hidden" id ="Store_category" name ="Store_category" value = "<%=dto.getStore_category()%>"class="form-control" placeholder="Full Name" required/>
               </div>
             
                  <div class="form-group mb-4">
@@ -235,22 +238,24 @@ http://www.tooplate.com/view/2101-insertion
 
 <script>
 window.onload = function(){
-	   CKEDITOR.editorConfig = function(config){
+	 CKEDITOR.editorConfig = function(config){
 		   config.enterMode = CKEDITOR.ENTER_BR
+		   
 	   };
 	   CKEDITOR.instances.editor.setData('<%=dto.getStore_info()%>')
-	   
+	
 	   
 	   var texts =['선택하세요', '음식', '카페', '놀거리'];
-	   document.getElementById("position").value = <%=dto.getStore_category()%>
+	   
+	   $("#position").val("<%=dto.getStore_category()%>").prop("selected", true)  
 		document.getElementById("Store_category").value = <%=dto.getStore_category()%>
-	 
+	    
 	 
 	 };
 	function add(){
 		
 		   $("#Store_info").val(CKEDITOR.instances.editor.getData());
-		   document.getElementById("Store_category").value = document.getElementById("position").value;
+		   $("#Store_category").val($("#position").val());
 		   var frm = document.writeform
 		   //var frmData = new FormData(document.writeform); 
 			frm.action = "<%=request.getContextPath()%>/Store/save";
@@ -259,12 +264,7 @@ window.onload = function(){
 			
 
 	}
-	function Category(cate){
-		var texts =['', '음식', '카페', '놀거리'];
-		document.getElementById("searchItem").innerHTML = texts[cate];
-		document.getElementById("Store_category").value = cate;
-		
-	}
+	
 </script>
 
 
