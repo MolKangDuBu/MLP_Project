@@ -6,10 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-@Service("reviewService")
+@Service("cafereviewService")
 public class Cafe_ReviewServiceImpl implements Cafe_ReviewService{
 
-	@Resource(name="reviewDao")
+	@Resource(name="cafereviewDao")
 	Cafe_ReviewDao reviewDao;
 
 	@Override
@@ -50,8 +50,8 @@ public class Cafe_ReviewServiceImpl implements Cafe_ReviewService{
 	}
 
 	@Override
-	public Cafe_ReviewDto getView(String review_key) {
-		return reviewDao.getView(review_key);
+	public Cafe_ReviewDto getView(Cafe_ReviewDto dto) {
+		return reviewDao.getView(dto);
 	}
 
 	@Override
@@ -66,5 +66,5 @@ public class Cafe_ReviewServiceImpl implements Cafe_ReviewService{
 		reviewDao.incresehit(id);
 	}
 
-
+	
 }

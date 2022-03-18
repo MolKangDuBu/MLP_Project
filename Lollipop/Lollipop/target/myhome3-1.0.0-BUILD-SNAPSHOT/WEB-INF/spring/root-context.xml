@@ -36,7 +36,7 @@
 			<value>root</value>
 		</property>
 		<property name="password">
-			<value>1234</value>
+			<value>root</value>
 		</property>
 	</bean>
 		<!-- classpath : src/main/resouces mybaits라는 프레임워크의 설정파일이 들어가야함-->

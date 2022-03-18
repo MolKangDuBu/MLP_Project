@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="styles.bda21ab4755c6260b522.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-  	<%@include file = "../include/board.jsp" %>
+  	
   
 </head>
 <body>
@@ -40,6 +40,7 @@
 	<input type="hidden" name="review_id"  id="review_id" value=""/>
 	<input type="hidden" name="review_key"  id="review_key" value="0"/>
 	
+	
 		<!-- Navigation -->
 	<%@include file="../include/nav.jsp" %>
 		<!--  -->
@@ -52,24 +53,33 @@
                 <app-navbar-desktop _ngcontent-sc88="" _nghost-sc86="">
                     <app-responsive-container _ngcontent-sc86="" _nghost-sc79="">
                         <nav _ngcontent-sc86="">
-                            <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
-                                    class="no-decoration" href="/"><img _ngcontent-sc86="" src="assets/town-logo.svg"
-                                        alt="롤리팝 로고" class="daangn-logo"></a>
+                            <app-row _ngcontent-sc86="" _nghost-sc82="">
                                 <div _ngcontent-sc86="" class="divider"></div>
+                                <a _ngcontent-sc86="" routerlink="/"
+                                    class="no-decoration" href="/"></a>
                                 <app-searchbar _ngcontent-sc86="" placeholder="주변 업체를 찾아보세요" _nghost-sc85="">
                                     <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
                                         <app-current-location _ngcontent-sc85="" _nghost-sc84="">
                                             <app-row _ngcontent-sc84="" class="container" _nghost-sc82=""
-                                                style="cursor:pointer;"><span _ngcontent-sc84=""> 역삼동 </span><img
-                                                    _ngcontent-sc84="" src="assets/icons/caret-bottom.svg" alt="">
+                                                style="cursor:pointer;"> 
+                                                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+											             id = "searchItem">
+											                선택하세요
+											        </button>
+                                                <ul class="dropdown-menu">
+									            <li><a class="dropdown-item" href="javascript:void(0);" onclick = "categorySearch('1')">전체</a></li>
+									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "categorySearch('3')">음식</a></li>
+									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "categorySearch('4')">카페</a></li>
+									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "categorySearch('5')">놀거리</a></li>
+									            </ul>
                                             </app-row>
                                         </app-current-location>
                                         <div _ngcontent-sc85="" class="searchbar">
-                                        <input _ngcontent-sc85="" type="search" placeholder="업체명 검색" 
+                                        <input _ngcontent-sc85="" type="search" placeholder="제목, 내용 검색" 
                                         value="<%=keyword %>" name="keyword" id="keyword" class="ng-untouched ng-pristine ng-valid" />
-                                         <button class="btn btn-secondary" type="button" onclick = "goSearch()"> 검색 </button>
+                                         
                                             <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
-                                                    src="assets/icons/search.svg" alt="">                                           
+                                                    src="assets/icons/search.svg" alt="" onclick = "goSearch()">                                           
                                            </div>                                            
                                         </div>
                                         
@@ -88,37 +98,21 @@
                         <!---->
                         <!---->
                         <div _ngcontent-sc102="" class="title-container">
-                       <h1 _ngcontent-sc102="">카페 게시판 </h1>
+                      	<%String title = (String)request.getAttribute("title");
+                       	if(title.equals("null") ) {%>
+                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">카페 게시판</span></h1>
                         </div>
+                       <% }else{%>
+						<h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop"><%=title%></span></h1>
+                        
+						<%} %>
+                       
                         
          <!-- 카테고리 -->
          
-                        <div _ngcontent-sc102="" class="categories-container">
-                            <app-category-chips _ngcontent-sc102="" _nghost-sc97="">
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('전체')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem1" class="active"> 전체 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('오늘의 팝딜')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem2" class=""> 오늘의 팝딜 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('음식점')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem3" class=""> 음식점 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('카페')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem4" class="" > 카페 </app-chip>
-                                </a>
-                                <a _ngcontent-sc97="" class="no-decoration" href="javascript:void();" onclick = "categorySearch('놀거리')">
-                                    <app-chip _ngcontent-sc97="" _nghost-sc96="" 
-                                    id = "searchItem5" class="" > 놀거리 </app-chip>
-                                </a>
-                                <input type = "hidden" id = review_category name = review_category value = '2'>
-                            </app-category-chips>
-                        </div>
+                  
                         
+<input type = "hidden" id = review_category name = review_category value = '2'>
 
 <!--  여기부터 리스트 추가 -->
 
@@ -128,33 +122,35 @@
 	<%		
 		for(Cafe_ReviewDto tempDto : list){
 	%>
-								
-                                <a _ngcontent-sc99="" class="no-decoration container">
-                                    <app-row _ngcontent-sc99="" _nghost-sc82="">
-                                        <div _ngcontent-sc99="" class="img-container" onclick="goView('<%=tempDto.getReview_key()%>')">
-	                                        <img _ngcontent-sc99=""
-	                                             src="${pageContext.request.contextPath}/upload/<%=tempDto.getReview_image1()%>"
-	                                             alt="">
-                                        </div>
-                                        <div _ngcontent-sc99="" class="text-container">
-                                            <app-row _ngcontent-sc99="" class="title" _nghost-sc82="">
-                                            <div onclick="goView('<%=tempDto.getReview_key()%>')">
-                                                <p _ngcontent-sc99="" class="poi-name"><%=tempDto.getReview_title() %></p>
-                                            </div>
-                                                <span _ngcontent-sc99="" class="short-address">역삼동;</span> 
-                                                <p>
-                                                    <img src="D:\OneDrive\바탕화~1-DESKTOP-OS4S3HI-7407125\풀스택 프로젝트\게시판디자인\images\별.PNG">
-                                                    <h6>5.0</h6>
-                                                </p>
-                                            </app-row>
-                                            <div _ngcontent-sc99="" class="poi-info" onclick="goView('<%=tempDto.getReview_key()%>')">
-                                                <p _ngcontent-sc99="" class="address"> <%=tempDto.getReview_address() %> </p>
-                                                <p _ngcontent-sc99="" class="branch"> </p>
-                                            </div>
-                                        </div>
-                                    </app-row>
+									
+	                     <a _ngcontent-sc99="" class="no-decoration container">
+	                         <app-row _ngcontent-sc99="" _nghost-sc82="">
+	                             <div _ngcontent-sc99="" class="img-container" onclick="goView('<%=tempDto.getReview_key()%>')">
+	                              <img _ngcontent-sc99=""
+	                                   src="${pageContext.request.contextPath}/upload/<%=tempDto.getReview_image1()%>"
+	                                   alt="">
+	                             </div>
+	                             <div _ngcontent-sc99="" class="text-container">
+	                                 <app-row _ngcontent-sc99="" class="title" _nghost-sc82="">
+	                                 <div onclick="goView('<%=tempDto.getReview_key()%>')">
+	                                     <p _ngcontent-sc99="" class="poi-name"><%=tempDto.getReview_title() %></p>
+	                                 </div>
+	                                     <span _ngcontent-sc99="" class="short-address">역삼동;</span> 
+	                                     <p>
+	                                         <img src="D:\OneDrive\바탕화~1-DESKTOP-OS4S3HI-7407125\풀스택 프로젝트\게시판디자인\images\별.PNG">
+	                                         <h6>5.0</h6>
+	                                     </p>
+	                                 </app-row>
+	                                 <div _ngcontent-sc99="" class="poi-info" onclick="goView('<%=tempDto.getReview_key()%>')">
+	                                     <p _ngcontent-sc99="" class="address"> <%=tempDto.getReview_address() %> </p>
+	                                     <p _ngcontent-sc99="" class="branch"> </p>
+	                                 </div>                                          
+	                                </div>
+                                                                    
+                        	 </app-row>
                                 </a>
-                                
+         </div> 
+
                         
 
 	<%} %>
@@ -166,15 +162,14 @@
 	          <div class="container mt-3" style="text-align:right;">
 	         	   <a href="<%=request.getContextPath()%>/Review/write" 
 	               class="btn btn-secondary">글쓰기</a>
-	          </div>
-              </div>
+	          </div>              
                                 
-                <div _ngcontent-sc99="" class="divider-container">
+                 <div _ngcontent-sc99="" class="divider-container">
                     <app-divider _ngcontent-sc99="" _nghost-sc98=""></app-divider>
-                </div>
+                 </div>
             </app-poi-item>
             
-        </div>
+       
     </app-poi-list>
 
                 </main>
@@ -199,6 +194,7 @@
                     </div>
                 </app-footer>
             </app-responsive-container>
+            </div>
         </app-main-layout>
         <!---->
     </app-root>
@@ -208,6 +204,13 @@
 </html>
 
 <script>
+
+window.onload = function(){
+	
+	let key = '<%=key%>';
+	var texts =['','전체','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[key];
+}
 
 	function goSearch()
 	{
@@ -237,11 +240,10 @@
 	}
 	
 	function categorySearch(id){
-		document.getElementById("key").value=id;//컨트롤러로 넘기기 위해서
-		let frm = document.listform;
-		frm.pg.value=0;
-		frm.action = "<%=request.getContextPath()%>/Cafe_Review/listcat";
-		frm.method = "get";
-		frm.submit();
+		
+		var texts =['','전체','','음식', '카페', '놀거리'];
+		document.getElementById("searchItem").innerHTML = texts[id];
+		document.getElementById("key").value = id;
+		document.getElementById("keyword").value= "";
 	}
 </script>

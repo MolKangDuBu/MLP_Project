@@ -31,13 +31,13 @@ public class Pager {
 		//11 ~ 15
 		int pageGroupStart; //1,6,11,16,... 그룹의 시작값 
 		int pageGroupEnd;   //5,10,15,....  그룹의 종료값
-//				pageSize = 1;
+		
 		String path="";
 		//System.out.println(path);
-		String beginLabel 	= "frist";//image  태그
-		String prevLabel 	= "previous"; 
-		String nextLabel 	= "next";
-		String endLabel 	= "last";	
+		String beginLabel 	= "처음";//image  태그
+		String prevLabel 	= "이전"; 
+		String nextLabel 	= "다음";
+		String endLabel 	= "마지막";	
 
 		
 		try {
@@ -66,10 +66,12 @@ public class Pager {
 				 
 			boolean hasPreviousPage = cpage - pageGroupSize >= 0;
 			//이전페이지로 갈게 있는가 여부  << < 1 2 3 4 5 > >>
+
 			boolean hasNextPage = pageGroupStart + pageGroupSize < pageTotal;
 			//다음페이지로 갈 수 있는가 여부 
 			
-			sb.append("<ul class='pagination' justify-context-center>\r\n") ;  
+			sb.append("<ul class='pagination' style=' align-items: center;"
+					+ "justify-content: center;'>\r\n") ;  
 			
 			//  <<  < 
 			sb.append((cpage > 0) ? makeLink(0, beginLabel) : 

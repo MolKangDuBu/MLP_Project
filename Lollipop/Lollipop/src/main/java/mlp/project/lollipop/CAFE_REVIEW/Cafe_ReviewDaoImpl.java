@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("reviewDao")
+@Repository("cafereviewDao")
 public class Cafe_ReviewDaoImpl implements Cafe_ReviewDao{
 	
 	@Autowired
@@ -43,9 +43,9 @@ public class Cafe_ReviewDaoImpl implements Cafe_ReviewDao{
 	}
 
 	@Override
-	public Cafe_ReviewDto getView(String review_key) {
+	public Cafe_ReviewDto getView(Cafe_ReviewDto dto) {
 		// TODO Auto-generated method stub
-		return sm.selectOne("Review_getView", review_key);
+		return sm.selectOne("Review_getView", dto);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 <config>
 	<enabled>true</enabled>
-	<baseDir>D:/user/Downloadss/MiniProject/aaa/MLP_Project/Lollipop/Lollipop/src/main/webapp/userfiles/</baseDir>
-	<baseURL>/Lollipop/userfiles</baseURL>
+	<baseDir>D:\user\Downloadss\MLP_Project-lmg\Lollipop\Lollipop\src\main\webapp\userfile/</baseDir>
+	<baseURL>/lollipop/userfile</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<imgWidth>1600</imgWidth>

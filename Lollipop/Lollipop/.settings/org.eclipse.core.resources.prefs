@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/main/webapp/WEB-INF/views/include/board.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/CAFE_REVIEW/Cafe_write.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/FOOD_REVIEW/Food_list.jsp=UTF-8

@@ -56,9 +56,9 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- ckfinder -->
-	<servlet>
+<servlet>
 		<servlet-name>ConnectorServlet</servlet-name>
 		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
 		<init-param>
@@ -95,5 +95,4 @@
 			/ckfinder/core/connector/java/connector.java
      	 </url-pattern>
 	</filter-mapping>
-
 </web-app>

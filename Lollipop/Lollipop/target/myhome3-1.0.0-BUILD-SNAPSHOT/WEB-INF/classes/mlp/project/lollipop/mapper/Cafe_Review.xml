@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="CAFE_REVIEW">
+	
+	<select id ="Cafe_Review_getList" parameterType = "Cafe_ReviewDto" resultType ="Cafe_ReviewDto">
+		
+	 select 
+	 	REVIEW_KEY
+       	,REVIEW_TITLE
+       	,(select USER_ID from USER B where B.USER_ID = A.REVIEW_ID)as REVIEW_ID
+		,REVIEW_CONTENTS
+		,REVIEW_IMAGE1
+		,REVIEW_IMAGE2
+		,REVIEW_IMAGE3
+		,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY)as REVIEW_ADDRESS
+		,REVIEW_WDATE
+		,rnum
+       from 
+       (
+          select
+           	 A.STORE_KEY
+          	,A.REVIEW_KEY
+            ,A.REVIEW_ID
+            ,A.REVIEW_TITLE
+            ,A.REVIEW_IMAGE1
+			,A.REVIEW_IMAGE2
+			,A.REVIEW_IMAGE3
+			,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
+            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_WDATE
+             ,@rownum := @rownum+1 AS rnum
+            from REVIEW_BOARD A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+           <if test='key=="1"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_ACTIVE = 'Y'                               
+            </if>
+         
+            <if test='key=="2"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') and
+           		  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="3"'>
+            where REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+           		  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="4"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '3'
+            </if>
+            
+         </if> 
+         
+
+           <if test = 'store_key !=""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	STORE_KEY = #{store_key} and
+            	REVIEW_CATEGORY = '2'
+            </if>
+     
+      		<if test = 'key =="" and store_key ==""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	REVIEW_CATEGORY = '2'
+            </if>
+            
+            
+       order by REVIEW_KEY desc
+      ) A
+      limit #{start}, #{pageSize} 
+	</select>
+  
+  
+  <select id ="Cafe_Review_reviewlist" parameterType = "Cafe_ReviewDto" resultType ="Cafe_ReviewDto">
+		
+	 select 
+	 	REVIEW_KEY
+       	,REVIEW_TITLE
+       	,(select USER_ID from USER B where B.USER_ID = A.REVIEW_ID)as REVIEW_ID
+		,REVIEW_CONTENTS
+		,REVIEW_IMAGE1
+		,REVIEW_IMAGE2
+		,REVIEW_IMAGE3
+		,(select C.Store_ADDRESS from STORE C
+		JOIN REVIEW_BOARD on C.STORE_KEY = review_board.STORE_KEY
+		where C.STORE_KEY = #{store_key}) as REVIEW_ADDRESS
+		,REVIEW_WDATE
+		,rnum
+       from 
+       (
+          select
+          	 A.REVIEW_KEY
+            ,A.REVIEW_ID
+            ,A.REVIEW_TITLE
+            ,A.REVIEW_IMAGE1
+			,A.REVIEW_IMAGE2
+			,A.REVIEW_IMAGE3
+			,(select C.Store_ADDRESS from STORE C
+			JOIN REVIEW_BOARD on C.STORE_KEY = review_board.STORE_KEY
+			where C.STORE_KEY = #{store_key}) as REVIEW_ADDRESS
+            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_WDATE
+             ,@rownum := @rownum+1 AS rnum
+            from REVIEW_BOARD A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+                  REVIEW_ACTIVE = 'Y' and                                
+            </if>
+         
+            <if test='key=="3"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') and
+           		  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '1'
+            </if>
+            
+            <if test='key=="4"'>
+            where REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
+           		  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '2'
+            </if>
+            
+            <if test='key=="5"'>
+            where title like concat('%', #{keyword} , '%') or
+                  contents like concat('%', #{keyword} , '%') and
+                  REVIEW_ACTIVE = 'Y' and
+                  REVIEW_CATEGORY = '3'
+            </if>
+            
+         </if> 
+         
+           <if test = 'store_key !=null'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	STORE_KEY = #{store_key}
+            </if>
+     
+      		<if test = 'key =="" and store_key ==null'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	REVIEW_CATEGORY = '2'
+            </if>
+            
+         order by REVIEW_KEY desc
+      ) A
+      limit #{start}, #{pageSize} 
+	</select>
+	
+	<select id ="category" parameterType = "Cafe_ReviewDto" resultType ="Cafe_ReviewDto">
+		
+	 select 
+	 	REVIEW_KEY
+       	,REVIEW_TITLE
+       	,(select USER_ID from USER B where B.USER_ID = A.REVIEW_ID)as REVIEW_ID
+		,REVIEW_CONTENTS
+		,REVIEW_IMAGE1
+		,REVIEW_IMAGE2
+		,REVIEW_IMAGE3
+		,(select C.Store_ADDRESS from STORE C
+		JOIN REVIEW_BOARD on C.STORE_KEY = review_board.STORE_KEY
+		where C.STORE_KEY = #{store_key}) as REVIEW_ADDRESS
+		,REVIEW_WDATE
+		,REVIEW_CATEGORY
+		,rnum
+       from 
+       (
+          select
+          	 A.REVIEW_KEY
+            ,A.REVIEW_ID
+            ,A.REVIEW_TITLE
+            ,A.REVIEW_IMAGE1
+			,A.REVIEW_IMAGE2
+			,A.REVIEW_IMAGE3
+            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_WDATE
+            ,A.REVIEW_CATEGORY
+             ,@rownum := @rownum+1 AS rnum
+            from REVIEW_BOARD A, (select @rownum:=0) B
+            
+            
+         <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="전체"'>
+          	where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                 
+            </if>
+            
+            <if test='key=="오늘의 팝딜"'>
+            where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')
+                  
+            </if>
+            
+            <if test='key=="음식점"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_ACTIVE = 'Y' and
+                  review_category = '1'
+            </if>
+            
+            <if test='key=="카페"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_ACTIVE = 'Y' and
+                  review_category = '2'
+            </if>
+            
+             <if test='key=="놀거리"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_ACTIVE = 'Y' and
+                  review_category = '3'
+            </if>
+            
+            <if test = 'key ==""'>       
+            	where REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  	  REVIEW_CONTENTS like concat('%', #{keyword} , '%') or
+                	  REVIEW_ACTIVE = 'Y' and
+            		  REVIEW_CATEGORY = '2'
+            </if>
+            
+         </if> 
+         
+         order by REVIEW_KEY desc
+      ) A
+      limit #{start}, #{pageSize} 
+	</select>
+	
+
+	<select id="Review_getTotal"  parameterType = "Cafe_ReviewDto" resultType ="int">
+		select count(*) from REVIEW_BOARD
+		 <if test='key!=null and keyword!=null'>
+   
+            <if test='key=="1"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                   REVIEW_ACTIVE = 'Y'
+                 
+            </if>
+            
+            <if test='key=="3"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '1' and
+                  REVIEW_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="4"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or 
+            	  REVIEW_CONTENTS like concat('%', #{keyword} , '%'))and
+                  REVIEW_CATEGORY = '2'and
+                  REVIEW_ACTIVE = 'Y'
+            </if>
+            
+            <if test='key=="5"'>
+            where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
+                  REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
+                  REVIEW_CATEGORY = '3'and
+                  REVIEW_ACTIVE = 'Y'
+                
+            </if>
+         </if> 
+              <if test = 'store_key !=null and store_key != ""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	STORE_KEY = #{store_key}
+            </if>
+     
+      		<if test = 'key =="" and store_key ==""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	REVIEW_CATEGORY = '2'
+            </if>
+	</select>
+	
+	<insert id = "Review_insert" parameterType="Cafe_ReviewDto" >
+		insert into REVIEW_BOARD
+		(REVIEW_TITLE, REVIEW_ID, REVIEW_CONTENTS, REVIEW_IMAGE1, REVIEW_IMAGE2, REVIEW_IMAGE3, REVIEW_WDATE, REVIEW_CATEGORY)
+		values
+		(#{review_title}, #{review_id}, #{review_contents}, #{review_image1}, #{review_image2}, #{review_image3}, now() , 2)
+	</insert>
+	
+	<delete id="Review_delete" parameterType="String" >
+		update REVIEW_BOARD
+		set REVIEW_ACTIVE = 'N'
+		where REVIEW_KEY = #{id}
+	</delete>
+	
+	
+	<update id="Review_modify" parameterType="Cafe_ReviewDto" >
+	update REVIEW_BOARD 
+		set REVIEW_TITLE = #{review_title}
+			,REVIEW_CONTENTS = #{review_contents}
+			,REVIEW_IMAGE1 = #{review_image1}
+			,REVIEW_IMAGE2 = #{review_image2}
+			,REVIEW_IMAGE3 = #{review_image3}		
+	where  REVIEW_KEY=#{review_key}
+	</update>
+	
+	<select id = "Review_getView" parameterType="String" resultType="Cafe_ReviewDto">
+		select
+		   	 A.REVIEW_KEY
+            ,A.REVIEW_ID
+            ,A.REVIEW_TITLE
+            ,A.REVIEW_IMAGE1
+			,A.REVIEW_IMAGE2
+			,A.REVIEW_IMAGE3
+            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_WDATE  
+            ,A.Store_key   
+           from REVIEW_BOARD A where REVIEW_key = #{review_key}			
+	</select>
+	
+	  <update id = "Cafe_Review_hit" parameterType ="String">
+		   	update REVIEW_BOARD
+		   	set REVIEW_HIT = REVIEW_HIT+1
+		   	where REVIEW_KEY = #{id}
+	   </update>
+	
+</mapper>

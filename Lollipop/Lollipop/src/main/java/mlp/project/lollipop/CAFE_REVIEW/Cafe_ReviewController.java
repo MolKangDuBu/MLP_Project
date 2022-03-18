@@ -18,33 +18,37 @@ import mlp.project.lollipop.common.FileUploadUtil;
 @Controller
 public class Cafe_ReviewController {
 
-	@Resource(name ="reviewService")
+	@Resource(name ="cafereviewService")
 	Cafe_ReviewService reviewservice;
 	
 	
-	@RequestMapping(value = "/Cafe_Review/list", method=RequestMethod.GET)
-	public String Review_list(Model model, Cafe_ReviewDto dto) {
+	@RequestMapping(value = "/Cafe_Review/list")
+	public String Review_list(Model model, Cafe_ReviewDto dto, String store_name) {
 		
 //		System.out.println("list key=====>" + dto.getKey());
 //		System.out.println("list keyword=====>" + dto.getKeyword());
 //		System.out.println("list keyword=====>" + dto.getStore_key());
 		
 		dto.setStart( dto.getPg()*10);
-
+	
 		List<Cafe_ReviewDto> list = reviewservice.getList(dto);
 		
 		for(Cafe_ReviewDto tempDto : list) {
 			System.out.println(tempDto.getReview_title());
 		}
-		
+		if(store_name !=null) {
+			model.addAttribute("title", store_name);
+		}else {
+    		model.addAttribute("title", "null");
+    	}
 		model.addAttribute("ReviewList", list);
 		model.addAttribute("totalCnt", reviewservice.getTotal(dto));
-		model.addAttribute("")
 		
-		return "CAFE_REVIEW/Cafe_list";
+		
+		return "CAFE_REVIEW/Cafe_list2";
 	}
 	
-	@RequestMapping(value = "Cafe_Review/Reviewlist", method=RequestMethod.GET)
+	@RequestMapping(value = "Cafe_Review/Reviewlist")
 	public String Cafe_Review_reviewlist(Model model, Cafe_ReviewDto dto) {
 		
 		dto.setStart( dto.getPg()*10);
@@ -96,6 +100,7 @@ public class Cafe_ReviewController {
 	@RequestMapping("/Cafe_Review/save")
 	String Review_save(Cafe_ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi)
 	{
+	
 		List<MultipartFile> multiList = new ArrayList<MultipartFile>();
 		
 		//null값을 확인하여 추가
@@ -133,10 +138,13 @@ public class Cafe_ReviewController {
 	        		break;	        	
 	        }
 		
+		System.out.println("키값 : "+dto.getReview_key());
 		if(dto.getReview_key()>=1) {
+			System.out.println("수정");
 			reviewservice.update(dto);
 		}
-		else {			
+		else {
+			System.out.println("삭제");
 			reviewservice.insert(dto);
 		}		
 		
@@ -144,23 +152,25 @@ public class Cafe_ReviewController {
 	}
 	
 	@RequestMapping("/Cafe_Review/view")
-	String Review_view(String review_key, Model model)
+	String Review_view(Cafe_ReviewDto dto, Model model)
 	{
 //		System.out.println("=====================1========================");
 //		System.out.println(dto);
-		Cafe_ReviewDto resultDto = reviewservice.getView(review_key);
+
+		
+		Cafe_ReviewDto resultDto = reviewservice.getView(dto);
 //		System.out.println("=====================2========================");
 //		System.out.println(resultDto);
-		reviewservice.increasehit(review_key);
+		reviewservice.increasehit(dto.getReview_key()+"");
 		model.addAttribute("Cafe_ReviewDto", resultDto);
 		
-		return "CAFE_REVIEW/Cafe_view";
+		return "CAFE_REVIEW/Cafe_view2";
 	}	
 	
 	@RequestMapping(value = "/Cafe_Review/modify")
-	public String Review_modify(String review_key, Model model) {
+	public String Review_modify(Cafe_ReviewDto dto, Model model) {
 //		System.out.println("Review_modify=================" + review_key);
-		model.addAttribute("Cafe_ReviewDto", reviewservice.getView(review_key));
+		model.addAttribute("Cafe_ReviewDto", reviewservice.getView(dto));
 	return "CAFE_REVIEW/Cafe_write";
 	}
 	

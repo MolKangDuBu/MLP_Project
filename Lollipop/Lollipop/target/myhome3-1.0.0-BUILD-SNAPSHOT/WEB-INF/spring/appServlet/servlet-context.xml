@@ -16,8 +16,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/upload/**" location="/upload/" />
 	<resources mapping="/ckfinder/**" location="/ckfinder/" />
-	<resources mapping="/userfiles/**" location="/userfiles/" />
-
+	<resources mapping="/userfile/**" location="/userfile/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,12 +31,16 @@
       <beans:property name="maxUploadSize" value="20971520"></beans:property>
       <beans:property name="maxInMemorySize" value="10485760"></beans:property>
    </beans:bean>
+	
 
+	 
 	<interceptors>
 		<interceptor>
 			<mapping path = "/**/w*"></mapping>
 			<beans:bean id = "loginInterceptor" class = "mlp.project.lollipop.common.LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
+
+
 
 </beans:beans>

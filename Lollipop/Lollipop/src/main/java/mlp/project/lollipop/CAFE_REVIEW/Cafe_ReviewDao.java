@@ -10,7 +10,7 @@ public interface Cafe_ReviewDao {
 	int getTotal(Cafe_ReviewDto dto);
 	void insert(Cafe_ReviewDto dto);
 	void delete(String review_key);
-	Cafe_ReviewDto getView(String review_key);
+	Cafe_ReviewDto getView(Cafe_ReviewDto dto);
 	void update(Cafe_ReviewDto dto);
 	void incresehit(String id);
 }
