@@ -167,7 +167,7 @@ public class Cafe_ReviewController {
 	
 	@RequestMapping(value = "/Cafe_Review/modify")
 	public String Review_modify(String review_key, Model model) {
-//		System.out.println("Review_modify=================" + review_key);
+	
 		model.addAttribute("Cafe_ReviewDto", reviewservice.getView(review_key));
 	return "CAFE_REVIEW/Cafe_write";
 	}

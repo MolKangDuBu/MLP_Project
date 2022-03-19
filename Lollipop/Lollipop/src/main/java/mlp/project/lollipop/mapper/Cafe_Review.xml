@@ -63,14 +63,7 @@
             </if>
             
          </if> 
-         
 
-           <if test = 'store_key !=""'>
-            	where REVIEW_ACTIVE = 'Y' and
-            	STORE_KEY = #{store_key} and
-            	REVIEW_CATEGORY = '2'
-            </if>
-     
       		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '2'
@@ -318,7 +311,8 @@
             ,A.REVIEW_IMAGE1
 			,A.REVIEW_IMAGE2
 			,A.REVIEW_IMAGE3
-            ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_CONTENTS
+            ,A.REVIEW_CATEGORY 
             ,A.REVIEW_WDATE  
             ,A.Store_key   
            from REVIEW_BOARD A where REVIEW_key = #{review_key}			

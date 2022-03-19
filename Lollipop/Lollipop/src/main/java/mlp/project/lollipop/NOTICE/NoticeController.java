@@ -28,17 +28,32 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/write")
 	public String Notice_write(Model model) {
 		NoticeDto dto = new NoticeDto();
-		model.addAttribute("noticeDto",dto );
+		model.addAttribute("reviewDto",dto );
 		
 		return "NOTICE/notice_write";
 	}
 	
+	@RequestMapping(value = "/notice/delete")
+	public String Notice_delete(String notice_key) {
+		
+		noticeservice.delte(notice_key);
+	        return "redirect:/notice/list";
+	}
+	
+	@RequestMapping(value = "/notice/modify")
+	public String Notice_modify(Model model, String notice_key) {
+
+	      model.addAttribute("reviewDto", noticeservice.getView(notice_key));
+	        return "NOTICE/notice_write";
+	}
+	
 	@RequestMapping(value = "/notice/save")
 	public String Notice_save(Model model,  NoticeDto dto) {
-		if(dto.getNotice_key()==0)
-			noticeservice.insert(dto);
-		else 
+
+		if(dto.getNotice_key()>=1)
 			noticeservice.update(dto);
+		else 
+			noticeservice.insert(dto);
 		return "redirect:/notice/list";
 	}
 }

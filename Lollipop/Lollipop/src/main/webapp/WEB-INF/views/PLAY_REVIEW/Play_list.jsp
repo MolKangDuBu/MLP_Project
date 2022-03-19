@@ -22,142 +22,152 @@
     <link rel="stylesheet" href="styles.bda21ab4755c6260b522.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    	
-   	<%@include file ="../include/board.jsp"  %>
-    	
+   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script>
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                          
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">   
+  	
+  		<script>
+
+    /* DOM is ready*/
+  $(function () {
+
+      if (renderPage) {
+        $('body').addClass('loaded');
+      }
+
+      $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+ 	</script>                                      
+
+  <script>
+    var renderPage = true;
+
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+      || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in. */
+      alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+      renderPage = false;
+    }
+    
+  </script>
+  	
 </head>
 
 <body>
-	
+	<form name = "listform" id = "listform">
  <%
-	String key = StringUtil.nullToValue(request.getParameter("key"), "1");
-	String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
-	String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
+
 	int totalCnt = (Integer)request.getAttribute("totalCnt");
 %>
-<form name = "listform" id = "listform">
-	<input type = "hidden" name = "key" id = "key" value = "<%=key%>"/>
-	<input type = "hidden" name = "pg" id = "pg" value ="<%=pg%>"/>
-	<input type = "hidden" name = "review_key" id = "review_key" value ="0"/>
-    <div style="width: 50%; margin: auto;">
-        <!-- Navigation-->
+
+
+
+   		<!-- 섹션값 -->
+
+	
+				
+		  <!-- Loader -->
+	<div id="loader-wrapper">
+    	<div id="loader"></div>
+   		<div class="loader-section section-left"></div>
+   		<div class="loader-section section-right"></div>
+ 	</div>
+      
+  <div class="tm-main">
    
-     <%@include file="../include/nav.jsp" %>
+ 	<!-- Navigation -->
+ 	<div class="tm-welcome-section">
+	<%@include file="../include/nav.jsp" %>
+ 	
+ 	 <div class="container text-center tm-welcome-container">
+        <div class="tm-welcome">
+          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <h1 class="text-uppercase mb-3 tm-site-name">Lollipop</h1>
+          <p class="tm-site-description">Enjoying is your powerful energy</p>
+        </div>
+      </div>
+     </div>
      
-    <app-root _nghost-sc29="" ng-version="9.1.0">
-        <!---->
-        <router-outlet _ngcontent-sc29=""></router-outlet>
-        <app-main-layout _nghost-sc105="">
-            <app-navbar _ngcontent-sc105="" _nghost-sc88="">
-                <app-navbar-desktop _ngcontent-sc88="" _nghost-sc86="">
-                    <app-responsive-container _ngcontent-sc86="" _nghost-sc79="">
-                        <nav _ngcontent-sc86="">
-                            <app-row _ngcontent-sc86="" _nghost-sc82=""><a _ngcontent-sc86="" routerlink="/"
-                                    class="no-decoration" href="/"></a>
-                                <div _ngcontent-sc86="" class="divider"></div>
-                                <app-searchbar _ngcontent-sc86="" placeholder="제목, 내용 검색" _nghost-sc85="">
-                                    <app-row _ngcontent-sc85="" class="searchbar-container" _nghost-sc82="">
-                                        <app-current-location _ngcontent-sc85="" _nghost-sc84="">
-                                            <app-row _ngcontent-sc84="" class="container" _nghost-sc82=""
-                                                style="cursor:pointer;"> 
-                                                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-											             id = "searchItem">
-											                선택하세요
-											        </button>
-                                                <ul class="dropdown-menu">
-									            <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('1')">전체</a></li>
-									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('3')">음식</a></li>
-									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('4')">카페</a></li>
-									              <li><a class="dropdown-item" href="javascript:void(0);" onclick = "changeSearch('5')">놀거리</a></li>
-									            </ul>
-                                            </app-row>
-                                        </app-current-location>
-            <!-- 검색창? -->   				<div _ngcontent-sc85="" class="searchbar"><input _ngcontent-sc85=""
-                                              type="text" placeholder="메뉴명 검색" value = "<%=keyword%>" name="keyword" id = "keyword"
-                                                class="ng-untouched ng-pristine ng-valid"> 
-                                            <div _ngcontent-sc85="" class="search-icon"><img _ngcontent-sc85=""
-                                                    src="assets/icons/search.svg" alt="" onclick = "gosearch()">
-                                                    
-                                            </div>
-                                            
-                                        </div>
-                                    </app-row>
-                                    <!---->
-                                </app-searchbar>
-                            </app-row>
-                        </nav>
-                    </app-responsive-container>
-                </app-navbar-desktop>
+     
+     				<!-- 검색창 -->
+	 	<div class="container">
+			<%@include file="../include/search.jsp" %> 
 
-            </app-navbar>
-            <!---->
-            <app-responsive-container _ngcontent-sc105="" _nghost-sc79="">
-                <main _ngcontent-sc105="">
-                    <router-outlet _ngcontent-sc105=""></router-outlet>
-                    <app-poi-list _nghost-sc102="">
-                        <ngx-json-ld _ngcontent-sc102="">
+			<input type = "hidden" name = "review_key" id = "review_key" value ="0"/>
+	      <!-- 게시판명 -->
+         <div class="row">
+       		<div class="col-lg-12">
+         	 <div class="tm-tag-line">
+         	 <%String title = (String)request.getAttribute("title");
+              if(title.equals("null") ) {%>
+         	  <h2 class="tm-tag-line-title">놀거리 게시판</h2>
+       		 </div>
+       		 <% }else{%>
+       		  <h2 class="tm-tag-line-title"><%=title%></h2>
+   		  	 <%} %>
+      		</div>
+     	 </div>
+     	 
+     	  <!-- 카테고리 --> 
+		<input type = "hidden" id = review_category name = review_category value = '3'>
+		
+		
+<!--  여기부터 리스트 추가 -->
 
-                        </ngx-json-ld>
-                        <!---->
-                        <!---->
-                        <div _ngcontent-sc102="" class="title-container">
-                       	<%String title = (String)request.getAttribute("title");
-                       	if(title.equals("null") ) {%>
-                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">놀거리 게시판</span></h1>
+          	  <div class="row mb-5">
+    <div class="col-xl-12">
+        <div class="media-boxes">
+            <!-- 게시판 시작 -->
+            <% List<PLAY_ReviewDto> list = (List<PLAY_ReviewDto>)request.getAttribute("ReviewList");
+
+                    for(PLAY_ReviewDto tempDto : list){
+                    %>
+                    <div class="media">
+                        <img 
+                            src="${pageContext.request.contextPath}/upload/<%=tempDto.getReview_image1()%>" width="100px"
+                            height="117px" alt="Image" class="mr-3">
+                        <div class="media-body tm-bg-gray">
+                            <div class="tm-description-box" >
+                                <h5 class="tm-text-blue">
+                                    <%=tempDto.getReview_title()%>
+                                </h5>
+                                <p class="mb-0">
+                                </p>
+                            </div>
+                               <div class="tm-buy-box">
+                
+                                <a class="tm-bg-blue tm-text-white tm-buy"
+                                    onclick="goView('<%=tempDto.getReview_key()%>')">View</a>
+                                <span class="tm-text-blue tm-price-tag">
+                                    <%=tempDto.getReview_hit()%>
+                                </span>
+                            </div>
                         </div>
-                       <% }else{%>
-						<h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop"><%=title%></span></h1>
-                        </div>
-						<%} %>
-                        <div _ngcontent-sc102="" class="content-container">
-                            <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
-<!-- 여기부터 리스트 추가 -->
+                    </div>
+                    <%} %>
 
-   			<%
-            	List<PLAY_ReviewDto> list = (List<PLAY_ReviewDto>)request.getAttribute("ReviewList");
-           		for(PLAY_ReviewDto tempDto : list){
-            %>
-                                <a _ngcontent-sc99="" class="no-decoration container"  onclick= "goView('<%=tempDto.getReview_key()%>')">
-                                    <app-row _ngcontent-sc99="" _nghost-sc82="">
-                                        <div _ngcontent-sc99="" class="img-container"><img _ngcontent-sc99=""
-                                                src="${pageContext.request.contextPath}/upload/<%=tempDto.getReview_image1()%>"
-                                                alt="돼지게티"></div>
-                                        <div _ngcontent-sc99="" class="text-container">
-                                            <app-row _ngcontent-sc99="" class="title" _nghost-sc82="">
-                                                <p _ngcontent-sc99="" class="poi-name" ><%=tempDto.getReview_title()%></p>
-                                              
-                                                <p>
-                                                    <img src="D:\OneDrive\바탕화~1-DESKTOP-OS4S3HI-7407125\풀스택 프로젝트\게시판디자인\images\별.PNG">
-                                                    <h6><%=tempDto.getReview_hit()%></h6>
-                                                </p>
-                                            </app-row>
-                                            <div _ngcontent-sc99="" class="poi-info">
-                                                <p _ngcontent-sc99="" class="address"> <%=tempDto.getReview_address() %> </p>
-                                                <p _ngcontent-sc99="" class="branch"> </p>
-                                            </div>
-                                        </div>
-                                    </app-row>
-                                </a>
-     	 <%}%>
-<!-- 여기까지 리스트 추가 -->
+        </div> <!-- media-boxes -->
 
-                                <div style="margin: auto;">
-                               	 <%=Pager.makeTag(request, 10, totalCnt) %>
-                                </div>
-                                <div class="container mt-3" style="text-align:right;">
-           						 <a href="<%=request.getContextPath()%>/PLAY_Review/write" 
-               						class="btn btn-secondary">글쓰기</a>
-       							</div>
-                                <div _ngcontent-sc99="" class="divider-container">
-                                    <app-divider _ngcontent-sc99="" _nghost-sc98=""></app-divider>
-                                </div>
-                            </app-poi-item>
-                            
-                        </div>
-                    </app-poi-list>
+    </div>
+    <div style="margin:0 auto">
+        <%=Pager.makeTag(request, 10, totalCnt) %>
+    </div>
+    <div class="container mt-3" style="text-align:right;">
+        <a href="<%=request.getContextPath()%>/PLAY_Review/write" class="btn btn-secondary">글쓰기</a>
+    </div>
 
-                </main>
-                <app-footer _ngcontent-sc105="" _nghost-sc92="">
-                    <div _ngcontent-sc92="" class="footer-container">
+</div>
+          	  
+          	  
+          	  
+          	  
+          	  
+          	       	 	 
+
+      <footer class="row">
+              	  <div class="col-xl-12">                    
                         <div _ngcontent-sc92="" class="policy-links">
                             <a _ngcontent-sc92="" href="https://www.daangn.com"
                                 target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
@@ -172,14 +182,14 @@
                         <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
                             375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
                         </div>
-                        <div _ngcontent-sc92="" class="copyright"> Copyright © Lollipop Market Inc. All rights reserved.
-                        </div>
+                        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2022</span> Lollipop Market Inc. All rights reserved.
                     </div>
-                </app-footer>
-            </app-responsive-container>
-        </app-main-layout>
+                  </footer>
+            </div><!-- .container -->
+
+		</div> <!-- .main -->        
         <!---->
-    </app-root>
+   
 </form>
 </body>
 

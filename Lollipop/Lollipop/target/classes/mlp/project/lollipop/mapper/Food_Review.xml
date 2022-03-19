@@ -16,6 +16,7 @@
 		,REVIEW_IMAGE2
 		,REVIEW_IMAGE3
 		,REVIEW_WDATE
+		,REVIEW_HIT
 		,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
 		,rnum
 		
@@ -30,6 +31,7 @@
 			,A.REVIEW_IMAGE2
 			,A.REVIEW_IMAGE3
             ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_HIT
             ,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
             ,A.REVIEW_WDATE
 
@@ -92,6 +94,7 @@
 		,REVIEW_IMAGE2
 		,REVIEW_IMAGE3
 		,REVIEW_WDATE
+		,REVIEW_HIT
 		,(select C.Store_ADDRESS 
 			from STORE C
 			JOIN REVIEW_BOARD
@@ -109,6 +112,7 @@
 			,A.REVIEW_IMAGE2
 			,A.REVIEW_IMAGE3
             ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_HIT
             ,(select C.Store_ADDRESS 
 			from STORE C
 			JOIN REVIEW_BOARD

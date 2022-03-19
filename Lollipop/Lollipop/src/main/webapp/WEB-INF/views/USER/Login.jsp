@@ -37,7 +37,7 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
-<%@include file="../include/nav.jsp" %>
+   <form id ="myform" name ="myform">
 
   <!-- Loader -->
 
@@ -50,38 +50,8 @@ http://www.tooplate.com/view/2101-insertion
   <div class="tm-main">
 
     <div class="tm-welcome-section">
-      <div class="container tm-navbar-container">
-        <div class="row">
-          <div class="col-xl-12">
-            <nav class="navbar navbar-expand-sm">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white">Home</a>
-                </li>
-                <li class="nav-item active">
-                  <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white active">Contact</a>
-                </li>
-             <%if(user_id==null|| user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mapage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
 
+<%@include file="../include/nav.jsp" %>
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
@@ -93,18 +63,7 @@ http://www.tooplate.com/view/2101-insertion
     </div>
 
     <div class="container">
-      <div class="tm-search-form-container">
-        <form action="index.html" method="GET" class="form-inline tm-search-form">
-          <div class="text-uppercase tm-new-release">New Release</div>
-          <div class="form-group tm-search-box">
-            <input type="text" name="keyword" class="form-control tm-search-input" placeholder="Type your keyword ...">
-            <input type="submit" value="Search" class="form-control tm-search-submit">
-          </div>
-          <div class="form-group tm-advanced-box">
-            <a href="#" class="tm-text-white">Go Advanced ...</a>
-          </div>
-        </form>
-      </div>
+		<%@include file="../include/search.jsp" %>
 
       <div class="row tm-mt-big tm-about-row tm-mb-medium">
         <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
@@ -113,7 +72,7 @@ http://www.tooplate.com/view/2101-insertion
             <h2 class="tm-media-2-header">Login</h2>
           </div>
           <div class="tm-bg-gray tm-contact-middle">
-       <form id ="myform" name ="myform">
+    
      	
               <div class="form-group mb-4">
                 <input type="text" id = "user_id" name="user_id" class="form-control" placeholder="ID" required/>
@@ -240,6 +199,22 @@ http://www.tooplate.com/view/2101-insertion
     }
     function goCancel(){
     	location.href="${commonURL}/";
+    }
+
+    function changeSearch(id){
+    	
+    	var texts =['','전체','','음식', '카페', '놀거리'];
+    	document.getElementById("searchItem").innerHTML = texts[id];
+    	document.getElementById("key").value = id;
+    	document.getElementById("keyword").value= "";
+    }
+    
+    function gosearch(){
+    	let frm = document.listform;
+    	frm.pg.value=0;
+    	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+    	frm.method ="GET";
+    	frm.submit();
     }
 
   </script>

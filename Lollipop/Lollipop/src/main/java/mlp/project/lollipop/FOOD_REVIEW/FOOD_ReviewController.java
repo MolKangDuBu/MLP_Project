@@ -79,7 +79,7 @@ public class FOOD_ReviewController {
     @RequestMapping(value = "/FOOD_Review/delete")
     public String Review_delete(String review_key) {      
        reviewservice.delete(review_key);
-        return "redirect:/Review/list";
+        return "redirect:/Food_Review/list";
     }
 
     @RequestMapping(value = "/FOOD_Review/save")

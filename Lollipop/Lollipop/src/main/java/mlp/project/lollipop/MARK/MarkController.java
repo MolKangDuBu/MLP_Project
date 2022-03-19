@@ -61,7 +61,7 @@ public class MarkController {
 		System.out.println("aaa : "+userid);
 		model.addAttribute("StoreList", list);
 		model.addAttribute("totalCnt", markService.getTotal(dto));
-		return "MARK/Mark_list2";
+		return "MARK/Mark_list";
 	}
 	
 	@RequestMapping("mark/add")

@@ -3,121 +3,110 @@
     <%@page import="java.util.*" %>
 <%@page import="mlp.project.lollipop.PLAY_REVIEW.*" %>
 <%@page import ="mlp.project.lollipop.common.*" %>
+
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>롤리팝 맛집</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="og:locale" content="ko_KR">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;display=swap">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Insertion - Contact Page</title>
+<!--
 
-	<script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
-	<script type="text/javascript" src="/lollipop/ckfinder/ckfinder.js"></script>
-	<%@include file ="../include/board.jsp"  %>
+Template 2101 Insertion
 
+http://www.tooplate.com/view/2101-insertion
+
+-->
+  <!-- load CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
+
+  <script>
+    var renderPage = true;
+
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+      || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in. */
+      alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+      renderPage = false;
+    }
     
-   
+  </script>
+  <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<script type="text/javascript" src="/lollipop/ckfinder/ckfinder.js"></script>
 </head>
 
 <body>
+ <form id ="writeform"name ="writeform" method="post" enctype = "multipart/form-data">	
 
-
-<form name = "writeform" id = "writeform" method="post" enctype = "multipart/form-data">
-
-	<%
-	PLAY_ReviewDto dto = (PLAY_ReviewDto)request.getAttribute("reviewDto");
+<%
+ 		PLAY_ReviewDto dto = (PLAY_ReviewDto)request.getAttribute("reviewDto");
+		
     %>
-    <div style="width: 50%; margin: auto;">
-        <!-- Navigation-->
+
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+
+  <div class="tm-main">
+
+    <div class="tm-welcome-section">
    
-     <%@include file="../include/nav.jsp" %>
-           <input type ="hidden" id = userid name = userid value =<%=user_id%>>
-      <input type ="hidden" id = review_key name = review_key value =<%=dto.getReview_key()%>>
-    <app-root _nghost-sc29="" ng-version="9.1.0">
-        <!---->
-        <router-outlet _ngcontent-sc29=""></router-outlet>
-        <app-main-layout _nghost-sc105="">
+    <%@include file="../include/nav.jsp" %>
+    
+      <div class="container text-center tm-welcome-container">
+        <div class="tm-welcome">
+          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
+          <p class="tm-site-description">New HTML Website Template</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+		<%@include file="../include/search.jsp" %> 
+
+      <div class="row tm-mt-big tm-about-row tm-mb-medium">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
+          <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
+            <i class="fas fa-3x fa-comments mb-4"></i>
+            <h2 class="tm-media-2-header">리뷰 등록</h2>
+          </div>
+          <div class="tm-bg-gray tm-contact-middle">
         
-            <!---->
-            <app-responsive-container _ngcontent-sc105="" _nghost-sc79="">
-                <main _ngcontent-sc105="">
-                    <router-outlet _ngcontent-sc105=""></router-outlet>
-                    <app-poi-list _nghost-sc102="">
-                        <ngx-json-ld _ngcontent-sc102="">
-                           
-                        </ngx-json-ld>
-                        <!---->
-                        <!---->
-                       <div _ngcontent-sc102="" class="title-container">
-                            <div _ngcontent-sc102="" class="short-region-mobile">서울 강남구</div>
-                            <h1 _ngcontent-sc102=""><span _ngcontent-sc102="" class="short-region-desktop">글 작성</span>
-                                </h1>
-                        </div>
-                     	<div >
-              	
-         <table class="table table-hover " _nghost-sc105="">
-            <colgroup>
-                <col width="25%">
-                <col width="*">
-            </colgroup>
-        
-            <tbody>
-              <tr>
-              
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                     <p>제목</p>
-                        <input type="text" class="form-control" id="review_title" name="review_title" 
-                        placeholder="제목을 입력하세요" value="<%=dto.getReview_title()%>">
-                    </div>
-                </td>
-              </tr>       
-              <tr>
-              
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                    	 <p>작성자</p>
-                      <input type = "text" class = "form-control" id = "review_id" name = "review_id"
-                      placeholder="이름을 입력하세요" value = "<%=user_id%>" readonly>
-                    </div>
-                </td>
-              </tr>      
-              <tr>
-              
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                    	 <span>카테고리</span>
-                    	 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-             					id = "searchItem">
-                						선택하세요
-            			 </button>
-                          <ul class="dropdown-menu">
-				              <li><span class="dropdown-item"  onclick = "Category('1')">음식</span></li>
-				              <li><span class="dropdown-item"  onclick = "Category('2')">카페</span></li>
-				              <li><span class="dropdown-item"  onclick = "Category('3')">놀거리</span></li>
-				          </ul>
-				          <input type = "hidden"  class = "form-control" id = "review_category" name = "review_category"  value = "1"> 
-                    </div>
-                </td>
-              </tr>      
-              <tr>
-               
-                <td>
-                <input type = "hidden"  class = "form-control" id = "review_contents" name = "review_contents"  value = "aa">
-                    <div>
-                    	 <p>내용</p>
-                     		<textarea id="editor" name = "editor" style="text-align :center;">
-      							 
-    						</textarea>
-							<script>
+                <input type ="hidden" id = userid name = userid value ="<%=user_id%>">
+    			<input type ="hidden" id = review_key name = review_key value ="<%=dto.getReview_key()%>">
+              <div class="form-group mb-4">
+                <input type="text" id = "Review_title" name = "Review_title" value ="<%=dto.getReview_title()%>" class="form-control" placeholder="제목" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="text" id = "Review_id" name ="Review_id" value ="<%=user_id%>" class="form-control" placeholder="이름" readonly/>
+              </div>
+
+                   <div class="form-group mb-4">
+                <select name="position" class="tm-select" id="position" required>
+                  <option value="">선택하세요</option>
+                  <option value="1">음식</option>
+                  <option value="2">카페</option>
+                  <option value="3">놀거리</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <input type="hidden" id ="Review_category" name ="Review_category" value = "<%=dto.getReview_category()%>"class="form-control" placeholder="Full Name" required/>
+              </div>
+            
+                 <div class="form-group mb-4">
+                <textarea rows="8" id="editor" name="editor" class="form-control" placeholder="내용을 입력하세요" required></textarea>
+              </div>
+              <script>
 							var editor = CKEDITOR.editorConfig = function( config ) {
 								config.language = 'es';
 								config.uiColor = '#F7B42C';
@@ -129,114 +118,108 @@
 							var editor = CKEDITOR.replace( 'editor' );
 							CKFinder.setupCKEditor( editor, '/lollipop/ckfinder' ) ;
 							
-							</script>
-						
-                	</div>
-                </td>
-               
-            
-              </tr> 
+			</script>
+			  <div class="form-group mb-4">
+                <input type="hidden" id= "Review_contents" name ="Review_contents" class="form-control" placeholder="Full Name" required/>
+              </div>
               
-              <tr>
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                     <p>이미지</p>
-                        <input type="file" class="form-control" id="upload1" name="upload1" 
-                        placeholder="썸네일 이미지를 업로드하세요">
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                    
-                        <input type="file" class="form-control" id="upload2" name="upload2" 
-                        placeholder="썸네일 이미지를 업로드하세요">
-                    </div>
-                </td>
-              </tr>         
-              <tr>
-                <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                   
-                        <input type="file" class="form-control" id="upload3" name="upload3" 
-                        placeholder="썸네일 이미지를 업로드하세요">
-                    </div>
-                </td>
-              </tr>                  
-            </tbody>
-          </table>
-</div>
-                     	
+           
 
-                       
-                       
-                       
-                       
-                       
-                        <div _ngcontent-sc102="" class="content-container">
-                            <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
-                                <div class="container mt-3" style="text-align:right;">
-           						 <button  class="btn btn-secondary" type ="button" onclick ="add()">등록</button>
-       							</div>
-                                <div _ngcontent-sc99="" class="divider-container">
-                                    <app-divider _ngcontent-sc99="" _nghost-sc98=""></app-divider>
-                                </div>
-                            </app-poi-item>
-                            
-                        </div>
-                    </app-poi-list>
+           
+              <div class="form-group mb-0">
+                <button type="button" class="btn btn-secondary" onclick ="add()">등록</button>
+              </div>
+            
+          </div>
+          <div class="tm-bg-gray tm-contact-right">
+        	<div class="form-group mb-4">
+                <input type="file"  id = "upload1" name = "upload1" class="form-control" placeholder="썸네일1" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="file" id="upload2" name = "upload2" class="form-control" placeholder="썸네일2" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="file" id ="upload3" name = "upload3" class="form-control" placeholder="썸네일3" required/>
+              </div>
+          </div>
+        </div>
+      </div>
 
-                </main>
-                <app-footer _ngcontent-sc105="" _nghost-sc92="">
-                    <div _ngcontent-sc92="" class="footer-container">
-                        <div _ngcontent-sc92="" class="policy-links">
-                            <a _ngcontent-sc92="" href="https://www.daangn.com"
-                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/terms" target="_blank"> 이용약관 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/privacy" target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/location" target="_blank"> 위치기반 서비스 이용약관 </a>
-                        </div>
-                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92=""> 고객문의 cs@lollipopservice.com
-                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com </span><span _ngcontent-sc92="">
-                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92=""> PR문의 pr@lollipop.com </span>
-                        </div>
-                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
-                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
-                        </div>
-                        <div _ngcontent-sc92="" class="copyright"> Copyright © Lollipop Market Inc. All rights reserved.
-                        </div>
-                    </div>
-                </app-footer>
-            </app-responsive-container>
-        </app-main-layout>
-        <!---->
-    </app-root>
-</form>
+      <!-- Bottom links -->
+      <div class="row tm-about-row tm-mb-medium">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
+          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
+          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
+          <h4 class="mb-4 tm-font-300">Our Pages</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
+          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+          <h4 class="mb-4 tm-font-300">Quick Links</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
+          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
+        </div>
+      </div>
+      <footer class="row tm-about-row">
+        <div class="col-xl-12">
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
+          
+          - Design:  Tooplate</p>
+        </div>
+        </form>
+      </footer>
+    </div> <!-- .container -->
+
+  </div> <!-- .main -->
+
+  <!-- load JS -->
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function () {
+
+      if (renderPage) {
+        $('body').addClass('loaded');
+      }
+
+      $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+
+  </script>
 </body>
-
 </html>
 
-
 <script>
-
 window.onload = function(){
 	   CKEDITOR.editorConfig = function(config){
 		   config.enterMode = CKEDITOR.ENTER_BR
 	   };
 	   CKEDITOR.instances.editor.setData('<%=dto.getReview_contents()%>')
-	   
-	   
-	   var texts =['선택하세요', '음식', '카페', '놀거리'];
-	   document.getElementById("searchItem").innerHTML = texts[<%=dto.getReview_category()%>];
-		document.getElementById("review_category").value = <%=dto.getReview_category()%>
+	   $("#position").val("<%=dto.getReview_category()%>").prop("selected", true);  
+	   document.getElementById("Review_category").value = <%=dto.getReview_category()%>
+
+
+
 	 
-	 
- };
+};
 function add(){
 	
-	   $("#review_contents").val(CKEDITOR.instances.editor.getData());
-		
+	   $("#Review_contents").val(CKEDITOR.instances.editor.getData());
+	   $("#Review_category").val($("#position").val());
 	   var frm = document.writeform
 	   //var frmData = new FormData(document.writeform); 
 		frm.action = "<%=request.getContextPath()%>/PLAY_Review/save";
@@ -245,12 +228,24 @@ function add(){
 		
 
 }
-function Category(cate){
-	var texts =['', '음식', '카페', '놀거리'];
-	document.getElementById("searchItem").innerHTML = texts[cate];
-	document.getElementById("review_category").value = cate;
+
+
+function changeSearch(id){
 	
+	var texts =['','전체','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[id];
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
 }
 
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+	frm.method ="GET";
+	frm.submit();
+}
+	
 </script>
+
 

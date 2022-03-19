@@ -24,9 +24,9 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public NoticeDto getView(NoticeDto dto) {
+	public NoticeDto getView(String id) {
 		
-		return  sm.selectOne("Notice_getView", dto);
+		return  sm.selectOne("Notice_getView", id);
 	}
 
 	@Override
@@ -40,8 +40,8 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public void delte(NoticeDto dto) {
-		sm.delete("Notice_delete", dto);
+	public void delte(String id) {
+		sm.update("Notice_delete", id);
 	}
 
 }

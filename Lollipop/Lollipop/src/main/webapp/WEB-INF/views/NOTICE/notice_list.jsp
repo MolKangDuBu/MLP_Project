@@ -1,231 +1,264 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@page import="java.util.*" %>
-<%@page import="mlp.project.lollipop.NOTICE.*" %>
-<%@page import ="mlp.project.lollipop.common.*" %>
+        <%@page import="mlp.project.lollipop.NOTICE.*" %>
+            <%@page import="mlp.project.lollipop.common.*" %>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>자주묻는 질문</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                        rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <link rel="stylesheet"
+     href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;display=swap">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+ <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+ <script type="text/javascript" src="/lollipop/ckfinder/ckfinder.js"></script>
+
+ <!-- load CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">
+  
+   <script>
+    var renderPage = true;
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+      || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in. */
+      alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+      renderPage = false;
+    }
+  </script>
+  
 </head>
 <body>
+ <form name="viewform" id="viewform">
+
 <%
-   String key = StringUtil.nullToValue(request.getParameter("key"), "1");
-   String keyword = StringUtil.nullToValue(request.getParameter("keyword"), "");
-   String pg = StringUtil.nullToValue(request.getParameter("pg"), "0");
-   int totalCnt = (Integer)request.getAttribute("totalCnt");
-%> 
 
-<form name="myform">
-   <input type="hidden" name="key" id="key" value="<%=key%>"/>
-   <input type="hidden" name="pg"  id="pg" value="<%=pg%>"/>
-   <input type="hidden" name="notice_key" id="notice_key" value="0"/>
-   
-    <div style="width: 50%; margin: auto;">
-        <nav style ="background-color: rgba(252, 249, 249, 0.966);"> 
-            <div class="container">
-                <ol class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a href="#">
-                            <img src="assets/img/lollipop.png" width="15%" style="margin: 0px;">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: #000000;">로그인</a>
-                    </li>              
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #000000;">회원가입</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #000000;">고객센터</a>
-                    </li>
-                </ol>
-            </div>
-        </nav>
+int totalCnt = (Integer)request.getAttribute("totalCnt");
+%>
 
-        <div class="faq_area section_padding_130" id="faq">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-sm-10 col-lg-8">
-                        <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            <h2 style="font-weight: bold;">공지사항</h2>
-                            <div class="search">
-                                <input type="text" id="keyword" name="keyword" style="width: 100%; border: 1px solid #bbb; border-radius: 8px; padding: 10px 12px; font-size: 14px;" placeholder="질문을 입력하세요">
-                                <a href="#" onclick="goSearch()"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position : absolute; width: 17px; top: 12px; right:10px; margin: 0;"></a>
-                            </div>
-                                <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                                    <p class="mb-0 px-2">찾으시는 답변이 없으신가요 ?</p>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/notice/list" > 1:1 문의하기</a>
-                                </div>
-                        </div>
-                        <div class="accordion faq-accordian" id="faqAccordion">
-                        
-       <%
-       	List<NoticeDto> noticeList=(List<NoticeDto>)request.getAttribute("noticeList");
-       	
-       	for(int i=0; i<noticeList.size(); i++){
-       		NoticeDto noticeDto =noticeList.get(i);
-       %>                
-                         
-                          <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                              <div class="card-header" id="headingOne">
-                                  <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapseOne"><%=noticeDto.getNotice_title()%><span class="lni-chevron-up"></span></h6>
-                              </div>
-                              <div class="collapse" id="collapse<%=i%>" aria-labelledby="headingOne" data-parent="#faqAccordion">
-                                  <div class="card-body">
-                                      <p><%=noticeDto.getNotice_contents()%></p>
-                                  </div>
-                              </div>
-                          </div>
-                           
-         <%}%>                   
-                           
-                                                
-                            <div style="margin: auto; align-items: center; display: flex; flex-direction: column; ">
-                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                    <div class="btn-group width:auto" role="group" aria-label="Third group">
-                                       <%=Pager.makeTag(request, 10, totalCnt)%>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+ <input type="hidden" name="notice_key" id="notice_key" value="" />
+
+
+ 
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+  
+  <div class="tm-main">
+
+    <div class="tm-welcome-section">
+  <%@include file="../include/nav.jsp" %>
+
+      <div class="container text-center tm-welcome-container">
+        <div class="tm-welcome">
+          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <h1 class="text-uppercase mb-3 tm-site-name">Lollipop</h1>
+          <p class="tm-site-description">Enjoying is your powerful energy</p>
         </div>
+      </div>
+     </div>
+     
+     
+     				<!-- 검색창 -->
+	 	<div class="container">
+			  <%@include file="../include/search.jsp" %>
+  <div class="row">
+        <div class="col-lg-12">
+          <div class="tm-tag-line">
+          <h2 class="tm-tag-line-title">Store_board</h2>
+          </div>
+        </div>
+      </div>
+
+   <div class="row tm-about-row tm-mb-medium">
+        <div class="tm-tab-links-container">
+    
+          <ul class="nav nav-tabs" id="tmTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">
+                <i class="fas fa-2x fa-music pr-4"></i>
+                <p class="media-body mb-0 tm-media-link">공지사항</p>
+              </a>
+            </li>
+              <%
+				   List<NoticeDto> noticeList=(List<NoticeDto>)request.getAttribute("noticeList");
+				   for(int i =2; i<(noticeList.size()+2); i++){
+				   
+				 %>  
+            <li class="nav-item">
+              <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="profile-tab" data-toggle="tab" href="#tab<%=i%>" role="tab" aria-controls="profile" aria-selected="false">
+                <i class="fab fa-2x fa-accusoft pr-4"></i>
+                <p class="media-body mb-0 tm-media-link"><%=noticeList.get((i-2)).getNotice_title() %></p>
+              </a>
+            </li>
+			<%} %>
+          </ul>
+        </div>
+        
+        <div class="tm-tab-content-container">
+          
+          <div class="tab-content h-100 tm-bg-gray" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+              <div class="media tm-media-2">
+                <i class="fas fa-5x fa-music mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                <div class="media-body tm-media-body-2">
+                  <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">공지사항을 확인해주세요</h2>
+                  <p class="mb-4">공지사항을 확인해주세요</p>
+                </div>
+              </div>
+            </div>
+            
+            
+             <%     	
+		       for(int i =2; i<(noticeList.size()+2); i++){
+		      %>   
+            <div class="tab-pane fade" id="tab<%=i%>" role="tabpanel" aria-labelledby="tab<%=i%>-tab">
+              <div class="media tm-media-2">
+                <i class="fab fa-5x fa-accusoft mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                <div class="media-body tm-media-body-2">
+                  <h2 class="mb-4 tm-text-pink-dark tm-media-2-header"><%=noticeList.get((i-2)).getNotice_title() %></h2>
+                  <p class="mb-4"><%=noticeList.get((i-2)).getNotice_contents() %></p>
+                   <p>
+              	 <%if(user_id.equals("admin")) {%>
+        		   <button class="btn btn-secondary" type="button"
+              		 onclick="goModify('<%=noticeList.get((i-2)).getNotice_key()%>')">수정</button>
+               		<button class="btn btn-secondary" type="button"
+             		  onclick="goDelete(<%=noticeList.get((i-2)).getNotice_key()%>)">삭제</button>
+         		<% } %></p>
+                 </div>
+              </div>
+            </div>
+            <%}%>
+ 
+
+         	 </div>
+           </div> <!-- .content container -->
+           
+                <div class="container mt-3" style="text-align:right;">
+                                                               
+                <%if(user_id.equals("admin")) {%>
+                 <button class="btn btn-secondary" type="button"
+                     onclick="goWrite()">공지등록</button>
+             	<%} %>
+           	   		
+               </div>
+                  <div style="margin:0 auto">
+       				 <%=Pager.makeTag(request, 10, totalCnt) %>
+    		  </div>
     </div>
-    </form>
+
+    
+     <footer class="row">
+              	  <div class="col-xl-12">                    
+                        <div _ngcontent-sc92="" class="policy-links">
+                            <a _ngcontent-sc92="" href="https://www.daangn.com"
+                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
+                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/terms" target="_blank"> 이용약관 </a> &nbsp; · &nbsp; 
+                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/privacy" target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp; 
+                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/location" target="_blank"> 위치기반 서비스 이용약관 </a>
+                        </div>
+                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92=""> 고객문의 cs@lollipopservice.com
+                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com </span><span _ngcontent-sc92="">
+                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92=""> PR문의 pr@lollipop.com </span>
+                        </div>
+                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
+                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
+                        </div>
+                        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2022</span> Lollipop Market Inc. All rights reserved.
+                    </div>
+                  </footer>
+            </div><!-- .container -->
+
+		</div> <!-- .main -->        
+           
+
+				
+                  
+
+
+  <!-- load JS -->
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+  <script>
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function () {
+      if (renderPage) {
+        $('body').addClass('loaded');
+      }
+      $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+  </script>
+ </form>
 </body>
+</html>
+<script>
 
-<style type="text/css">
-body{margin-top:20px;}
-.section_padding_130 {
-    padding-top: 40px;
-    padding-bottom: 30px;
-}
-.search {
-  position: relative;
-  width: 300px;
-}
-.btn-secondary{
-    align-items: center;
-    background-color: #fff5fc;
-    color: #000000;
-    border-color: #fff5fc;
-}
-.btn-info{
-    align-items: center;
-    background-color: #fff5fc;
-    color: #000000;
-    border-color: #fff5fc;
-}
-.faq_area {
-    position: relative;
-    z-index: 1;
-    background-color: #fff5fc;
-}
-.faq-accordian {
-    margin-top: 20px;
-    position: relative;
-    z-index: 1;
-}
-.faq-accordian .card {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 1.5rem;
-}
-.faq-accordian .card:last-child {
-    margin-bottom: 0;
-}
-.faq-accordian .card .card-header {
-    background-color: #ffffff;
-    padding: 0;
-    border-bottom-color: #ebebeb;
-}
-.faq-accordian .card .card-header h6 {
-    cursor: pointer;
-    padding: 1.75rem 2rem;
-    color: #f87c7c;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -ms-grid-row-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-.faq-accordian .card .card-header h6 span {
-    font-size: 1.5rem;
-}
-.faq-accordian .card .card-header h6.collapsed {
-    color: #070a57;
-}
-.faq-accordian .card .card-header h6.collapsed span {
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-}
-.faq-accordian .card .card-body {
-    padding: 1.75rem 2rem;
-}
-.faq-accordian .card .card-body p:last-child {
-    margin-bottom: 0;
-}
-@media only screen and (max-width: 575px) {
-    .support-button p {
-        font-size: 14px;
-    }
-}
-.support-button i {
-    color: #3f43fd;
-    font-size: 1.25rem;
-}
-@media only screen and (max-width: 575px) {
-    .support-button i {
-        font-size: 1rem;
-    }
-}
-.support-button a {
-    text-transform: capitalize;
-    color: #ec166fc7;
-    font-weight: bold;
-}
-@media only screen and (max-width: 575px) {
-    .support-button a {
-        font-size: 13px;
-    }
-}
-</style>
 
-<script type="text/javascript">
-function goSearch(){
-   let frm = document.myform;
-   frm.pg.value=0;
-   frm.action = "<%=request.getContextPath()%>/notice/list";
-   frm.method="get";
-   frm.submit();
-}
-
-function goPage(page){
-	   let frm = document.myform;
-	   frm.pg.value=page;
-	   frm.action = "<%=request.getContextPath()%>/notice/list";
-	   frm.method="get";
-	   frm.submit();
-}
+window.onload = function(){
 	
+	let key = '<%=key%>';
+	var texts =['','전체','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[key];
+}
+
+
+
+function changeSearch(id){
+	
+	var texts =['','전체','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[id];
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+}
+
+function goWrite(){
+	var frm = document.viewform;
+	frm.action="<%=request.getContextPath()%>/notice/write";
+	frm.submit();
+}
+
+
+function goModify(id)
+{
+	
+	var frm = document.viewform;
+	frm.notice_key.value = id;
+	frm.action="<%=request.getContextPath()%>/notice/modify";
+	frm.submit();
+}
+
+
+function goDelete(id)
+{
+	var frm = document.viewform
+	frm.notice_key.value = id;
+	frm.action = "<%=request.getContextPath()%>/notice/delete";
+	frm.method = "post";
+	frm.submit();	
+}
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+	frm.method ="GET";
+	frm.submit();
+}
 
 </script>
-</html>
-

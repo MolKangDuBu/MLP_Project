@@ -38,10 +38,11 @@ http://www.tooplate.com/view/2101-insertion
 </head>
 
 <body>
+       <form id ="myform" name ="myform">
 	<% 
 		UserDto dto = (UserDto)request.getAttribute("userdto");
 	%>
-   <%@include file="../include/nav.jsp" %>
+
 
   <!-- Loader -->
   <div id="loader-wrapper">
@@ -53,38 +54,8 @@ http://www.tooplate.com/view/2101-insertion
   <div class="tm-main">
 
     <div class="tm-welcome-section">
-      <div class="container tm-navbar-container">
-        <div class="row">
-          <div class="col-xl-12">
-            <nav class="navbar navbar-expand-sm">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a href="${commonURL}/index2.html" class="nav-link tm-nav-link tm-text-white">Home</a>
-                </li>
-                <li class="nav-item active">
-                  <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white active">Contact</a>
-                </li>
-         <%if(user_id==null|| user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mapage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
 
+   <%@include file="../include/nav.jsp" %>
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
           <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
@@ -96,18 +67,7 @@ http://www.tooplate.com/view/2101-insertion
     </div>
 
     <div class="container">
-      <div class="tm-search-form-container">
-        <form action="index.html" method="GET" class="form-inline tm-search-form">
-          <div class="text-uppercase tm-new-release">New Release</div>
-          <div class="form-group tm-search-box">
-            <input type="text" name="keyword" class="form-control tm-search-input" placeholder="Type your keyword ...">
-            <input type="submit" value="Search" class="form-control tm-search-submit">
-          </div>
-          <div class="form-group tm-advanced-box">
-            <a href="#" class="tm-text-white">Go Advanced ...</a>
-          </div>
-        </form>
-      </div>
+		  <%@include file="../include/search.jsp" %>
 
       <div class="row tm-mt-big tm-about-row tm-mb-medium">
         <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
@@ -116,7 +76,7 @@ http://www.tooplate.com/view/2101-insertion
             <h2 class="tm-media-2-header">Mypage</h2>
           </div>
           <div class="tm-bg-gray tm-contact-middle">
-       <form id ="joinForm" name ="joinForm">
+
 
 
               <div class="form-group mb-4">
@@ -145,14 +105,14 @@ http://www.tooplate.com/view/2101-insertion
            
 
              <div>
-               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">Our Location</h2>
+               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">My Menu</h2>
                <address class="mb-4">
-                 990 Maecenas lobortis dolor,<br>
-                 Euismod leo, scelerisque <br>
-                 10550 finibus
+
+                  <a href="${commonURL}/Mark/list" class="nav-link tm-nav-link tm-text-white active">BookMark</a>
+				  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
+
                </address>
-                <p class="mb-0">Tel: <a href="tel:+0100200980" class="tm-link-gray">010-020-0980</a></p>
-                <p class="mb-0">Fax: <a href="tel:+0900800770" class="tm-link-gray">090-080-0770</a></p>
+                
              </div>
           </div>
         </div>
@@ -240,5 +200,22 @@ function Modify()
 function goCancel(){
 	location.href="${commonURL}/";
 }
+
+function changeSearch(id){
+	
+	var texts =['','전체','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[id];
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+}
+
+function gosearch(){
+	let frm = document.listform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+	frm.method ="GET";
+	frm.submit();
+}
+
 
 </script>

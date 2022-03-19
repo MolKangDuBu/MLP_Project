@@ -53,9 +53,10 @@ public class PLAY_ReviewController {
 
     @RequestMapping(value = "/PLAY_Review/view")
     public String Review_view(String review_key, Model model) {
-    	
+    
     	System.out.println("asdsad : "+review_key);
     	PLAY_ReviewDto dto = reviewservice.getView(review_key);
+
         reviewservice.incresehit(review_key);
         model.addAttribute("ReviewDto", dto);
        
@@ -64,7 +65,7 @@ public class PLAY_ReviewController {
 
     @RequestMapping(value = "/PLAY_Review/write")
     public String Review_write(Model model) {
-
+   
     	PLAY_ReviewDto dto = new PLAY_ReviewDto();
         model.addAttribute("reviewDto", dto);
         return "PLAY_REVIEW/Play_write";

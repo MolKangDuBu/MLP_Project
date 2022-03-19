@@ -47,39 +47,9 @@ http://www.tooplate.com/view/2101-insertion
   </div>
 
   <div class="tm-main">
-  <%@include file="./include/nav.jsp" %>
+
    <div class="tm-welcome-section">
-      <div class="container tm-navbar-container">
-        <div class="row">
-          <div class="col-xl-12">
-            <nav class="navbar navbar-expand-sm">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a href="${commonURL}index.html" class="nav-link tm-nav-link tm-text-white active">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a href="about.html" class="nav-link tm-nav-link tm-text-white">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="contact.html" class="nav-link tm-nav-link tm-text-white">Contact</a>
-                </li>
-                     <%if(user_id==null || user_id.equals("")){ %>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
-                </li>
-                <%}else{%>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mypage</a>
-                </li>
-                <li class="nav-item">
-                  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
-                </li>
-                <%} %>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+    <%@include file="./include/nav.jsp" %>
  
    
       <div class="container text-center tm-welcome-container">
@@ -108,7 +78,7 @@ http://www.tooplate.com/view/2101-insertion
 
       <div class="row tm-albums-container grid">
        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-          <a href="${commonURL}lollipop/Today/list"> <figure class="effect-sadie">
+          <a href="${commonURL}/Today/list"> <figure class="effect-sadie">
             <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-01.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>오늘의 팝딜</h2>
@@ -117,7 +87,7 @@ http://www.tooplate.com/view/2101-insertion
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+           <a href="${commonURL}/FOOD_Review/list"><figure class="effect-sadie">
             <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-02.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>음식</h2>
@@ -126,7 +96,7 @@ http://www.tooplate.com/view/2101-insertion
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-           <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+           <a href="${commonURL}/Cafe_Review/list"><figure class="effect-sadie">
             <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-03.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>카페</h2>
@@ -135,7 +105,7 @@ http://www.tooplate.com/view/2101-insertion
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-          <a href="${commonURL}lollipop/Today/list"><figure class="effect-sadie">
+          <a href="${commonURL}/PLAY_Review/list"><figure class="effect-sadie">
             <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-04.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>놀거리</h2>

@@ -25,16 +25,19 @@
 			  ,notice_wdate
 	          ,@rownum := @rownum+1 AS rnum  -- 새로 일련번호를 붙이자 
 		from notice_board A,  (select @rownum:=0) B
+	    
+	    where NOTICE_ACTIVE = 'Y'
 	    order by notice_key desc 
 	)A limit #{start}, #{pageSize}
     
-    
+
 	</select>
 	
 	
 	<select id="Notice_getTotal" parameterType="NoticeDto" resultType="Integer">
 		select count(*)
 		from notice_board A
+		where NOTICE_ACTIVE = 'Y'
 	</select>
 	
 	<insert id="Notice_insert"  parameterType="NoticeDto">
@@ -63,7 +66,7 @@
 		  ,notice_contents
 		  ,notice_hit
 		  ,notice_wdate
-		from notice_board where notice_key=#{notice_key}
+		from notice_board A where notice_key=#{id}
 	</select>
 	
 	<update id="Notice_update" parameterType="NoticeDto">
@@ -74,9 +77,11 @@
 			where notice_key = #{notice_key}
 	</update>
 	
-	<delete id="Notice_delete" parameterType="NoticeDto">
-		delete from notice_board where notice_key = #{notice_key}
-	</delete>
+	<update id="Notice_delete" parameterType="NoticeDto">
+		update NOTICE_BOARD
+   		set NOTICE_ACTIVE = 'N'
+   		where NOTICE_KEY = #{id}
+	</update>
 </mapper>
 
 

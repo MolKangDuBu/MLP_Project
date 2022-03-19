@@ -24,8 +24,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public NoticeDto getView(NoticeDto dto) {
-		return noticedao.getView(dto);
+	public NoticeDto getView(String id) {
+		return noticedao.getView(id);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public void delte(NoticeDto dto) {
-		noticedao.delte(dto);
+	public void delte(String id) {
+		noticedao.delte(id);
 	}
 }
 
