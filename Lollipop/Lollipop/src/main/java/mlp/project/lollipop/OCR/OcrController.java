@@ -8,9 +8,11 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.JsonParser;
+import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,16 +33,21 @@ import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
+import mlp.project.lollipop.PLAY_REVIEW.PLAY_ReviewDto;
+
 @Controller
 public class OcrController {
 	
 	@Resource(name="ocrapi")
 	OCRGeneralAPIDemo ocrapi;
 	
-	@RequestMapping(value="home")
+	@Resource(name="ocrservice")
+	OcrService ocrservice;
+	
+	@RequestMapping(value="/ocr/getkey")
 	public String home() {
 		
-		return "home";
+		return "OCR/Ocr";
 	}
 	
 	@RequestMapping(value="upload")
@@ -122,18 +129,40 @@ public class OcrController {
 	}
 	
 	@RequestMapping(value="ocr")
-	@ResponseBody
-	public String bucket_upload(String image_url) {
-		System.out.println("json 값 : "+ocrapi.OCRAPI("https://kr.object.ncloudstorage.com/lollipop/image.png"));
-		String res = ocrapi.OCRAPI("https://kr.object.ncloudstorage.com/lollipop/image.png");
-		JSONObject jobject = new JSONObject(res);
+	public String bucket_upload(Model model, String image_url,HttpServletRequest req, MultipartHttpServletRequest multi) {
+		String path = req.getServletContext().getRealPath("/");
+		
+		
+		//System.out.println("json 값 : "+ocrapi.OCRAPI("https://kr.object.ncloudstorage.com/lollipop/image.png"));
+		//String res = ocrapi.OCRAPI("https://kr.object.ncloudstorage.com/lollipop/image.png");
+		//JSONObject jobject = new JSONObject(res);
 		//org.json.JSONArray imageobject = jobject.getJSONArray("images");
 		
 		//System.out.println("test : "+imageobject);
 	
 		
+		String jsondata = ocrapi.OCRAPI(multi.getFile("upload"));
+		JSONObject jsonobject = new JSONObject(jsondata);
+		JSONArray jsonArr = (JSONArray)jsonobject.get("images");
+	
+		JSONObject jsonobj = (JSONObject)jsonArr.get(0);
+		JSONArray ja = (JSONArray)jsonobj.get("fields");
+		JSONObject o = (JSONObject)ja.get(0);
+		String bnumer = o.getString("inferText");
+		System.out.println(bnumer);
 
-		return ocrapi.OCRAPI("https://kr.object.ncloudstorage.com/lollipop/image.png");
+		String storekey = ocrservice.getkey(bnumer);
+		System.out.println(storekey);
+		if(storekey !=null) {
+			PLAY_ReviewDto dto = new PLAY_ReviewDto();
+	        model.addAttribute("reviewDto", dto);
+			model.addAttribute("bnumber", storekey);
+			return "PLAY_REVIEW/Play_write";	
+		}else {
+			return "/";
+		}
 	}
+	
+	
 
 }

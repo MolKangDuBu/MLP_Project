@@ -9,15 +9,14 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
-@Component("ocrapi")
-public class OCRGeneralAPIDemo {
+@Component("ocrapi2")
+public class OCRGeneralAPIDemo2 {
 
-   public String OCRAPI(MultipartFile file) {
+   public String OCRAPI(String imageurl) {
 	   //변경해야하는 변수
       String apiURL = "https://v47hoaxznz.apigw.ntruss.com/custom/v1/14799/07307784035fdc5cb2e003cb3d905a4782d034858b6a4699bf26c9804a378cae/infer";
-      String secretKey = "dGNYV3lVcnpZZWFWa1NybnJnV05IT2hMcVpTeG5jWko=";
+      String secretKey = "TlZEeFhlYnpyTEJWa09PR2pvY0NQWVRXcnRNZURnVkw=";
 
       try {
          URL url = new URL(apiURL);
@@ -42,9 +41,9 @@ public class OCRGeneralAPIDemo {
          //byte[] buffer = new byte[inputStream.available()];
          //inputStream.read(buffer);
          //inputStream.close();
-         image.put("data", file.getBytes());
+         //image.put("data", "");
          image.put("name", "medium");
-         //image.put("url", imageurl);
+         image.put("url", imageurl);
          JSONArray images = new JSONArray();
          images.put(image);
          json.put("images", images);

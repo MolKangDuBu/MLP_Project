@@ -263,6 +263,7 @@
          ,REVIEW_CONTENTS 
          ,REVIEW_WDATE
          ,REVIEW_CATEGORY
+         ,STORE_KEY
   	)values(
   		#{review_id}
   		,#{review_title}
@@ -272,6 +273,7 @@
   		,#{review_contents}
   		,now()
   		,#{review_category}
+  		,#{store_key}
   	)
   	 
    </insert>

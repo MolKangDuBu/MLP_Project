@@ -28,6 +28,7 @@
 		 <mapper resource="/mlp/project/lollipop/mapper/Mark.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Notice.xml"/>
 		 <mapper resource=	"/mlp/project/lollipop/mapper/Qna.xml"/>
+		 <mapper resource=	"/mlp/project/lollipop/mapper/Ocr.xml"/>
 	</mappers>
 	
 </configuration>

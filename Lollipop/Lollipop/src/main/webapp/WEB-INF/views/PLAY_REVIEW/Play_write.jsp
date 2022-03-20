@@ -24,7 +24,7 @@ http://www.tooplate.com/view/2101-insertion
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-
+	
   <script>
     var renderPage = true;
 
@@ -45,9 +45,9 @@ http://www.tooplate.com/view/2101-insertion
 
 <%
  		PLAY_ReviewDto dto = (PLAY_ReviewDto)request.getAttribute("reviewDto");
-		
+		String bnumer= StringUtil.nullToValue(request.getAttribute("bnumber"), "");
     %>
-
+  <input type = "hidden" name = "store_key" id = "store_key" value = "<%=bnumer%>"/>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
