@@ -48,6 +48,7 @@ http://www.tooplate.com/view/2101-insertion
 		String bnumer = StringUtil.nullToValue(request.getAttribute("bnumber"), "");
     %>
 	      	<input type = "hidden" name = "store_key" id = "store_key" value = "<%=bnumer%>"/>
+	      	<input type = "hidden" name = "category" id = "category" value = "<%=dto.getReview_category()%>"/>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -229,7 +230,20 @@ function gosearch(){
 	}
 	let frm = document.writeform;
 	frm.pg.value=0;
-	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+	switch(	document.getElementById("key").value){
+	case 1:
+		frm.action = "<%=request.getContextPath()%>/FOOD_Review/list";
+		break;
+	case 2:
+		frm.action = "<%=request.getContextPath()%>/Cafe_Review/list";
+		break;
+	case 3:
+		frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+		break;
+		
+	}
+	
+	
 	frm.method ="GET";
 	frm.submit();
 }

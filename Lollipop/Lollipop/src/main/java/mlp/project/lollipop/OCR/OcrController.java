@@ -128,7 +128,7 @@ public class OcrController {
 		return "success";
 	}
 	
-	@RequestMapping(value="ocr")
+	@RequestMapping(value="/ocr")
 	public String bucket_upload(Model model, String image_url,HttpServletRequest req, MultipartHttpServletRequest multi) {
 		String path = req.getServletContext().getRealPath("/");
 		
@@ -153,16 +153,20 @@ public class OcrController {
 
 			String storekey = ocrservice.getkey(bnumer);
 			System.out.println(storekey);
+			System.out.println("aaaa");
 			if(storekey !=null) {
+				System.out.println("bbbb");
 				PLAY_ReviewDto dto = new PLAY_ReviewDto();
 		        model.addAttribute("reviewDto", dto);
 				model.addAttribute("bnumber", storekey);
 				return "PLAY_REVIEW/Play_write";	
 			}else {
-				return "/";
+				System.out.println("Ccc");
+				return "index2";
 			}
 		}catch(Exception e) {
-			return "redirect:/";
+			System.out.println("ddd");
+			return "index2";
 		}
 
 	}

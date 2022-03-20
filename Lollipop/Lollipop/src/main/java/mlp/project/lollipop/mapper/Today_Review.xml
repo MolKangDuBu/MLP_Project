@@ -71,10 +71,15 @@
          </if> 
      
  
-      		<if test = 'key =="" and store_key ==null'>
+              <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
-            </if>
+            	STORE_KEY = #{store_key}
+              </if>
+     
+      		<if test = 'key =="" and store_key ==""'>
+            	where REVIEW_ACTIVE = 'Y'
 
+            </if>
          order by REVIEW_HIT desc
          
       ) A

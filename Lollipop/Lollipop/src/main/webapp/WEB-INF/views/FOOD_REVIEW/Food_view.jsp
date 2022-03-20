@@ -196,7 +196,7 @@
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">주소</h2>
                   <p class="mb-4"><%=dto.getReview_address() %></p>
-                    <a href="#none"  onclick="goStore('<%=dto.getStore_key()%>')" class="btn btn-secondary">가게 보기</a>
+                   <a href="#none"  onclick="goStore('<%=dto.getStore_key()%>')" class="btn btn-secondary">가게 보기</a>
                 </div>
                </div>
             </div>

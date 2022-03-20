@@ -73,7 +73,7 @@ http://www.tooplate.com/view/2101-insertion
         <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
           <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
             <i class="fas fa-3x fa-comments mb-4"></i>
-            <h2 class="tm-media-2-header">Login</h2>
+            <h2 class="tm-media-2-header">Upload</h2>
           </div>
           <div class="tm-bg-gray tm-contact-middle">
     

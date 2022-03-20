@@ -85,7 +85,7 @@ public class PLAY_ReviewController {
     }
 
     @RequestMapping(value = "/PLAY_Review/save")
-    public String Review_save(PLAY_ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
+    public String Review_save(String category, PLAY_ReviewDto dto, HttpServletRequest req, MultipartHttpServletRequest multi) {
 
 
         System.out.println("save");
@@ -140,9 +140,21 @@ public class PLAY_ReviewController {
 
          }
         
-
-
+         if(category !=null) {
+	    	     if(category.equals("1")) {
+	   	    	  return "redirect:/FOOD_Review/list";
+	   	     }else if(category.equals("2")) {
+	   	    	  return "redirect:/Cafe_Review/list";
+	   	     }else if(category.equals("3")) {
+	   	    	  return "redirect:/PLAY_Review/list";
+	   	     }
+         }
         return "redirect:/PLAY_Review/list";
+         
+	
+
+
+      
 
     }
 

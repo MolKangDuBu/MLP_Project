@@ -128,7 +128,7 @@ http://www.tooplate.com/view/2101-insertion
              
         </div>
         <div class="container mt-3" style="text-align:right;">
-		 	<a href="<%=request.getContextPath()%>/ocr/getkey" 
+		 	<a href="<%=request.getContextPath()%>/Store/write" 
 						class="btn btn-secondary">글쓰기</a>
        	</div> 
    
