@@ -72,10 +72,17 @@
          </if> 
      
  
+         
+              <if test = 'store_key != null and store_key !=""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	STORE_KEY = #{store_key}
+              </if>
+     
       		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '3'
             </if>
+            
 
          order by REVIEW_KEY desc
          
@@ -157,10 +164,11 @@
          </if> 
      
      
-           <if test = 'store_key !=""'>
+           
+              <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
             	STORE_KEY = #{store_key}
-            </if>
+              </if>
      
       		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
@@ -211,10 +219,11 @@
                 
             </if>
          </if> 
-              <if test = 'store_key !=null and store_key != ""'>
+         
+              <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
             	STORE_KEY = #{store_key}
-            </if>
+              </if>
      
       		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and

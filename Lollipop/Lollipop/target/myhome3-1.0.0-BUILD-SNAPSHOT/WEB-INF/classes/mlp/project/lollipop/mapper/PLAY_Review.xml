@@ -16,6 +16,7 @@
 		,REVIEW_IMAGE2
 		,REVIEW_IMAGE3
 		,REVIEW_WDATE
+		,REVIEW_HIT
 		,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
 		,rnum
 		
@@ -30,6 +31,7 @@
 			,A.REVIEW_IMAGE2
 			,A.REVIEW_IMAGE3
             ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_HIT
             ,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
             ,A.REVIEW_WDATE
 
@@ -70,10 +72,17 @@
          </if> 
      
  
-      		<if test = 'key =="" and store_key ==null'>
+         
+              <if test = 'store_key != null and store_key !=""'>
+            	where REVIEW_ACTIVE = 'Y' and
+            	STORE_KEY = #{store_key}
+              </if>
+     
+      		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '3'
             </if>
+            
 
          order by REVIEW_KEY desc
          
@@ -92,6 +101,7 @@
 		,REVIEW_IMAGE2
 		,REVIEW_IMAGE3
 		,REVIEW_WDATE
+		,REVIEW_HIT
 		,(select C.Store_ADDRESS 
 			from STORE C
 			JOIN REVIEW_BOARD
@@ -109,6 +119,7 @@
 			,A.REVIEW_IMAGE2
 			,A.REVIEW_IMAGE3
             ,A.REVIEW_CONTENTS 
+            ,A.REVIEW_HIT
             ,(select C.Store_ADDRESS 
 			from STORE C
 			JOIN REVIEW_BOARD
@@ -153,12 +164,13 @@
          </if> 
      
      
-           <if test = 'store_key !=null'>
+           
+              <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
             	STORE_KEY = #{store_key}
-            </if>
+              </if>
      
-      		<if test = 'key =="" and store_key ==null'>
+      		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '3'
             </if>
@@ -207,12 +219,13 @@
                 
             </if>
          </if> 
-              <if test = 'store_key !=null and store_key != ""'>
+         
+              <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
             	STORE_KEY = #{store_key}
-            </if>
+              </if>
      
-      		<if test = 'key =="" and store_key ==null'>
+      		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '3'
             </if>

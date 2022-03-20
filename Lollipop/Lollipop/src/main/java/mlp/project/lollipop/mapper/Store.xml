@@ -75,7 +75,7 @@
                   STORE_ACTIVE = 'Y'
             </if>
          </if> 
-         <if test = 'keyword ==""'>
+         <if test = 'key ==""'>
             	where STORE_ACTIVE = 'Y'
             </if>
 
@@ -120,7 +120,7 @@
         
       </if> 
       
-        <if test = 'keyword ==null'>
+        <if test = 'key ==""'>
             	where STORE_ACTIVE = 'Y'
         </if>
    </select>

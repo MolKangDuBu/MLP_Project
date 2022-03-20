@@ -43,19 +43,19 @@
                   REVIEW_ACTIVE = 'Y'                               
             </if>
          
-            <if test='key=="2"'>
+            <if test='key=="3"'>
             where REVIEW_TITLE like concat('%', #{keyword} , '%') and
            		  REVIEW_ACTIVE = 'Y' and
                   REVIEW_CATEGORY = '1'
             </if>
             
-            <if test='key=="3"'>
+            <if test='key=="4"'>
             where REVIEW_CONTENTS like concat('%', #{keyword} , '%') and
            		  REVIEW_ACTIVE = 'Y' and
                   REVIEW_CATEGORY = '2'
             </if>
             
-            <if test='key=="4"'>
+            <if test='key=="5"'>
             where (REVIEW_TITLE like concat('%', #{keyword} , '%') or
                   REVIEW_CONTENTS like concat('%', #{keyword} , '%')) and
                   REVIEW_ACTIVE = 'Y' and
@@ -268,15 +268,16 @@
                 
             </if>
          </if> 
-              <if test = 'store_key !=null and store_key != ""'>
+           <if test = 'store_key != null and store_key !=""'>
             	where REVIEW_ACTIVE = 'Y' and
             	STORE_KEY = #{store_key}
-            </if>
+              </if>
      
       		<if test = 'key =="" and store_key ==""'>
             	where REVIEW_ACTIVE = 'Y' and
             	REVIEW_CATEGORY = '2'
             </if>
+            
 	</select>
 	
 	<insert id = "Review_insert" parameterType="Cafe_ReviewDto" >

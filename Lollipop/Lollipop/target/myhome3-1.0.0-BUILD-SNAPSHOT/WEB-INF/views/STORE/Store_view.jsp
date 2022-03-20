@@ -2,236 +2,278 @@
     <%@page import="java.util.*" %>
         <%@page import="mlp.project.lollipop.STORE.*" %>
             <%@page import="mlp.project.lollipop.common.*" %>
-                <!DOCTYPE html>
-                <html lang="ko">
+              <!DOCTYPE html>
+<html lang="en">
 
-                <head>
-                    <meta charset="utf-8">
-                    <title>롤리팝 맛집</title>
-                    <base href="/">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <meta name="og:locale" content="ko_KR">
-                    <link rel="icon" type="image/x-icon" href="favicon.ico">
-                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-                        rel="stylesheet">
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-                    <link rel="stylesheet"
-                        href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;display=swap">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Insertion - About Page</title>
+<!--
 
-                    <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
-                    <script type="text/javascript" src="/lollipop/ckfinder/ckfinder.js"></script>
-                    <%@include file="../include/board.jsp" %>
-				  <style>
-				     /* 캐러셀(이미지슬라이드) 이미지 크기변경 */
-				      .carousel-inner{
-				        width:100%;
-				        height:500px; /* 이미지 높이 변경 */
-				      }
-				      .carousel-item{
-				        width: 100%;
-				        height:100%;
-				      }
-				      .d-block {
-				        display:block;
-				        width: 100%;
-				        height: 100%;
-				      }
-				      </style>
-                </head>
+Template 2101 Insertion
 
-                <body>
+http://www.tooplate.com/view/2101-insertion
 
-			
-                    <form name="viewform" id="viewform" method="post" enctype="multipart/form-data">
-					
-                        <% StoreDto dto=(StoreDto)request.getAttribute("StoreDto"); %>
-						<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">  
-						<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">
-						<input type ="hidden" id = store_name name =store_name value="<%=dto.getStore_name() %>">
-						<input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">                      
-                            <div style="width: 50%; margin: auto;">
-                                <!-- Navigation-->
+-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- load CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
+<!-- load JS -->
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+  <script>
+    var renderPage = true;
 
-                                <%@include file="../include/nav.jsp" %>
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+      || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in. */
+      alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+      renderPage = false;
+    }
+  </script>
 
-                                    <app-root _nghost-sc29="" ng-version="9.1.0">
-                                        <!---->
-                                        <router-outlet _ngcontent-sc29=""></router-outlet>
-                                        <app-main-layout _nghost-sc105="">
-       
-                                            <!---->
-                                            <app-responsive-container _ngcontent-sc105="" _nghost-sc79="">
-                                                <main _ngcontent-sc105="">
-                                                    <router-outlet _ngcontent-sc105=""></router-outlet>
-                                                    <app-poi-list _nghost-sc102="">
-                                                        <ngx-json-ld _ngcontent-sc102="">
+</head>
 
-                                                        </ngx-json-ld>
-                                                        <!---->
-                                                        <!---->
-                                                        <div _ngcontent-sc102="" class="title-container">
-                                                            <div _ngcontent-sc102="" class="short-region-mobile">서울 강남구
-                                                            </div>
-                                                            <h1 _ngcontent-sc102="" style ="text-align: center"><span _ngcontent-sc102="" 
-                                                                    class="short-region-desktop"><%=dto.getStore_name()%></span>
-                                                            </h1>
-                                                        </div>
-                                                  
+<body>
+<form id ="viewform" name ="viewform">
+ <% StoreDto dto=(StoreDto)request.getAttribute("StoreDto"); %>
 
-                                                             
-                                                                        <div id="carouselExampleIndicators"
-                                                                            class="carousel slide"
-                                                                            data-bs-ride="carousel">
-                                                                            <div class="carousel-indicators">
-                                                                                <button type="button"
-                                                                                    data-bs-target="#carouselExampleIndicators"
-                                                                                    data-bs-slide-to="0" class="active"
-                                                                                    aria-current="true"
-                                                                                    aria-label="Slide 1"></button>
-                                                                                <button type="button"
-                                                                                    data-bs-target="#carouselExampleIndicators"
-                                                                                    data-bs-slide-to="1"
-                                                                                    aria-label="Slide 2"></button>
-                                                                                <button type="button"
-                                                                                    data-bs-target="#carouselExampleIndicators"
-                                                                                    data-bs-slide-to="2"
-                                                                                    aria-label="Slide 3"></button>
-                                                                            </div>
-                                                                            <div class="carousel-inner">
-                                                                                 <% if(dto.getStore_image1()!=null){%>
-                                                                                <div class="carousel-item active">
-                                                                                    <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image1()%>"
-                                                                                        class="d-block w-100" alt="..." height="20%">
-                                                                                </div>
-                                                                                <%}%>
-                                                                                   <% if(dto.getStore_image2()!=null){%>
-                                                                                <div class="carousel-item">
-                                                                                    <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image2()%>"
-                                                                                        class="d-block w-100" alt="..." height="20%">
-                                                                                </div>
-                                                                                 <%}%>
-                                                                                   <% if(dto.getStore_image3()!=null){%>
-                                                                                <div class="carousel-item">
-                                                                                    <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image3()%>"
-                                                                                        class="d-block w-100" alt="..." height="20%">
-                                                                                </div>
-                                                                                 <%}%>
-                                                                            </div>
-                                                                            <button class="carousel-control-prev"
-                                                                                type="button"
-                                                                                data-bs-target="#carouselExampleIndicators"
-                                                                                data-bs-slide="prev">
-                                                                                <span class="carousel-control-prev-icon"
-                                                                                    aria-hidden="true"></span>
-                                                                                <span
-                                                                                    class="visually-hidden">Previous</span>
-                                                                            </button>
-                                                                            <button class="carousel-control-next"
-                                                                                type="button"
-                                                                                data-bs-target="#carouselExampleIndicators"
-                                                                                data-bs-slide="next">
-                                                                                <span class="carousel-control-next-icon"
-                                                                                    aria-hidden="true"></span>
-                                                                                <span
-                                                                                    class="visually-hidden">Next</span>
-                                                                            </button>
-                                                                        </div>
-                                                                
-                                                                    <hr style="margin-top:13px;">
-                                                                    <div>
-                                                                       
-                                                                            <span style ="margin-left:5%">가게 번호</span>
-                                                                            <span style ="margin-left:5%"><%=dto.getStore_number() %></span>
-                                                                        
-                                                                    </div>
-                                                                   <hr style="margin-top:13px;">
-                                                                    <div>                                                                 	
-                                                                       
-                                                                            <span style ="margin-left:5%">가게 주소</span>
-                                                                             <span style ="margin-left:5%"><%=dto.getStore_address() %></span>
-                                                                     
-                                                                    </div>
-                                                                     <hr style="margin-top:13px;">
-                                                                    <div>
-                                                                       
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
 
-                                                                            <p style ="margin-left:5%">가게 정보</p>
-																			<div style = "margin-left:5%"><%=dto.getStore_info() %></div>
-                                                    
-      													<hr style="margin-top:13px;">
-                                                        <div _ngcontent-sc102="" class="content-container">
-                                                            <app-poi-item _ngcontent-sc102="" _nghost-sc99="">
-                                                                <div class="container mt-3" style="text-align:right;">
+  <div class="tm-main">
+
+    <div class="tm-welcome-section">
+     <%@include file="../include/nav.jsp" %>
+
+      <div class="container text-center tm-welcome-container">
+        <div class="tm-welcome">
+          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
+          <p class="tm-site-description">New HTML Website Template</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+     <%@include file="../include/search.jsp" %>
+
+
+<input type ="hidden" id = store_bnumber name =store_bnumber value="<%=dto.getStore_bnumber() %>">  
+<input type ="hidden" id = store_key name =store_key value="<%=dto.getStore_key() %>">
+<input type ="hidden" id = store_name name =store_name value="<%=dto.getStore_name() %>">
+<input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">
+
+      <div class="row tm-about-row tm-mt-big tm-mb-medium">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-about-col-left">
+          <div class="tm-v-center tm-bg-gray h-100 tm-about-text">
+            <h2 class="tm-text-brown mb-4 tm-about-h2"><%=dto.getStore_name() %></h2>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+     <% if(dto.getStore_image1()!=null){%>
+    <div class="carousel-item active">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image1()%>"  height = "336px" width = "560px" alt="Los Angeles">
+    </div>
+    <%} %>
+     <% if(dto.getStore_image2()!=null){%>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image2()%>"  height = "336px" width = "560px" alt="Los Angeles">
+    </div>
+    <%} %>
+     <% if(dto.getStore_image3()!=null){%>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image3()%>"  height = "336px" width = "560px" alt="Los Angeles">
+    </div>
+    <%} %>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+
+         
+      
+        </div>
+      </div>
+
+      <div class="row tm-about-row tm-mb-medium">
+        <div class="tm-tab-links-container">
+    
+
+          <ul class="nav nav-tabs" id="tmTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">
+                <i class="fas fa-2x fa-music pr-4"></i>
+                <p class="media-body mb-0 tm-media-link">가게 번호</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="profile-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="profile" aria-selected="false">
+                <i class="fab fa-2x fa-accusoft pr-4"></i>
+                <p class="media-body mb-0 tm-media-link">가게 주소</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="contact-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="contact" aria-selected="false">
+                <i class="fab fa-2x fa-amazon-pay pr-4"></i>
+                <p class="media-body mb-0 tm-media-link">리뷰</p>
+              
+              </a>
+            </li>
+            
+          </ul>
+
+        </div>
+
+        <div class="tm-tab-content-container">
+          
+          <div class="tab-content h-100 tm-bg-gray" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+              <div class="media tm-media-2">
+                <i class="fas fa-5x fa-music mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                <div class="media-body tm-media-body-2">
+                  <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">가게 번호</h2>
+                  <p class="mb-4"><%=dto.getStore_number() %></p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+              <div class="media tm-media-2">
+                <i class="fab fa-5x fa-accusoft mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                <div class="media-body tm-media-body-2">
+                  <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">가게 주소</h2>
+                  <p class="mb-4"><%=dto.getStore_address() %></p>
+     
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+              <div class="media tm-media-2">
+                <i class="fab fa-5x fa-amazon-pay mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                <div class="media-body tm-media-body-2">
+                  <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">리뷰</h2>
+                  <p class="mb-4"><%=dto.getStore_info()%></p>
+                    <a href="#none"  onclick="goReview('<%=dto.getStore_category()%>')" class="btn btn-secondary">Read More</a>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+             <div class="container mt-3" style="text-align:right;">
                                                                
-                                                                   <%if(user_id.equals("admin")) {%>
-                                                                    <button class="btn btn-secondary" type="button"
-                                                                        onclick="gomodify()">수정</button>
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                        onclick="godelete()">삭제</button>
-                                                                	<%} %>
-                                                                	   <button class="btn btn-secondary" type="button"
-                                                                        onclick="goReview('<%=dto.getStore_category()%>')">리뷰 보기</button>
-                                                                </div>
-                                                                <div _ngcontent-sc99="" class="divider-container">
-                                                                    <app-divider _ngcontent-sc99="" _nghost-sc98="">
-                                                                    </app-divider>
-                                                                </div>
-                                                            </app-poi-item>
-
-                                                        </div>
-                                                    </app-poi-list>
-
-                                                </main>
-                                                <app-footer _ngcontent-sc105="" _nghost-sc92="">
-                                                    <div _ngcontent-sc92="" class="footer-container">
-                                                        <div _ngcontent-sc92="" class="policy-links">
-                                                            <a _ngcontent-sc92="" href="https://www.daangn.com"
-                                                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; ·
-                                                            &nbsp;
-                                                            <a _ngcontent-sc92=""
-                                                                href="https://www.daangn.com/policy/terms"
-                                                                target="_blank"> 이용약관 </a> &nbsp; · &nbsp;
-                                                            <a _ngcontent-sc92=""
-                                                                href="https://www.daangn.com/policy/privacy"
-                                                                target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp;
-                                                            <a _ngcontent-sc92=""
-                                                                href="https://www.daangn.com/policy/location"
-                                                                target="_blank"> 위치기반 서비스 이용약관 </a>
-                                                        </div>
-                                                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92="">
-                                                                고객문의 cs@lollipopservice.com
-                                                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com
-                                                            </span><span _ngcontent-sc92="">
-                                                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92="">
-                                                                PR문의 pr@lollipop.com </span>
-                                                        </div>
-                                                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길
-                                                            28, 609호 (롤리팝 서비스) 사업자 등록번호 :
-                                                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016
-                                                        </div>
-                                                        <div _ngcontent-sc92="" class="copyright"> Copyright © Lollipop
-                                                            Market Inc. All rights reserved.
-                                                        </div>
-                                                    </div>
-                                                </app-footer>
-                                            </app-responsive-container>
-                                        </app-main-layout>
-                                        <!---->
-                                    </app-root>
-                    </form>
-                </body>
-
-                </html>
+                <%if(user_id.equals("admin")) {%>
+                 <button class="btn btn-secondary" type="button"
+                     onclick="gomodify()">수정</button>
+                     <button class="btn btn-secondary" type="button"
+                     onclick="godelete()">삭제</button>
+             	<%} %>
+             	  
+             </div>
+      </div>
 
 
- <script>
+      <!-- Bottom links -->
+      <div class="row tm-about-row tm-mb-medium">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
+          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
+          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
+          <h4 class="mb-4 tm-font-300">Our Pages</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
+          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+          <h4 class="mb-4 tm-font-300">Quick Links</h4>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
+          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
+          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
+        </div>
+      </div>
+ 
+      <footer class="row tm-about-row">
+        <div class="col-xl-12">
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
+          
+          - Design:  Tooplate</p>
+        </div>
+      </footer>
+    </div> <!-- .container -->
 
-     window.onload = function () {
+  </div> <!-- .main -->
+  
+  <script>
 
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function () {
+
+      if (renderPage) {
+        $('body').addClass('loaded');
+      }
+
+      $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+
+  </script>
+       </form>
+</body>
+</html>
+
+<script>
+   window.onload = function () {
+		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		if('<%=key%>' !=""){
+		let key = '<%=key%>';
+		document.getElementById("searchItem").innerHTML = texts[key];
+		}else{
+		document.getElementById("searchItem").innerHTML = texts[0];
+		}
      };
-	function goReview(category){
+	
+     function goReview(category){
 		console.log($("#store_category").val());	
 		 var frm = document.viewform
 		switch(category){
@@ -241,7 +283,7 @@
 	         frm.submit();
 			break;
 		case '2':
-			frm.action ="<%=request.getContextPath()%>/CAFE_Review/list";
+			frm.action ="<%=request.getContextPath()%>/Cafe_Review/list";
 			 frm.method = "post";
 	         frm.submit();
 			break;
@@ -252,7 +294,15 @@
 			break;
 		}
 	}
-     
+	
+     function changeSearch(id){
+    		
+    		var texts =['','전체','','음식', '카페', '놀거리'];
+    		document.getElementById("searchItem").innerHTML = texts[id];
+    		document.getElementById("key").value = id;
+    		document.getElementById("keyword").value= "";
+    	}
+
      function gomodify() {
          var frm = document.viewform
          frm.action = "<%=request.getContextPath()%>/Store/modify";
@@ -268,5 +318,18 @@
          frm.method = "post";
          frm.submit();
      }
+     function gosearch(){
+    		if(document.getElementById("key").value ==0){
+    			alert("카테고리를 선택해주세요.");
+    			return false;
+    		}
+    		let frm = document.viewform;
+    		frm.pg.value=0;
+    		frm.action = "<%=request.getContextPath()%>/Store/list";
+    		frm.method ="GET";
+    		frm.submit();
+    	}
+     
 
- </script>
+
+</script>

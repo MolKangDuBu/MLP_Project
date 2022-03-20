@@ -25,17 +25,15 @@ public class Cafe_ReviewController {
 	@RequestMapping(value = "/Cafe_Review/list")
 	public String Review_list(Model model, Cafe_ReviewDto dto, String store_name) {
 		
-//		System.out.println("list key=====>" + dto.getKey());
-//		System.out.println("list keyword=====>" + dto.getKeyword());
-//		System.out.println("list keyword=====>" + dto.getStore_key());
+		System.out.println("list key=====>" + dto.getKey());
+		System.out.println("list keyword=====>" + dto.getKeyword());
+		System.out.println("list keyword=====>" + dto.getStore_key());
 		
 		dto.setStart( dto.getPg()*10);
 	
 		List<Cafe_ReviewDto> list = reviewservice.getList(dto);
 		
-		for(Cafe_ReviewDto tempDto : list) {
-			System.out.println(tempDto.getReview_title());
-		}
+
 		if(store_name !=null) {
 			model.addAttribute("title", store_name);
 		}else {

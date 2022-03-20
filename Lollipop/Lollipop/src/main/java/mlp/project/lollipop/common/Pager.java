@@ -70,7 +70,8 @@ public class Pager {
 			boolean hasNextPage = pageGroupStart + pageGroupSize < pageTotal;
 			//다음페이지로 갈 수 있는가 여부 
 			
-			sb.append("<ul class='pagination' justify-context-center>\r\n") ;  
+			sb.append("<ul class='pagination' style=' align-items: center;"
+					+ "justify-content: center;'>\r\n") ;  
 			
 			//  <<  < 
 			sb.append((cpage > 0) ? makeLink(0, beginLabel) : 

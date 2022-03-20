@@ -15,6 +15,7 @@
 		,REVIEW_IMAGE2
 		,REVIEW_IMAGE3
 		,REVIEW_WDATE
+		,REVIEW_HIT
 		,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
 		,rnum
 		
@@ -31,6 +32,7 @@
             ,A.REVIEW_CONTENTS 
             ,(select C.Store_ADDRESS from STORE C where C.STORE_KEY = A.STORE_KEY) as REVIEW_ADDRESS
             ,A.REVIEW_WDATE
+            ,REVIEW_HIT
 
              ,@rownum := @rownum+1 AS rnum
             from REVIEW_BOARD A, (select @rownum:=0) B

@@ -250,10 +250,13 @@
 
 
 window.onload = function(){
-	
+	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	if('<%=key%>' !=""){
 	let key = '<%=key%>';
-	var texts =['','전체','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[key];
+	}else{
+	document.getElementById("searchItem").innerHTML = texts[0];
+	}
 }
 			
 function changeSearch(id){
@@ -268,6 +271,7 @@ function goStore(store_key){
 	console.log($("#store_key").val());
 	 var frm = document.viewform
 	 frm.store_key.value=store_key;
+	 
 	 frm.action ="<%=request.getContextPath()%>/Store/view";
 }
 
@@ -299,7 +303,11 @@ function goDelete()
 	frm.submit();	
 }
 function gosearch(){
-	let frm = document.listform;
+	if(document.getElementById("key").value ==0){
+		alert("카테고리를 선택해주세요.");
+		return false;
+	}
+	let frm = document.viewform;
 	frm.pg.value=0;
 	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
 	frm.method ="GET";

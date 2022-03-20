@@ -25,8 +25,8 @@ public class StoreController {
 	
 	 @RequestMapping(value = "/Store/list")
 	    public String Store_list(Model model, StoreDto dto,HttpServletRequest request, HttpServletResponse response) {
-	        System.out.println(dto.getKey());
-	        System.out.println(dto.getKeyword());
+	        System.out.println("key 값 :"+dto.getKey());
+	        System.out.println("keyword 값 : "+dto.getKeyword());
 	        dto.setStart(dto.getPg() * 10);
 	        HttpSession session = request.getSession();
 			String userid =(String) session.getAttribute("user_id");

@@ -25,11 +25,12 @@ public class PLAY_ReviewController {
     
     @RequestMapping(value = "/PLAY_Review/list")
     public String Review_list(Model model, PLAY_ReviewDto dto, String store_key, String store_name) {
-        System.out.println(dto.getKey());
-        System.out.println(dto.getKeyword());
+        System.out.println("key값 : "+dto.getKey());
+        System.out.println("keyword값 : "+dto.getKeyword());
         
         int pg = dto.getPg();
     	dto.setStart((pg)*dto.getPageSize());
+    	System.out.println("store_key : "+ store_key);
     	if(store_key != null) {
     		dto.setStore_key(store_key);
     		List<PLAY_ReviewDto> list = reviewservice.searchlist(dto);

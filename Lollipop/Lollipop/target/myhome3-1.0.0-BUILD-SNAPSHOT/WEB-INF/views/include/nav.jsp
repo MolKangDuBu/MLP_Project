@@ -11,18 +11,36 @@ String user_mail= StringUtil.nullToValue(session.getAttribute("user_mail"), "");
 String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), "");
 %>
 
-     <nav style ="background-color: rgba(241, 19, 123, 0.863);"> 
-            <div class="container">
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="${commonURL}/User/login">로그인</a>
-                    </li>              
-                    <li class="nav-item">
-                        <a class="nav-link" href="${commonURL}/User/signup">회원가입</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">고객센터</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+
+
+      <div class="container tm-navbar-container">
+        <div class="row">
+          <div class="col-xl-12">
+            <nav class="navbar navbar-expand-sm">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a href="${commonURL}/" class="nav-link tm-nav-link tm-text-white active">Home</a>
+                </li>
+                  <li class="nav-item">
+                  <a href="${commonURL}/Store/list" class="nav-link tm-nav-link tm-text-white">Store</a>
+                </li>
+                <li class="nav-item">
+                  <a href="${commonURL}/notice/list" class="nav-link tm-nav-link tm-text-white">Notice</a>
+                </li>
+           
+                     <%if(user_id==null || user_id.equals("")){ %>
+                <li class="nav-item">
+                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
+                </li>
+                <%}else{%>
+                
+                <li class="nav-item">
+                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mypage</a>
+                </li>
+
+                <%} %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>

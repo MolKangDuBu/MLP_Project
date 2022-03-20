@@ -198,14 +198,17 @@
 
 <script>
 window.onload = function(){
-	
+	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	if('<%=key%>' !=""){
 	let key = '<%=key%>';
-	var texts =['','전체','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[key];
+	}else{
+	document.getElementById("searchItem").innerHTML = texts[0];
+	}
 }
 			
 function changeSearch(id){
-	
+
 	var texts =['','전체','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
@@ -213,6 +216,10 @@ function changeSearch(id){
 }
 
 function gosearch(){
+	if(document.getElementById("key").value ==0){
+		alert("카테고리를 선택해주세요.");
+		return false;
+	}
 	let frm = document.listform;
 	frm.pg.value=0;
 	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
@@ -230,7 +237,6 @@ function goPage(pg){
 }
 
 function goView(id){
-
 	frm = document.listform;
 	frm.review_key.value = id;
 	frm.method = "get";

@@ -17,6 +17,8 @@ Template 2101 Insertion
 http://www.tooplate.com/view/2101-insertion
 
 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- load CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
@@ -170,6 +172,17 @@ http://www.tooplate.com/view/2101-insertion
 
 <script>
 
+window.onload = function(){
+	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	if('<%=key%>' !=""){
+	let key = '<%=key%>';
+	document.getElementById("searchItem").innerHTML = texts[key];
+	}else{
+	document.getElementById("searchItem").innerHTML = texts[0];
+	}
+}
+
+
 function Signup(){
 	
 		 if ($("#user_password").val() !== $("#password2").val()) {
@@ -248,7 +261,11 @@ function changeSearch(id){
 }
 
 function gosearch(){
-	let frm = document.listform;
+	if(document.getElementById("key").value ==0){
+		alert("카테고리를 선택해주세요.");
+		return false;
+	}
+	let frm = document.joinForm;
 	frm.pg.value=0;
 	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
 	frm.method ="GET";

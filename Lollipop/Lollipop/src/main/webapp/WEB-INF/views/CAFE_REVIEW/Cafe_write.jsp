@@ -215,6 +215,15 @@ window.onload = function(){
 	   $("#position").val("<%=dto.getReview_category()%>").prop("selected", true);  
 	   document.getElementById("Review_category").value = <%=dto.getReview_category()%>
 
+
+		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		if('<%=key%>' !=""){
+		let key = '<%=key%>';
+		document.getElementById("searchItem").innerHTML = texts[key];
+		}else{
+		document.getElementById("searchItem").innerHTML = texts[0];
+		}
+	
 	 
 };
 function add(){
@@ -238,7 +247,11 @@ function changeSearch(id){
 }
 
 function gosearch(){
-	let frm = document.listform;
+	if(document.getElementById("key").value ==0){
+		alert("카테고리를 선택해주세요.");
+		return false;
+	}
+	let frm = document.writeform;
 	frm.pg.value=0;
 	frm.action = "<%=request.getContextPath()%>/Cafe_Review/list";
 	frm.method ="GET";

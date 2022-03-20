@@ -17,12 +17,16 @@ Template 2101 Insertion
 http://www.tooplate.com/view/2101-insertion
 
 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- load CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-
+<!-- load JS -->
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
   <script>
     var renderPage = true;
 
@@ -239,9 +243,7 @@ http://www.tooplate.com/view/2101-insertion
     </div> <!-- .container -->
 
   </div> <!-- .main -->
-  <!-- load JS -->
-  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
-  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+  
   <script>
 
     /* DOM is ready
@@ -262,7 +264,13 @@ http://www.tooplate.com/view/2101-insertion
 
 <script>
    window.onload = function () {
-
+		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		if('<%=key%>' !=""){
+		let key = '<%=key%>';
+		document.getElementById("searchItem").innerHTML = texts[key];
+		}else{
+		document.getElementById("searchItem").innerHTML = texts[0];
+		}
      };
 	
      function goReview(category){
@@ -311,7 +319,11 @@ http://www.tooplate.com/view/2101-insertion
          frm.submit();
      }
      function gosearch(){
-    		let frm = document.listform;
+    		if(document.getElementById("key").value ==0){
+    			alert("카테고리를 선택해주세요.");
+    			return false;
+    		}
+    		let frm = document.viewform;
     		frm.pg.value=0;
     		frm.action = "<%=request.getContextPath()%>/Store/list";
     		frm.method ="GET";

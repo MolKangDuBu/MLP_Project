@@ -90,8 +90,6 @@
  				<!-- 검색창 -->
 	 	<div class="container">
   <%@include file="../include/search.jsp" %>
-   <input type="hidden" name="key" id="key" value="<%=key%>"/>
-	<input type="hidden" name="pg"  id="pg" value="<%=pg%>"/>
 	<input type="hidden" name="review_id"  id="review_id" value=""/>
 	<input type="hidden" name="review_key"  id="review_key" value="0"/>
 	<input type="hidden" name="store_key" id="store_key" value=""/>
@@ -190,13 +188,21 @@
 
 window.onload = function(){
 	
+	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	if('<%=key%>' !=""){
 	let key = '<%=key%>';
-	var texts =['','전체','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[key];
+	}else{
+	document.getElementById("searchItem").innerHTML = texts[0];
+	}
 }
 
-	function goSearch()
+	function gosearch()
 	{
+		if(document.getElementById("key").value ==0){
+			alert("카테고리를 선택해주세요.");
+			return false;
+		}
 		let frm = document.listform;
 		frm.pg.value=0;
 		frm.action = "<%=request.getContextPath()%>/Cafe_Review/list";
