@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - Login Page</title>
+  <title>아이디 찾기</title>
 
 <!--
 
@@ -55,11 +55,13 @@ http://www.tooplate.com/view/2101-insertion
 
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
- <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
           <p class="tm-site-description"></p>
         </div>
-      </div>
+        </div>
 
     </div>
 
@@ -97,46 +99,21 @@ http://www.tooplate.com/view/2101-insertion
              <div>
                <h2 class="tm-media-2-header tm-text-pink-dark mb-3">Our Location</h2>
                <address class="mb-4">
-                 990 Maecenas lobortis dolor,<br>
-                 Euismod leo, scelerisque <br>
-                 10550 finibus
+                 	서울특별시 강남구 언주로 508<br>
+                 (역삼동 701번지)  <br>
+                 서울상록빌딩 12~17층
                </address>
-                <p class="mb-0">Tel: <a href="tel:+0100200980" class="tm-link-gray">010-020-0980</a></p>
-                <p class="mb-0">Fax: <a href="tel:+0900800770" class="tm-link-gray">090-080-0770</a></p>
+                <p class="mb-0">Tel: <a href="tel:+0100000001" class="tm-link-gray">010-0000-0001</a></p>
+                <p class="mb-0">Fax: <a href="tel:+0100000002" class="tm-link-gray">010-0000-0002</a></p>
              </div>
           </div>
         </div>
       </div>
 
       <!-- Bottom links -->
-      <div class="row tm-about-row tm-mb-medium">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
-          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Our Pages</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
-          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-          <h4 class="mb-4 tm-font-300">Quick Links</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
-          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
-        </div>
-      </div>
-      <footer class="row tm-about-row">
+      <footer class="row">
         <div class="col-xl-12">
-          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
-          
-          - Design:  Tooplate</p>
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
         </div>
       </footer>
     </div> <!-- .container -->
@@ -171,7 +148,7 @@ http://www.tooplate.com/view/2101-insertion
 <script>
 
 window.onload = function(){
-	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 	if('<%=key%>' !=""){
 	let key = '<%=key%>';
 	document.getElementById("searchItem").innerHTML = texts[key];
@@ -182,7 +159,7 @@ window.onload = function(){
 		
 function changeSearch(id){
 	
-	var texts =['','전체','','음식', '카페', '놀거리'];
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";

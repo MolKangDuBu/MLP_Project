@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion HTML5 Template</title>
+  <title>즐겨찾기</title>
 <!--
 
 Template 2101 Insertion
@@ -56,9 +56,12 @@ http://www.tooplate.com/view/2101-insertion
 
     <div class="tm-welcome-section">
     <%@include file="../include/nav.jsp" %>
+    
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
           <h1 class="text-uppercase mb-3 tm-site-name"></h1>
           <p class="tm-site-description"></p>
         </div>
@@ -75,8 +78,8 @@ http://www.tooplate.com/view/2101-insertion
     <input type="hidden" value="<%=user_id%>" id="login_user_id" >
   <div class="row">
         <div class="col-lg-12">
-          <div class="tm-tag-line">
-          <h2 class="tm-tag-line-title">Store_board</h2>
+          <div class="tm-tag-line-mark">
+          <h2 class="tm-tag-line-title">즐겨찾기</h2>
           </div>
         </div>
       </div>
@@ -99,11 +102,11 @@ http://www.tooplate.com/view/2101-insertion
            	 <%if(user_id!=null && !user_id.equals("")){ %>
                   <% if (tempDto.getStore_mark().equals("N")){ %>
                 <div class="tm-buy-box">
-                	<img src="${pageContext.request.contextPath}/resources/img/markoff.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
+                	<img src="${pageContext.request.contextPath}/resources/img/markoff.png" style="width:25px; height:25px; margin-top:30px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
                 </div>
              	 <%} else { %>
                 <div class="tm-buy-box">
-                  <img src="${pageContext.request.contextPath}/resources/img/markon.png" style="width:25px; height:25px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
+                  <img src="${pageContext.request.contextPath}/resources/img/markon.png" style="width:30px; height:30px; margin-top:30px;" onclick="addMarkList('<%=tempDto.getStore_key()%>')">
                 </div>
              	<%}%>
              <%} %>
@@ -120,36 +123,9 @@ http://www.tooplate.com/view/2101-insertion
 
    
       </div>
-
-      <div class="row tm-mb-medium">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
-          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Our Pages</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
-          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-          <h4 class="mb-4 tm-font-300">Quick Links</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
-          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
-        </div>
-      </div>
-    
       <footer class="row">
         <div class="col-xl-12">
-          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
-          
-          - Design:  Tooplate</p>
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
         </div>
       </footer>
     </div> <!-- .container -->
@@ -191,7 +167,7 @@ window.onload = function(){
 			
 function changeSearch(id){
 	
-	var texts =['','전체','','음식', '카페', '놀거리'];
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";

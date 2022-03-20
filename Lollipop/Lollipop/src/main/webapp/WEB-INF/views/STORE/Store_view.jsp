@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@page import="java.util.*" %>
-        <%@page import="mlp.project.lollipop.STORE.*" %>
-            <%@page import="mlp.project.lollipop.common.*" %>
-              <!DOCTYPE html>
+<%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.STORE.*" %>
+<%@page import="mlp.project.lollipop.common.*" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - About Page</title>
+  <title>스토어-게시글</title>
 <!--
 
 Template 2101 Insertion
@@ -58,13 +58,14 @@ http://www.tooplate.com/view/2101-insertion
 
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-          <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
-          <p class="tm-site-description">New HTML Website Template</p>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="tm-site-description"></p>
         </div>
       </div>
-
-    </div>
+     </div>
 
     <div class="container">
      <%@include file="../include/search.jsp" %>
@@ -75,10 +76,13 @@ http://www.tooplate.com/view/2101-insertion
 <input type ="hidden" id = store_name name =store_name value="<%=dto.getStore_name() %>">
 <input type ="hidden" id =store_category name =store_category value ="<%=dto.getStore_category()%>">
 
-      <div class="row tm-about-row tm-mt-big tm-mb-medium">
+     <div class="row tm-about-row tm-mt-big tm-mb-medium">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-about-col-left">
-          <div class="tm-v-center tm-bg-gray h-100 tm-about-text">
-            <h2 class="tm-text-brown mb-4 tm-about-h2"><%=dto.getStore_name() %></h2>
+          <div class="tm-v-center tm-bg-gray h-50 tm-about-text">
+            <h1 class="tm-text-brown mb-4 tm-about-h1"><%=dto.getStore_name() %></h1>
+          </div>
+          <div class="tm-v-center2 tm-bg-gray h-50 tm-about-text">
+            <h2 class="tm-text-brown mb-4 tm-about-h2"><%=dto.getStore_info() %></h2>
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -94,19 +98,19 @@ http://www.tooplate.com/view/2101-insertion
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-     <% if(dto.getStore_image1()!=null){%>
+     <% if(dto.getStore_image1()!=null && !dto.getStore_image1().equals("")){%>
     <div class="carousel-item active">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image1()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image1()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
-     <% if(dto.getStore_image2()!=null){%>
+     <% if(dto.getStore_image2()!=null && !dto.getStore_image2().equals("")){%>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image2()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image2()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
-     <% if(dto.getStore_image3()!=null){%>
+     <% if(dto.getStore_image3()!=null && !dto.getStore_image3().equals("")){%>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image3()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getStore_image3()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
   </div>
@@ -129,30 +133,30 @@ http://www.tooplate.com/view/2101-insertion
       <div class="row tm-about-row tm-mb-medium">
         <div class="tm-tab-links-container">
     
-
           <ul class="nav nav-tabs" id="tmTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">
-                <i class="fas fa-2x fa-music pr-4"></i>
+				<img src="${pageContext.request.contextPath}/resources/img/phone.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fas fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">가게 번호</p>
+                
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="profile-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="profile" aria-selected="false">
-                <i class="fab fa-2x fa-accusoft pr-4"></i>
+                <img src="${pageContext.request.contextPath}/resources/img/waddress.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fab fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">가게 주소</p>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="contact-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="contact" aria-selected="false">
-                <i class="fab fa-2x fa-amazon-pay pr-4"></i>
+                <img src="${pageContext.request.contextPath}/resources/img/review.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fab fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">리뷰</p>
-              
-              </a>
+               </a>
             </li>
-            
           </ul>
-
         </div>
 
         <div class="tm-tab-content-container">
@@ -160,36 +164,39 @@ http://www.tooplate.com/view/2101-insertion
           <div class="tab-content h-100 tm-bg-gray" id="myTabContent">
             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
               <div class="media tm-media-2">
-                <i class="fas fa-5x fa-music mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/phone.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">가게 번호</h2>
                   <p class="mb-4"><%=dto.getStore_number() %></p>
-
                 </div>
               </div>
             </div>
-
+            
             <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
               <div class="media tm-media-2">
-                <i class="fab fa-5x fa-accusoft mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/waddress.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">가게 주소</h2>
                   <p class="mb-4"><%=dto.getStore_address() %></p>
-     
-                </div>
+                 </div>
               </div>
             </div>
 
             <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
               <div class="media tm-media-2">
-                <i class="fab fa-5x fa-amazon-pay mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/waddress.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">리뷰</h2>
-                  <p class="mb-4"><%=dto.getStore_info()%></p>
-                    <a href="#none"  onclick="goReview('<%=dto.getStore_category()%>')" class="btn btn-secondary">Read More</a>
-
+                  <p class="mb-4"><%=dto.getStore_info() %></p>
+                    <a href="#none"  onclick="goReview('<%=dto.getStore_category()%>')" class="btn btn-secondary">리뷰 보기</a>
                 </div>
-              </div>
+               </div>
             </div>
 
           </div>
@@ -209,35 +216,9 @@ http://www.tooplate.com/view/2101-insertion
 
 
       <!-- Bottom links -->
-      <div class="row tm-about-row tm-mb-medium">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
-          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Our Pages</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
-          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-          <h4 class="mb-4 tm-font-300">Quick Links</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
-          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
-        </div>
-      </div>
- 
-      <footer class="row tm-about-row">
+      <footer class="row">
         <div class="col-xl-12">
-          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
-          
-          - Design:  Tooplate</p>
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
         </div>
       </footer>
     </div> <!-- .container -->
@@ -264,7 +245,7 @@ http://www.tooplate.com/view/2101-insertion
 
 <script>
    window.onload = function () {
-		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 		if('<%=key%>' !=""){
 		let key = '<%=key%>';
 		document.getElementById("searchItem").innerHTML = texts[key];
@@ -297,7 +278,7 @@ http://www.tooplate.com/view/2101-insertion
 	
      function changeSearch(id){
     		
-    		var texts =['','전체','','음식', '카페', '놀거리'];
+    		var texts =['','전체보기','','음식', '카페', '놀거리'];
     		document.getElementById("searchItem").innerHTML = texts[id];
     		document.getElementById("key").value = id;
     		document.getElementById("keyword").value= "";

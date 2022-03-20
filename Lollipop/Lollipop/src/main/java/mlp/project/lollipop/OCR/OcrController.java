@@ -140,27 +140,31 @@ public class OcrController {
 		
 		//System.out.println("test : "+imageobject);
 	
+		try {
+			String jsondata = ocrapi.OCRAPI(multi.getFile("upload"));
+			JSONObject jsonobject = new JSONObject(jsondata);
+			JSONArray jsonArr = (JSONArray)jsonobject.get("images");
 		
-		String jsondata = ocrapi.OCRAPI(multi.getFile("upload"));
-		JSONObject jsonobject = new JSONObject(jsondata);
-		JSONArray jsonArr = (JSONArray)jsonobject.get("images");
-	
-		JSONObject jsonobj = (JSONObject)jsonArr.get(0);
-		JSONArray ja = (JSONArray)jsonobj.get("fields");
-		JSONObject o = (JSONObject)ja.get(0);
-		String bnumer = o.getString("inferText");
-		System.out.println(bnumer);
+			JSONObject jsonobj = (JSONObject)jsonArr.get(0);
+			JSONArray ja = (JSONArray)jsonobj.get("fields");
+			JSONObject o = (JSONObject)ja.get(0);
+			String bnumer = o.getString("inferText");
+			System.out.println(bnumer);
 
-		String storekey = ocrservice.getkey(bnumer);
-		System.out.println(storekey);
-		if(storekey !=null) {
-			PLAY_ReviewDto dto = new PLAY_ReviewDto();
-	        model.addAttribute("reviewDto", dto);
-			model.addAttribute("bnumber", storekey);
-			return "PLAY_REVIEW/Play_write";	
-		}else {
-			return "/";
+			String storekey = ocrservice.getkey(bnumer);
+			System.out.println(storekey);
+			if(storekey !=null) {
+				PLAY_ReviewDto dto = new PLAY_ReviewDto();
+		        model.addAttribute("reviewDto", dto);
+				model.addAttribute("bnumber", storekey);
+				return "PLAY_REVIEW/Play_write";	
+			}else {
+				return "/";
+			}
+		}catch(Exception e) {
+			return "redirect:/";
 		}
+
 	}
 	
 	

@@ -66,7 +66,7 @@ public class PLAY_ReviewController {
 
     @RequestMapping(value = "/PLAY_Review/write")
     public String Review_write(Model model) {
-   
+    	
     	PLAY_ReviewDto dto = new PLAY_ReviewDto();
         model.addAttribute("reviewDto", dto);
         return "PLAY_REVIEW/Play_write";

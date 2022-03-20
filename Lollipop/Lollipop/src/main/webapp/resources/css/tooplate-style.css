@@ -22,7 +22,7 @@ a:hover, a:focus, a.active {
 }
 
 .tm-welcome-section {
-    height: 83vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,12 +33,12 @@ a:hover, a:focus, a.active {
     background-size: cover;
     background-position: center center;
     color: white;
-    max-height: 700px;
-    min-height: 400px;
+    max-height: 500px;
+    min-height: 300px;
 }
 
-.tm-fa-big { font-size: 5em; }
-.tm-fa-mb-big { margin-bottom: 3rem; }
+.tm-fa-big { font-size: 3em; }
+.tm-fa-mb-big { margin-bottom: 3rem; margin-top: 4rem;}
 
 .tm-navbar-container {
     position: absolute;
@@ -76,7 +76,7 @@ a:hover, a:focus, a.active {
 .tm-search-box {
     padding-left: 28px;
     padding-right: 28px;
-    width: 60%;
+    width: 80%;
 }
 
 .tm-advanced-box { width: 20%; }
@@ -269,12 +269,84 @@ figure.effect-sadie:hover p {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.tm-tag-line-today {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/today.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.tm-tag-line-food {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/food2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.tm-tag-line-play {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/play.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.tm-tag-line-cafe {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/cafe.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.tm-tag-line-store {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/store.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.tm-tag-line-mark {
+	margin-top: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    min-height: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/mark.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .tm-tag-line-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
     position: relative;
-    font-weight: 300;
+    font-weight: 700;
     margin-bottom: 0;
     padding-left: 20px;
     padding-right: 20px;
@@ -390,19 +462,29 @@ figure.effect-sadie:hover p {
 }
 
 .tm-mb-30 { margin-bottom: 30px; }
-.tm-mb-medium { margin-bottom: 90px; }
+.tm-mb-medium { margin-bottom: 50px; }
 .tm-mb-big { margin-bottom: 130px; }
-.tm-mt-big { margin-top: 100px; }
+.tm-mt-big { margin-top: 50px; }
 
 .tm-about-h2 {
     font-size: 1.4rem;
     font-weight: 300;
 }
 
+.tm-about-h1 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
 .tm-v-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.tm-v-center2 {
+    display: flex;
+    flex-direction: column;
 }
 
 .tm-media-v-center {
@@ -433,6 +515,7 @@ figure.effect-sadie:hover p {
     max-width: 560px;
     padding: 0 50px;
 }
+
 
 .tm-about-description { line-height: 1.8; }
 
@@ -692,6 +775,12 @@ iframe { max-width: 100%; }
     .tm-albums-container { max-width: none; }
     .navbar-expand-sm .navbar-nav .nav-link { padding: 20px 40px; }
     .navbar-nav { margin-right: -40px; }
+}
+
+@media (min-width: 576px) {
+    .tm-albums-container { max-width: none; }
+    .navbar-expand-sm .navbar-nav2 .nav-link { padding: 20px 40px; }
+    .navbar-nav2 { margin-right: 20px; }
 }
 
 @media (min-width: 768px) {

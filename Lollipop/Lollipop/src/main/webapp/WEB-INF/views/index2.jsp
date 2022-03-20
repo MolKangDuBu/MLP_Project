@@ -56,7 +56,9 @@ http://www.tooplate.com/view/2101-insertion
    
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
           <h1 class="text-uppercase mb-3 tm-site-name"></h1>
           <p class="tm-site-description"></p>
         </div>
@@ -70,86 +72,46 @@ http://www.tooplate.com/view/2101-insertion
       <div class="row tm-albums-container grid">
        <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
           <a href="${commonURL}/Today/list"> <figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-01.jpg" alt="Image" class="img-fluid">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-011.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>오늘의 팝딜</h2>
-              <p>Rollover text and description text goes here over mouse over...</p>
+              <p>지금 가장 인기 있는 데이트 명소를 소개해 드립니다 !</p>
             </figcaption>
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
            <a href="${commonURL}/FOOD_Review/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-02.jpg" alt="Image" class="img-fluid">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-022.jpg" alt="Image" class="img-fluid">
             <figcaption>
-              <h2>음식</h2>
-              <p>Maecenas iaculis et turpis et iaculis. Aenean at volutpat diam.</p>
+              <h2>맛집</h2>
+              <p>즐거운 데이트를 위한 맛집 탐방을 계획해보세요.</p>
             </figcaption>
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
            <a href="${commonURL}/Cafe_Review/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-03.jpg" alt="Image" class="img-fluid">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-033.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>카페</h2>
-              <p>Vivamus eget elit purus. Nullam consectetur porttitor elementum.</p>
+              <p>맛과 분위기, 당신의 취향을 저격하겠습니다.</p>
             </figcaption>
           </figure></a>
         </div>
         <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
           <a href="${commonURL}/PLAY_Review/list"><figure class="effect-sadie">
-            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-04.jpg" alt="Image" class="img-fluid">
+            <img src="${pageContext.request.contextPath}/resources/img/insertion-260x390-044.jpg" alt="Image" class="img-fluid">
             <figcaption>
               <h2>놀거리</h2>
-              <p>Praesent nec feugiat dolor, elementum mollis purus. Etiam faucibus.</p>
+              <p>방탈출, 보드게임, 이색카페 등 다양한 놀거리들을 확인해보세요.</p>
             </figcaption>
-          </figure>
+          </figure></a>
         </div>
       </div>
 
 
-
-      <div class="row tm-mb-big tm-subscribe-row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-bg-gray tm-subscribe-form">
-          <h3 class="tm-text-pink tm-mb-30">Subscribe our updates!</h3>
-          <p class="tm-mb-30">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi semper, ligula et pretium porttitor, leo orci accumsan ligula.</p>
-          <div>
-            <div class="form-group mb-0">
-              <input type="text" class="form-control tm-subscribe-input" placeholder="Your Email">
-              <input type="submit" value="Submit" class="tm-bg-pink tm-text-white d-block ml-auto tm-subscribe-btn">
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 img-fluid pl-0 tm-subscribe-img"></div>
-      </div>
-
-      <div class="row tm-mb-medium">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
-          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Our Pages</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
-          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-          <h4 class="mb-4 tm-font-300">Quick Links</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
-          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
-        </div>
-      </div>
       <footer class="row">
         <div class="col-xl-12">
-          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
-          
-          - Design:  Tooplate</p>
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
         </div>
       </footer>
     </div> <!-- .container -->
@@ -180,7 +142,7 @@ http://www.tooplate.com/view/2101-insertion
 <script>
 window.onload = function(){
 	 
-		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 		if('<%=key%>' !=""){
 		let key = '<%=key%>';
 		document.getElementById("searchItem").innerHTML = texts[key];
@@ -191,7 +153,7 @@ window.onload = function(){
  
  function changeSearch(id){
 		console.log("wwww");
-		var texts =['','전체','','음식', '카페', '놀거리'];
+		var texts =['','전체보기','','음식', '카페', '놀거리'];
 		document.getElementById("searchItem").innerHTML = texts[id];
 		document.getElementById("key").value = id;
 		document.getElementById("keyword").value= "";

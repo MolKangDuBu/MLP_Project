@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Insertion - Contact Page</title>
+  <title>놀거리-글쓰기</title>
 <!--
 
 Template 2101 Insertion
@@ -24,7 +24,7 @@ http://www.tooplate.com/view/2101-insertion
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
-	
+
   <script>
     var renderPage = true;
 
@@ -45,9 +45,9 @@ http://www.tooplate.com/view/2101-insertion
 
 <%
  		PLAY_ReviewDto dto = (PLAY_ReviewDto)request.getAttribute("reviewDto");
-		String bnumer= StringUtil.nullToValue(request.getAttribute("bnumber"), "");
+		String bnumer = StringUtil.nullToValue(request.getAttribute("bnumber"), "");
     %>
-  <input type = "hidden" name = "store_key" id = "store_key" value = "<%=bnumer%>"/>
+	      	<input type = "hidden" name = "store_key" id = "store_key" value = "<%=bnumer%>"/>
   <!-- Loader -->
   <div id="loader-wrapper">
     <div id="loader"></div>
@@ -63,9 +63,11 @@ http://www.tooplate.com/view/2101-insertion
     
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-          <h1 class="text-uppercase mb-3 tm-site-name">Insertion</h1>
-          <p class="tm-site-description">New HTML Website Template</p>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="tm-site-description"></p>
         </div>
       </div>
 
@@ -146,36 +148,10 @@ http://www.tooplate.com/view/2101-insertion
       </div>
 
       <!-- Bottom links -->
-      <div class="row tm-about-row tm-mb-medium">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Latest Albums</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed fringilla consectetur</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Mauris porta nisl quis</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Quisque maximus quam nec</a>
-          <a href="#" class="tm-text-blue-dark d-block">Class aptent taciti sociosqu ad</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
-          <h4 class="mb-4 tm-font-300">Our Pages</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nam dapibus imperdiet</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Primis in faucibus orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Sed interdum blandit dictum</a>
-          <a href="#" class="tm-text-blue-dark d-block">Donec non blandit nisl</a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-          <h4 class="mb-4 tm-font-300">Quick Links</h4>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Nullam scelerisque mauris</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Vivamus tristique enim non orci</a>
-          <a href="#" class="tm-text-blue-dark d-block mb-2">Luctus et ultrices posuere</a>
-          <a href="#" class="tm-text-blue-dark d-block">Cubilia Curae</a>
-        </div>
-      </div>
-      <footer class="row tm-about-row">
+      <footer class="row">
         <div class="col-xl-12">
-          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Your Company Name 
-          
-          - Design:  Tooplate</p>
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
         </div>
-        </form>
       </footer>
     </div> <!-- .container -->
 
@@ -213,7 +189,7 @@ window.onload = function(){
 	   document.getElementById("Review_category").value = <%=dto.getReview_category()%>
 
 
-		var texts =['선택','전체','','음식', '카페', '놀거리'];
+		var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 		if('<%=key%>' !=""){
 		let key = '<%=key%>';
 		document.getElementById("searchItem").innerHTML = texts[key];
@@ -240,7 +216,7 @@ function add(){
 
 function changeSearch(id){
 	
-	var texts =['','전체','','음식', '카페', '놀거리'];
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";

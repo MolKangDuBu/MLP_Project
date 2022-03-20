@@ -19,7 +19,7 @@ String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), ""
             <nav class="navbar navbar-expand-sm">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a href="${commonURL}/" class="nav-link tm-nav-link tm-text-white active">Home</a>
+                  <a href="${commonURL}/" class="nav-link tm-nav-link tm-text-white">Home</a>
                 </li>
                   <li class="nav-item">
                   <a href="${commonURL}/Store/list" class="nav-link tm-nav-link tm-text-white">Store</a>
@@ -30,12 +30,12 @@ String user_phone= StringUtil.nullToValue(session.getAttribute("user_phone"), ""
            
                      <%if(user_id==null || user_id.equals("")){ %>
                 <li class="nav-item">
-                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white active">Login</a>
+                  <a href="${commonURL}/User/login" class="nav-link tm-nav-link tm-text-white">Login</a>
                 </li>
                 <%}else{%>
                 
                 <li class="nav-item">
-                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white active">Mypage</a>
+                  <a href="${commonURL}/User/mypage" class="nav-link tm-nav-link tm-text-white">Mypage</a>
                 </li>
 
                 <%} %>

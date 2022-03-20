@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>맛집-게시글</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
                         rel="stylesheet">
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -67,9 +67,11 @@
 
       <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-          <h1 class="text-uppercase mb-3 tm-site-name">Lollipop</h1>
-          <p class="tm-site-description">Enjoying is your powerful energy</p>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="tm-site-description"></p>
         </div>
       </div>
      </div>
@@ -81,7 +83,10 @@
 
      <div class="row tm-about-row tm-mt-big tm-mb-medium">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 tm-about-col-left">
-          <div class="tm-v-center tm-bg-gray h-100 tm-about-text">
+          <div class="tm-v-center tm-bg-gray h-50 tm-about-text">
+            <h1 class="tm-text-brown mb-4 tm-about-h1"><%=dto.getReview_title() %></h1>
+          </div>
+          <div class="tm-v-center2 tm-bg-gray h-50 tm-about-text">
             <h2 class="tm-text-brown mb-4 tm-about-h2"><%=dto.getReview_contents() %></h2>
           </div>
         </div>
@@ -99,19 +104,19 @@
   
   <!-- The slideshow -->
   <div class="carousel-inner">
-     <% if(dto.getReview_image1()!=null){%>
+     <% if(dto.getReview_image1()!=null && !dto.getReview_image1().equals("")){%>
     <div class="carousel-item active">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image1()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image1()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
-     <% if(dto.getReview_image2()!=null){%>
+     <% if(dto.getReview_image2()!=null && !dto.getReview_image2().equals("")){%>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image2()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image2()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
-     <% if(dto.getReview_image3()!=null){%>
+     <% if(dto.getReview_image3()!=null && !dto.getReview_image3().equals("")){%>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image3()%>"  height = "336px" width = "560px" alt="Los Angeles">
+      <img src="${pageContext.request.contextPath}/upload/<%=dto.getReview_image3()%>"  height = "336px" width = "560px" alt="이미지">
     </div>
     <%} %>
   </div>
@@ -133,19 +138,23 @@
           <ul class="nav nav-tabs" id="tmTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">
-                <i class="fas fa-2x fa-music pr-4"></i>
+				<img src="${pageContext.request.contextPath}/resources/img/writer.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fas fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">작성자</p>
+                
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="profile-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="profile" aria-selected="false">
-                <i class="fab fa-2x fa-accusoft pr-4"></i>
+                <img src="${pageContext.request.contextPath}/resources/img/wdate.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fab fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">작성일</p>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link tm-bg-gray tm-media-v-center tm-tab-link" id="contact-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="contact" aria-selected="false">
-                <i class="fab fa-2x fa-amazon-pay pr-4"></i>
+                <img src="${pageContext.request.contextPath}/resources/img/waddress.png"  height="50px" width="50px" alt="Image" class="img-fluid">
+                <i class="fab fa-2x pr-4"></i>
                 <p class="media-body mb-0 tm-media-link">주소</p>
                </a>
             </li>
@@ -157,7 +166,9 @@
           <div class="tab-content h-100 tm-bg-gray" id="myTabContent">
             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
               <div class="media tm-media-2">
-                <i class="fas fa-5x fa-music mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/writer.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">작성자</h2>
                   <p class="mb-4"><%=dto.getReview_id() %></p>
@@ -167,7 +178,9 @@
             
             <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
               <div class="media tm-media-2">
-                <i class="fab fa-5x fa-accusoft mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/wdate.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">작성일</h2>
                   <p class="mb-4"><%=dto.getReview_wdate() %></p>
@@ -177,7 +190,9 @@
             
             <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
               <div class="media tm-media-2">
-                <i class="fab fa-5x fa-amazon-pay mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+                              <img src="${pageContext.request.contextPath}/resources/img/waddress.png" height="100px" width="100px" alt="Image" class="img-fluid">
+                <i class="fas fa-5x mb-3 tm-text-pink-dark tm-media-2-icon"></i>
+
                 <div class="media-body tm-media-body-2">
                   <h2 class="mb-4 tm-text-pink-dark tm-media-2-header">주소</h2>
                   <p class="mb-4"><%=dto.getReview_address() %></p>
@@ -201,25 +216,11 @@
                </div>
     </div>
     
-     <footer class="row">
-              	  <div class="col-xl-12">                    
-                        <div _ngcontent-sc92="" class="policy-links">
-                            <a _ngcontent-sc92="" href="https://www.daangn.com"
-                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/terms" target="_blank"> 이용약관 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/privacy" target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/location" target="_blank"> 위치기반 서비스 이용약관 </a>
-                        </div>
-                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92=""> 고객문의 cs@lollipopservice.com
-                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com </span><span _ngcontent-sc92="">
-                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92=""> PR문의 pr@lollipop.com </span>
-                        </div>
-                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
-                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
-                        </div>
-                        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2022</span> Lollipop Market Inc. All rights reserved.
-                    </div>
-                  </footer>
+      <footer class="row">
+        <div class="col-xl-12">
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
+        </div>
+      </footer>
             </div><!-- .container -->
 
 		</div> <!-- .main -->        
@@ -249,7 +250,7 @@
 
 
 window.onload = function(){
-	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 	if('<%=key%>' !=""){
 	let key = '<%=key%>';
 	document.getElementById("searchItem").innerHTML = texts[key];
@@ -260,7 +261,7 @@ window.onload = function(){
 
 function changeSearch(id){
 	
-	var texts =['','전체','','음식', '카페', '놀거리'];
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";

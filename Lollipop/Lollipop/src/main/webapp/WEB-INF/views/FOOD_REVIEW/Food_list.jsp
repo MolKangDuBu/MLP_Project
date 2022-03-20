@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>롤리팝 맛집</title>
+    <title>맛집</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="og:locale" content="ko_KR">
@@ -81,11 +81,13 @@
  	<div class="tm-welcome-section">
 	<%@include file="../include/nav.jsp" %>
  	
- 	 <div class="container text-center tm-welcome-container">
+      <div class="container text-center tm-welcome-container">
         <div class="tm-welcome">
-          <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-          <h1 class="text-uppercase mb-3 tm-site-name">Lollipop</h1>
-          <p class="tm-site-description">Enjoying is your powerful energy</p>
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="tm-site-description"></p>
         </div>
       </div>
      </div>
@@ -98,10 +100,10 @@
 	      <!-- 게시판명 -->
          <div class="row">
        		<div class="col-lg-12">
-         	 <div class="tm-tag-line">
+         	 <div class="tm-tag-line-food">
          	 <%String title = (String)request.getAttribute("title");
               if(title.equals("null") ) {%>
-         	  <h2 class="tm-tag-line-title">음식 게시판</h2>
+         	  <h2 class="tm-tag-line-title">맛집</h2>
        		 </div>
        		 <% }else{%>
        		  <h2 class="tm-tag-line-title"><%=title%></h2>
@@ -154,7 +156,7 @@
         <%=Pager.makeTag(request, 10, totalCnt) %>
     </div>
     <div class="container mt-3" style="text-align:right;">
-        <a href="<%=request.getContextPath()%>/FOOD_Review/write" class="btn btn-secondary">글쓰기</a>
+        <a href="<%=request.getContextPath()%>/ocr/getkey" class="btn btn-secondary">글쓰기</a>
     </div>
 
 </div>
@@ -165,25 +167,15 @@
           	  
           	       	 	 
 
+
       <footer class="row">
-              	  <div class="col-xl-12">                    
-                        <div _ngcontent-sc92="" class="policy-links">
-                            <a _ngcontent-sc92="" href="https://www.daangn.com"
-                                target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/terms" target="_blank"> 이용약관 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/privacy" target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp; 
-                                <a _ngcontent-sc92="" href="https://www.daangn.com/policy/location" target="_blank"> 위치기반 서비스 이용약관 </a>
-                        </div>
-                        <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92=""> 고객문의 cs@lollipopservice.com
-                            </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com </span><span _ngcontent-sc92="">
-                                지역광고 ad@lollipop.com </span><span _ngcontent-sc92=""> PR문의 pr@lollipop.com </span>
-                        </div>
-                        <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길 28, 609호 (롤리팝 서비스) 사업자 등록번호 :
-                            375-87-00088 직업정보제공사업 신고번호 : J1200020200016 
-                        </div>
-                        <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2022</span> Lollipop Market Inc. All rights reserved.
-                    </div>
-                  </footer>
+        <div class="col-xl-12">
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
+        </div>
+      </footer>
+    </div> <!-- .container -->
+
+  </div> <!-- .main -->
             </div><!-- .container -->
 
 		</div> <!-- .main -->        
@@ -197,7 +189,7 @@
 
 <script>
 window.onload = function(){
-	var texts =['선택','전체','','음식', '카페', '놀거리'];
+	var texts =['선택','전체보기','','음식', '카페', '놀거리'];
 	if('<%=key%>' !=""){
 	let key = '<%=key%>';
 	document.getElementById("searchItem").innerHTML = texts[key];
@@ -210,7 +202,7 @@ window.onload = function(){
 
 function changeSearch(id){
 	
-	var texts =['','전체','','음식', '카페', '놀거리'];
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
 	document.getElementById("searchItem").innerHTML = texts[id];
 	document.getElementById("key").value = id;
 	document.getElementById("keyword").value= "";
