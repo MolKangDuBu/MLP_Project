@@ -1,64 +1,163 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@page import  = "mlp.project.lollipop.USER.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 정보</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>마이페이지</title>
+
+<!--
+
+Template 2101 Insertion
+
+http://www.tooplate.com/view/2101-insertion
+
+-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- load CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">        <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">                                            <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fontawesome-all.min.css">                                      <!-- Font awesome -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
+
+  <script>
+    var renderPage = true;
+
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+      || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in. */
+      alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+      renderPage = false;
+    }
+  </script>
+
 </head>
 
 <body>
-    <div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
-            <header>
-                <div class="logo-wrap">
-                    <img src="assets/img/lollipop.png" width="50%" style="display: block; margin: 0px auto;">
-                </div>
-            </header>
-			<section id="joinForm" action="./member/join_member.do" method="post">
-				<p>
-					<div>아이디</div>
-					<div type="text" id="id" name="id" style="font-weight: bold; font-size:large; border-bottom-style:none;">&nbsp;회원 아이디</div>
-				</p>
-				<p>
-					<label>비밀번호</label> 
-					<input class="w3-input" id="pw" name="pw" type="password" required >
-				</p>
-				<p>
-					<div>이름</div> 
-					<div type="text" id="name" name="name" style="font-weight: bold; font-size:large; border-bottom-style:none;">&nbsp;회원 이름</div>
-				</p>
-                 <p>
-					<label>핸드폰 번호</label> 
-					<input class="w3-input" id="pw2" type="tel" placeholder="회원 핸드폰 번호" required >
-				</p>
-				<p>
-					<label>이메일 주소</label>
-					<input type="email" id="email" name="email" class="w3-input" placeholder="회원 이메일 주소" required >
-					<span id="email_check" class="w3-text-red"></span>
-				</p>
-            
-				<p class="w3-center">
-					<button type="submit" id="modifyBtn" class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">수정하기</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
-				</p>
-			</section>
-            <footer>
-                <div class="copyright-wrap" style="display: flex; flex-direction: column; align-items: center; height: 30px;">
-                    <span>Copyright © Lollipop Corp. All Rights Reserved.</span>
-                </div>
-            </footer>
-		</div>
-	</div>
+       <form id ="myform" name ="myform">
+	<% 
+		UserDto dto = (UserDto)request.getAttribute("userdto");
+	%>
+
+
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+
+  <div class="tm-main">
+
+    <div class="tm-welcome-section">
+
+   <%@include file="../include/nav.jsp" %>
+      <div class="container text-center tm-welcome-container">
+        <div class="tm-welcome">
+          <p class="fas tm-fa-big tm-fa-mb-big">
+          <img src="${pageContext.request.contextPath}/resources/img/main.png" alt="Image" class="img-fluid">
+          Lollipop</p>
+          <h1 class="text-uppercase mb-3 tm-site-name"></h1>
+          <p class="tm-site-description"></p>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+		  <%@include file="../include/search.jsp" %>
+
+      <div class="row tm-mt-big tm-about-row tm-mb-medium">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 tm-contact-col">
+          <div class="tm-contact-left tm-bg-pink-light-2 tm-text-white text-right p-md-5 p-4">
+            <i class="fas fa-3x fa-comments mb-4"></i>
+            <h2 class="tm-media-2-header">Mypage</h2>
+          </div>
+          <div class="tm-bg-gray tm-contact-middle">
+
+
+
+              <div class="form-group mb-4">
+                <input type="text"  id = "user_id" name="user_id" class="form-control" value =<%=dto.getUser_id()%>  placeholder="ID" required/>
+              </div>
+              <div class="form-group mb-4">
+                <input type="password"  id = "user_password" name="user_password" class="form-control" value =<%=dto.getUser_password()%> placeholder="Password" required/>
+              </div>
+
+               <div class="form-group mb-4">
+                <input type="text"  id = "user_name" name="user_name" class="form-control" value =<%=dto.getUser_name()%> placeholder="Name" required/>
+              </div>
+               <div class="form-group mb-4">
+                <input type="text"  id = "user_phone" name="user_phone" class="form-control" value =<%=dto.getUser_phone()%> placeholder="Phone" required/>
+              </div>
+               <div class="form-group mb-4">
+                <input type="text"  id = "user_mail" name="user_mail" class="form-control" value =<%=dto.getUser_mail()%> placeholder="Email" required/>
+              </div>
+          	
+              <div class="form-group mb-0">
+                <button type="button" class="btn btn-secondary" id="joinBtn" onclick = "Modify()">Modify</button>
+              </div>
+            </form>
+          </div>
+          <div class="tm-bg-gray tm-contact-right">
+           
+
+             <div>
+               <h2 class="tm-media-2-header tm-text-pink-dark mb-3">My Menu</h2>
+               <address class="mb-4">
+
+                  <a href="${commonURL}/Mark/list" class="nav-link tm-nav-link tm-text-white active">BookMark</a>
+				  <a href="${commonURL}/User/logout" class="nav-link tm-nav-link tm-text-white active">Logout</a>
+
+               </address>
+                
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom links -->
+      <footer class="row">
+        <div class="col-xl-12">
+          <p class="text-center p-4">Copyright &copy; <span class="tm-current-year">2018</span> Lollipop Inc. All rights reserved.
+        </div>
+      </footer>
+    </div> <!-- .container -->
+
+  </div> <!-- .main -->
+
+  <!-- load JS -->
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.slim.min.js"></script> <!-- https://jquery.com/ -->
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>         <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tooplate-style.css">                                           <!-- Templatemo style -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function () {
+
+      if (renderPage) {
+        $('body').addClass('loaded');
+      }
+
+      $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+
+  </script>
+>>>>>>> lmg
 </body>
+</form>
 </html>
+<<<<<<< HEAD
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
@@ -116,3 +215,65 @@
             });
         })
 </script>
+=======
+<script>
+
+window.onload = function(){
+	var texts =['선택','전체보기','','음식', '카페', '놀거리'];
+	if('<%=key%>' !=""){
+	let key = '<%=key%>';
+	document.getElementById("searchItem").innerHTML = texts[key];
+	}else{
+	document.getElementById("searchItem").innerHTML = texts[0];
+	}
+}
+
+
+function Modify()
+{
+	var frmData = $("form[name=myform]").serialize();
+   console.log( frmData);
+      
+   $.ajax({
+      url:"${commonURL}/User/insert",
+      data:frmData,
+      type:"POST",
+   })
+   .done( (result)=>{
+      if(result.flag==1){
+    	  alert("수정되었습니다.");
+          location.href="${commonURL}/"; //시작화면으로 이동하기  
+      }
+   })
+   .fail( (error)=>{
+      console.log(error);
+   })
+}
+
+function goCancel(){
+	location.href="${commonURL}/";
+}
+
+function changeSearch(id){
+	
+	var texts =['','전체보기','','음식', '카페', '놀거리'];
+	document.getElementById("searchItem").innerHTML = texts[id];
+	document.getElementById("key").value = id;
+	document.getElementById("keyword").value= "";
+}
+
+function gosearch(){
+	if(document.getElementById("key").value ==0){
+		alert("카테고리를 선택해주세요.");
+		return false;
+	}
+	let frm = document.myform;
+	frm.pg.value=0;
+	frm.action = "<%=request.getContextPath()%>/PLAY_Review/list";
+	frm.method ="GET";
+	frm.submit();
+}
+
+
+</script>
+>>>>>>> lmg

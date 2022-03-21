@@ -1,12 +1,31 @@
 package mlp.project.lollipop.NOTICE;
 
-public class NoticeDto {
+import mlp.project.lollipop.common.BaseDto;
+
+public class NoticeDto extends BaseDto{
 	private int notice_key;
-	private String notice_id;
-	private String notice_title;
-	private String notice_contents;
-	private String notice_wdate;
+	private String notice_id="";
+	private String notice_title="";
+	private String notice_contents="";
+	private String notice_wdate="";
+	private int notice_hit=0;
+	private String user_name="";
 	
+	
+	
+	
+	public int getNotice_hit() {
+		return notice_hit;
+	}
+	public void setNotice_hit(int notice_hit) {
+		this.notice_hit = notice_hit;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public int getNotice_key() {
 		return notice_key;
 	}
