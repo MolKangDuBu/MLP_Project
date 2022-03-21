@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import = "mlp.project.lollipop.common.*" %>
+    <%@page import="java.util.*" %>
+<%@page import="mlp.project.lollipop.TODAY_REVIEW.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,28 +18,15 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-
+   	<%@include file ="./include/board.jsp"  %>
     <link href="resources/css/styles.css" rel="stylesheet" />
 
 </head>
 <body>
+<%List<Today_ReviewDto> list = (List<Today_ReviewDto>)request.getAttribute("TodayList"); %>
     <div style="width: 80%; margin: auto;">
     <!-- Navigation-->
-    <nav style ="background-color: bisque;"> 
-        <div class="container">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">공지사항</a>
-                </li>              
-                <li class="nav-item">
-                    <a class="nav-link" href="#">고객센터</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">로그인</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <%@include file="./include/nav.jsp" %>
 
  
         <!-- Masthead-->
@@ -95,43 +86,43 @@
         </header>
         <!-- Icons Grid-->
         <br/>       
-    <div class="row">
-        <div class="card" style="width: 18rem;"> 
-            <img src="..." class="card-img-top" alt="...">
+    <div class="row" style = "text-align: center;">
+        <div class="card" style="width: 18rem; margin-left: 5%;"> 
+            <img src="resources/Image/img1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">오늘의 팝딜</h5>
+              <h5 class="card-title">팝딜</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/Today/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-        <div class="card" style="width: 18rem;"> 
+        <div class="card" style="width: 18rem; margin-left: 5%;"> 
             <img src="resources/Image/food.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">음식</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/FOOD_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 18rem; margin-left: 5%;">
             <img src="resources/Image/coffee.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">카페</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/Cafe_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 18rem; margin-left: 5%;">
             <img src="resources/Image/park.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">놀거리</h5>
               <p class="card-text">test</p>
-              <a href="#" class="btn btn-primary">이동</a>
+              <a href="${commonURL}/PLAY_Review/list" class="btn btn-primary">이동</a>
             </div>
           </div>
         </div>
         <br/>
 
-       <div> 
+       <div class ="container row" style = " margin :0 auto"; > 
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
             <div class="carousel-indicators">
@@ -142,16 +133,13 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="resources/Image/food.jpg" class="d-block w-100" alt="food">
-                </div>
-                <div class="carousel-item">
-                    <img src="resources/Image/coffee.jpg" class="d-block w-100" alt="coffee">
-                </div>
-                <div class="carousel-item">
-                    <img src="resources/Image/park.jpg" class="d-block w-100" alt="park">
-                </div>
+            <div class="carousel-inner" >
+	            <%for(int i =0;i<list.size();i++){ %>
+	                <div class="carousel-item active" >
+	                    <img src="${pageContext.request.contextPath}/upload/<%=list.get(i).getReview_image1()%>" width =100px height=500px class="d-block w-100" >
+	                </div>
+	             <%} %>   
+
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">
@@ -201,37 +189,38 @@
 
 
     <!-- Footer-->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="#!">About</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!">Contact</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                        </li>
-                        <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <app-footer _ngcontent-sc105="" _nghost-sc92="" style="width: 80%; margin: auto; ">
+               <div _ngcontent-sc92="" class="footer-container">
+                   <div _ngcontent-sc92="" class="policy-links">
+                       <a _ngcontent-sc92="" href="https://www.daangn.com"
+                           target="_blank" class="daangn"> 롤리팝 홈페이지 </a> &nbsp; ·
+                       &nbsp;
+                       <a _ngcontent-sc92=""
+                           href="https://www.daangn.com/policy/terms"
+                           target="_blank"> 이용약관 </a> &nbsp; · &nbsp;
+                       <a _ngcontent-sc92=""
+                           href="https://www.daangn.com/policy/privacy"
+                           target="_blank"> 개인정보 취급방침 </a> &nbsp; · &nbsp;
+                       <a _ngcontent-sc92=""
+                           href="https://www.daangn.com/policy/location"
+                           target="_blank"> 위치기반 서비스 이용약관 </a>
+                   </div>
+                   <div _ngcontent-sc92="" class="emails"><span _ngcontent-sc92="">
+                           고객문의 cs@lollipopservice.com
+                       </span><span _ngcontent-sc92=""> 제휴문의 contact@lollipop.com
+                       </span><span _ngcontent-sc92="">
+                           지역광고 ad@lollipop.com </span><span _ngcontent-sc92="">
+                           PR문의 pr@lollipop.com </span>
+                   </div>
+                   <div _ngcontent-sc92="" class="other-info"> 서울특별시 구로구 디지털로30길
+                       28, 609호 (롤리팝 서비스) 사업자 등록번호 :
+                       375-87-00088 직업정보제공사업 신고번호 : J1200020200016
+                   </div>
+                   <div _ngcontent-sc92="" class="copyright"> Copyright © Lollipop
+                       Market Inc. All rights reserved.
+                   </div>
+               </div>
+           </app-footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
